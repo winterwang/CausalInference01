@@ -126,4 +126,441 @@ class: middle
 ]
 
 ???
-- Potential because either of these two outcomes can be potentially observed
+- "Potential" because either of these two outcomes can be potentially observed
+- "Counterfactual" because these outcomes represent situations that may not actually occur
+
+
+---
+class: middle
+## Individual causal effect (6)
+
+
+.full-width[.content-box-red[.bold[
+**Consistency:**
+<br> For each individual, one of the potential 
+<br> outcomes will actually occur. 
+<br> For example, Zeus was actually treated 
+<br> $(A = 1)$, his counterfactual outcome 
+<br> $Y^{a = 1} = 1$ is equal to what was observed. 
+<br> $Y = Y^{a = 1} = 1$ is called **consistency**.
+]]]
+
+
+---
+class: middle
+## Average causal effect (1)
+
+.full-width[.content-box-red[.bold[
+We need three pieces of information: 
+- an outcome of interest
+- the action $a = 1, a= 0$ to be compared
+- the counterfactual outcomes $Y^{a = 1}, Y^{a = 0}$
+]]]
+
+.med[Normally it is not possible to identify individual causal effects. We turn to an **aggregated causal effect**.]
+
+
+---
+class: middle
+## Average causal effect (2)
+
+.pull-left[
+<style type="text/css">
+.tg  {border-collapse:collapse;border-color:#bbb;border-spacing:0;}
+.tg td{background-color:#E0FFEB;border-color:#bbb;border-style:solid;border-width:0px;color:#594F4F;
+  font-family:Arial, sans-serif;font-size:14px;overflow:hidden;padding:10px 5px;word-break:normal;}
+.tg th{background-color:#9DE0AD;border-color:#bbb;border-style:solid;border-width:0px;color:#493F3F;
+  font-family:Arial, sans-serif;font-size:14px;font-weight:normal;overflow:hidden;padding:10px 5px;word-break:normal;}
+.tg .tg-1wig{font-weight:bold;text-align:left;vertical-align:top}
+.tg .tg-cyim{font-size:20px;text-align:left;vertical-align:top}
+.tg .tg-bhpp{font-size:20px;font-weight:bold;text-align:left;vertical-align:top}
+.tg .tg-0lax{text-align:left;vertical-align:top}
+</style>
+<table class="tg">
+<thead>
+  <tr>
+    <th class="tg-0lax"></th>
+    <th class="tg-1wig">\[\mathbf{Y^{a = 0}}\] </th>
+    <th class="tg-1wig"> \[\mathbf{Y^{a = 1}}\] </th>
+    <th class="tg-0lax"></th>
+    <th class="tg-1wig"> \[\mathbf{Y^{a = 0}}\] </th>
+    <th class="tg-1wig"> \[\mathbf{Y^{a = 1}}\] </th>
+  </tr>
+</thead>
+<tbody>
+  <tr>
+    <td class="tg-bhpp">Rheia</td>
+    <td class="tg-cyim">0</td>
+    <td class="tg-cyim">1</td>
+    <td class="tg-bhpp">Leto</td>
+    <td class="tg-cyim">0</td>
+    <td class="tg-cyim">1</td>
+  </tr>
+  <tr>
+    <td class="tg-bhpp">Kronos</td>
+    <td class="tg-cyim">1</td>
+    <td class="tg-cyim">0</td>
+    <td class="tg-bhpp">Ares</td>
+    <td class="tg-cyim">1</td>
+    <td class="tg-cyim">1</td>
+  </tr>
+  <tr>
+    <td class="tg-bhpp">Demeter</td>
+    <td class="tg-cyim">0</td>
+    <td class="tg-cyim">0</td>
+    <td class="tg-bhpp">Athena</td>
+    <td class="tg-cyim">1</td>
+    <td class="tg-cyim">1</td>
+  </tr>
+  <tr>
+    <td class="tg-bhpp">Hades</td>
+    <td class="tg-cyim">0</td>
+    <td class="tg-cyim">0</td>
+    <td class="tg-bhpp">Hephaestus</td>
+    <td class="tg-cyim">0</td>
+    <td class="tg-cyim">1</td>
+  </tr>
+  <tr>
+    <td class="tg-bhpp">Hestia</td>
+    <td class="tg-cyim">0</td>
+    <td class="tg-cyim">0</td>
+    <td class="tg-bhpp">Aphrodite</td>
+    <td class="tg-cyim">0</td>
+    <td class="tg-cyim">1</td>
+  </tr>
+  <tr>
+    <td class="tg-bhpp">Poseidon</td>
+    <td class="tg-cyim">1</td>
+    <td class="tg-cyim">0</td>
+    <td class="tg-bhpp">Cyclope</td>
+    <td class="tg-cyim">0</td>
+    <td class="tg-cyim">1</td>
+  </tr>
+  <tr>
+    <td class="tg-bhpp">Hera</td>
+    <td class="tg-cyim">0</td>
+    <td class="tg-cyim">0</td>
+    <td class="tg-bhpp">Persephone</td>
+    <td class="tg-cyim">1</td>
+    <td class="tg-cyim">1</td>
+  </tr>
+  <tr>
+    <td class="tg-bhpp">Zeus</td>
+    <td class="tg-cyim">0</td>
+    <td class="tg-cyim">1</td>
+    <td class="tg-bhpp">Hermes</td>
+    <td class="tg-cyim">1</td>
+    <td class="tg-cyim">0</td>
+  </tr>
+  <tr>
+    <td class="tg-bhpp">Artemis</td>
+    <td class="tg-cyim">1</td>
+    <td class="tg-cyim">1</td>
+    <td class="tg-bhpp">Hebe</td>
+    <td class="tg-cyim">1</td>
+    <td class="tg-cyim">0</td>
+  </tr>
+  <tr>
+    <td class="tg-bhpp">Apollo</td>
+    <td class="tg-cyim">1</td>
+    <td class="tg-cyim">0</td>
+    <td class="tg-bhpp">Dionysus</td>
+    <td class="tg-cyim">1</td>
+    <td class="tg-cyim">0</td>
+  </tr>
+</tbody>
+</table>
+]
+
+.pull-right[.small[
+- 10 out of 20 would have died if they had received the treatment
+$\text{Pr}[\mathbf{Y}^{a = 1} = 1] = 10/20 \\ = 0.5$
+
+- 10 out of 20 would have died if they if they had not received the treatment
+$\text{Pr}[\mathbf{Y}^{a = 0} = 1] = 10/20 \\ = 0.5$
+]]
+
+---
+class: middle
+## Average causal effect (3)
+
+
+.full-width[.content-box-red[.bold[
+An **average causal effect** of treatment $A$ on outcome $Y$ is present if 
+
+$$
+\text{Pr}[\mathbf{Y}^{a = 1} = 1] \neq \text{Pr}[\mathbf{Y}^{a = 0} = 1]
+$$
+]]]
+
+In the previous table, because $\text{Pr}[\mathbf{Y}^{a = 1} = 1] = \text{Pr}[\mathbf{Y}^{a = 0} = 1] = 0.5$, 
+<br> we say that the average causal effect is null, or the
+<br> **null hypothesis of no average causal effect is true**.
+
+
+---
+class: middle
+
+## Measures of causal effect (1)
+
+.full-width[.content-box-red[.bold[
+These are equivalent ways of representing the causal null: 
+
+- **Risk difference**: $\text{Pr}[\mathbf{Y}^{a = 1} = 1] - \text{Pr}[\mathbf{Y}^{a = 0} = 1] = 0$
+- **Risk ratio**: 
+$\frac{\text{Pr}[\mathbf{Y}^{a = 1} = 1]}{\text{Pr}[\mathbf{Y}^{a = 0} = 1]} = 1$
+- **Odds ratio**: 
+$\frac{\text{Pr}[\mathbf{Y}^{a = 1} = 1] / \text{Pr}[\mathbf{Y}^{a = 1} = 0]}{\text{Pr}[\mathbf{Y}^{a = 0} = 1]/\text{Pr}[\mathbf{Y}^{a = 0} = 0]} = 1$
+]]]
+
+
+---
+class: middle
+
+## Measures of causal effect (2)
+
+.med[
+- Causal risk difference, risk ratio, and odds ratio
+    - quantify the strength of the same causal effect on **different scales**
+    - also called **causal effects**
+- Consider use different measures for different purposes:
+    - 3 in a million vs. 1 in a million deaths
+        - causal risk difference: 0.000002
+        <br> the absolute number of cases of disease attributable to the treatment.
+        - causal risk ratio: 3
+        <br> how many times treatment relative to no treatment increases the risk
+]
+
+
+---
+class: middle
+
+## Measures of causal effect (3) - **Number needed to treat, NNT**
+
+.full-width[.content-box-red[.bold[
+.small[
+Consider 100 million patients in which 
+<br> 20 million would die within 5 years if treated $(a = 1)$
+<br> 30 million would die within 5 years if untreated $(a = 0)$
+<br> the causal risk difference is 
+<br> $\text{Pr}[\mathbf{Y}^{a = 1} = 1] - \text{Pr}[\mathbf{Y}^{a = 0} = 1] = 0.2 - 0.3 = -0.1$
+- If one treats the 100 million patients, there will be 10 million fewer deaths 
+- One needs to treat 100 million patients to save 10 million lives, i.e. **treat 10 patients to save 1 life (= NNT)**
+- NNT is equal to the inverse of the causal risk difference
+]
+
+]]]
+
+
+---
+class: middle
+
+## Random variability
+
+.med[
+- The populations of interest are typically much larger. In practice, we only collect information on a sample of the population of interest.
+
+- The "hat" over $\text{Pr}$ indicates that the sample proportion $\widehat{\text{Pr}}[\mathbf{Y}^{a} = 1]$ is an **estimator** of the corresponding population quantity $\text{Pr}[\mathbf{Y}^{a} = 1]$. 
+
+- **The larger** the number of individuals in the sample, **the smaller** the difference between $\widehat{\text{Pr}}[\mathbf{Y}^{a} = 1]$ and $\text{Pr}[\mathbf{Y}^{a} = 1]$ is expected to be.
+
+- The error due to sampling variability is random.
+]
+
+
+---
+class: middle
+
+## Causation versus association (1)
+
+.pull-left[
+.med[In the real world, we only can observe one of these (potential) outcomes because the individual is either treated or untreated.
+- 7 died in 13 who were treated $(A=1)$ 
+$\text{Pr}[Y = 1|A = 1] \\ = 7/13$
+- $\text{Pr}[Y = 1|A = a]$ conditional probability
+]
+]
+
+
+.pull-right[
+<style type="text/css">
+.tg  {border-collapse:collapse;border-color:#bbb;border-spacing:0;}
+.tg td{background-color:#E0FFEB;border-color:#bbb;border-style:solid;border-width:0px;color:#594F4F;
+  font-family:Arial, sans-serif;font-size:14px;overflow:hidden;padding:10px 5px;word-break:normal;}
+.tg th{background-color:#9DE0AD;border-color:#bbb;border-style:solid;border-width:0px;color:#493F3F;
+  font-family:Arial, sans-serif;font-size:14px;font-weight:normal;overflow:hidden;padding:10px 5px;word-break:normal;}
+.tg .tg-1wig{font-weight:bold;text-align:left;vertical-align:top}
+.tg .tg-0lax{text-align:left;vertical-align:top}
+</style>
+<table class="tg">
+<thead>
+  <tr>
+    <th class="tg-0lax"></th>
+    <th class="tg-1wig">A</th>
+    <th class="tg-1wig">Y</th>
+    <th class="tg-0lax"></th>
+    <th class="tg-1wig">A</th>
+    <th class="tg-1wig">Y</th>
+  </tr>
+</thead>
+<tbody>
+  <tr>
+    <td class="tg-1wig">Rheia</td>
+    <td class="tg-0lax">0</td>
+    <td class="tg-0lax">0</td>
+    <td class="tg-1wig">Leto</td>
+    <td class="tg-0lax">0</td>
+    <td class="tg-0lax">0</td>
+  </tr>
+  <tr>
+    <td class="tg-1wig">Kronos</td>
+    <td class="tg-0lax">0</td>
+    <td class="tg-0lax">1</td>
+    <td class="tg-1wig">Ares</td>
+    <td class="tg-0lax">1</td>
+    <td class="tg-0lax">1</td>
+  </tr>
+  <tr>
+    <td class="tg-1wig">Demeter</td>
+    <td class="tg-0lax">0</td>
+    <td class="tg-0lax">0</td>
+    <td class="tg-1wig">Athena</td>
+    <td class="tg-0lax">1</td>
+    <td class="tg-0lax">1</td>
+  </tr>
+  <tr>
+    <td class="tg-1wig">Hades</td>
+    <td class="tg-0lax">0</td>
+    <td class="tg-0lax">0</td>
+    <td class="tg-1wig">Hephaestus</td>
+    <td class="tg-0lax">1</td>
+    <td class="tg-0lax">1</td>
+  </tr>
+  <tr>
+    <td class="tg-1wig">Hestia</td>
+    <td class="tg-0lax">1</td>
+    <td class="tg-0lax">0</td>
+    <td class="tg-1wig">Aphrodite</td>
+    <td class="tg-0lax">1</td>
+    <td class="tg-0lax">1</td>
+  </tr>
+  <tr>
+    <td class="tg-1wig">Poseidon</td>
+    <td class="tg-0lax">1</td>
+    <td class="tg-0lax">0</td>
+    <td class="tg-1wig">Cyclope</td>
+    <td class="tg-0lax">1</td>
+    <td class="tg-0lax">1</td>
+  </tr>
+  <tr>
+    <td class="tg-1wig">Hera</td>
+    <td class="tg-0lax">1</td>
+    <td class="tg-0lax">0</td>
+    <td class="tg-1wig">Persephone</td>
+    <td class="tg-0lax">1</td>
+    <td class="tg-0lax">1</td>
+  </tr>
+  <tr>
+    <td class="tg-1wig">Zeus</td>
+    <td class="tg-0lax">1</td>
+    <td class="tg-0lax">1</td>
+    <td class="tg-1wig">Hermes</td>
+    <td class="tg-0lax">1</td>
+    <td class="tg-0lax">0</td>
+  </tr>
+  <tr>
+    <td class="tg-1wig">Artemis</td>
+    <td class="tg-0lax">0</td>
+    <td class="tg-0lax">1</td>
+    <td class="tg-1wig">Hebe</td>
+    <td class="tg-0lax">1</td>
+    <td class="tg-0lax">0</td>
+  </tr>
+  <tr>
+    <td class="tg-1wig">Apollo</td>
+    <td class="tg-0lax">0</td>
+    <td class="tg-0lax">1</td>
+    <td class="tg-1wig">Dionysus</td>
+    <td class="tg-0lax">1</td>
+    <td class="tg-0lax">0</td>
+  </tr>
+</tbody>
+</table>
+]
+
+
+---
+class: middle
+
+## Causation versus association (2)
+
+
+- When $\text{Pr}[Y = 1|A = 1] = \text{Pr}[Y = 1|A = 0]$ <br> we say that treatment $A$ and outcome $Y$ are **independent**: $A \perp \!\!\! \perp Y$ 
+
+- We say that treatment $A$ is not associated with $Y$ or, $A$ does not predict $Y$.
+
+- We also say that $A$ is associated with $Y$ if $\text{Pr}[Y = 1|A = 1] \neq \text{Pr}[Y = 1|A = 0]$
+
+---
+class: middle
+
+## Association measures
+
+Similarly, associational risk differences, risk ratio, and odds ratio can be defined as: 
+
+.full-width[.content-box-red[.bold[
+- **Risk difference**: $\text{Pr}[Y =1 | A= 1] - \text{Pr}[Y = 1| A= 0]$ 
+- **Risk ratio**: $\frac{\text{Pr}[Y =1 | A= 1]}{\text{Pr}[Y = 1| A= 0]}$
+- **Odds ratio**: $\frac{\text{Pr}[Y =1 | A= 1] / \text{Pr}[Y = 0 | A= 1]}{\text{Pr}[Y = 1| A= 0] / \text{Pr}[Y = 0| A= 0]}$
+]]]
+
+
+---
+class: middle
+
+## Causation versus association (3)
+
+In our sample of 20 individuals, we found 
+
+1. no causal effect, because <br> $\text{Pr}[\mathbf{Y}^{a = 1} = 1] - \text{Pr}[\mathbf{Y}^{a = 0} = 1] = 0.5 - 0.5 = 0$
+2. an association because <br> $\text{Pr}[Y =1 | A= 1] - \text{Pr}[Y = 1| A= 0] \\ =7/13 - 3/7 = 0.11$ 
+
+
+---
+class: top, center
+background-image: url("./fig/causalassociation.png")
+background-position: 50% 50%
+background-size: contain
+
+
+---
+class: middle
+
+## Causation versus association (4)
+
+1. **Causation**:a contrast between the whole white diamond (**all individuals treated**) and the whole grey diamond (**all individuals untreated**). <br> .blue[*"What would be the risk if everybody had been treated/untreated?"*]
+
+2. Whereas **association**: a contrast between the white (**the treated**) and the grey (**the untreated**) <br> .blue[*"What is the risk in the treated/untreated?"*]
+
+
+---
+class: middle
+## Association is not causation
+
+In our example, 
+- There was association because risk in the treated (= 7/13) was greater than risk in the untreated (3/7).
+- There was no causation because risk if everybody treated was the same as the risk if everybody was untreated.
+
+
+---
+class: middle
+
+## Association is not causation
+
+Suppose that 5-year mortality for aspirin vs. no aspirin, 
+
+- causal risk ratio is 0.5 
+- associational risk ratio is 1.5 
+
+This is possible because individuals at high risk of CVD death are preferentially prescribed aspirin. 
+If a physician decides to withhold aspirin because those who treated had a greater risk of dying compared with untreated. This is a malpractice.

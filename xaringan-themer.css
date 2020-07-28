@@ -103,7 +103,7 @@ a, a > code {
 /* Two-column layout */
 .left-column {
   width: 20%;
-  height: 92%;
+  height: 100%;
   float: left;
 }
 .left-column h2, .left-column h3 {
@@ -123,7 +123,7 @@ a, a > code {
 }
 .pull-right {
   float: right;
-  width: 47%;
+  width: 40%;
 }
 .pull-right ~ * {
   clear: both;
