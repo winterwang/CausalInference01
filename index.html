@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Causal Inference  </title>
+    <meta charset="utf-8" />
+    <meta name="author" content="CWAN| 王　超辰" />
+    <script src="libs/header-attrs-2.3/header-attrs.js"></script>
+    <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# Causal Inference <br>
+### CWAN| 王　超辰
+### 2020-07-31 (Fri) <br> <span class="citation">@HOME</span> 15:00-16:00
+
+---
+
+
+---
+class: middle, inverse, center
+
+# Chapter 1, Definition
+
+
+---
+class: middle
+
+## Outline
+
+.large[
+- Purpose
+1. Individual causal effect
+2. Average causal effects
+3. Measures of causal effect
+4. Random variability
+5. Causation versus association
+]
+
+---
+class: middle
+
+## Purpose
+
+.full-width[.content-box-red[.bold[
+To introduce the **mathematical notation** &lt;br&gt; that could formalize the causal intuition.
+]]]
+
+---
+class: middle
+
+## Individual causal effect (1)
+
+.full-width[.content-box-red[.bold[
+We compare (mentally) the outcome &lt;br&gt; **when an action `\(A\)` is taken** &lt;br&gt; with the outcome &lt;br&gt; **when the action `\(A\)` is withheld.**
+]]]
+
+.med[
+- Zeus is waiting for a heart transplant. 
+  - He dies five days later after receiving a new heart
+  - He survives five days later if he did not had transplant
+  - We say **the heart transplant caused** Zeus's death.
+]
+
+---
+class: middle
+
+## Individual causal effect (2)
+
+.full-width[.content-box-red[.bold[
+We compare (mentally) the outcome &lt;br&gt; **when an action `\(A\)` is taken** &lt;br&gt; with the outcome &lt;br&gt; **when the action `\(A\)` is withheld.**
+]]]
+
+.med[
+- Hera is also waiting for a heart transplant. 
+  - She survives five days later after heart transplant
+  - She also survives five days later if she did not had transplant
+  - We say **the heart transplant has no causal effect**.
+]
+
+---
+class: middle
+## Individual causal effect (3)
+
+.full-width[.content-box-red[.bold[
+We compare (mentally) the outcome 
+&lt;br&gt; **when an action `\(A\)` is taken** 
+&lt;br&gt; with the outcome 
+&lt;br&gt; **when the action `\(A\)` is withheld.** 
+&lt;br&gt;  `\(A\)` could be an intervention, an exposure, 
+&lt;br&gt;  or a treatment.
+]]]
+
+---
+class: middle
+## Individual causal effect (4)
+
+- Consider a dichotomous treatment variable `\(A\)`
+    - 1 = treated
+    - 0 = untreated
+- And a dichotomous outcome variable `\(Y\)`
+    - 1 = death
+    - 0 = survival
+- We define: 
+    - `\(Y^{a = 1}\)`: the outcome that would be observed under treatment `\(a = 1\)`
+    - `\(Y^{a = 0}\)`: `\(Y\)` under treatment `\(a = 0\)`
+ 
+---
+class: middle
+## Individual causal effect (5)
+
+.pull-left[
+- Zeus has: 
+    - `\(Y^{a = 1} = 1\)`
+    - `\(Y^{a = 0} = 0\)`
+- Hera has: 
+    - `\(Y^{a = 1} = 0\)`
+    - `\(Y^{a = 0} = 0\)`
+]
+
+.pull-right[
+- `\(Y^{a = 1} \neq Y^{a = 0}\)` &lt;br&gt; then there is a &lt;br&gt; **causal effect**
+- `\(Y^{a = 1}, Y^{a = 0}\)` are &lt;br&gt; **potential or counterfactual outcomes**
+]
+
+???
+- Potential because either of these two outcomes can be potentially observed
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="libs/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"highlightSpans": true,
+"countIncrementalSlides": false,
+"ratio": "16:11"
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+(function(time) {
+  var d2 = function(number) {
+    return ('0' + number).slice(-2); // left-pad 0 to minutes/seconds
+  },
+
+  time_format = function(total) {
+    var secs = Math.abs(total) / 1000;
+    var h = Math.floor(secs / 3600);
+    var m = Math.floor(secs % 3600 / 60);
+    var s = Math.round(secs % 60);
+    var res = d2(m) + ':' + d2(s);
+    if (h > 0) res = h + ':' + res;
+    return res;  // [hh:]mm:ss
+  },
+
+  slide_number_div = function(i) {
+    return document.getElementsByClassName('remark-slide-number').item(i);
+  },
+
+  current_page_number = function(i) {
+    return slide_number_div(i).firstChild.textContent;  // text "i / N"
+  };
+
+  var timer = document.createElement('span'); timer.id = 'slide-time-left';
+  var time_left = time, k = slideshow.getCurrentSlideIndex(),
+      last_page_number = current_page_number(k);
+
+  setInterval(function() {
+    time_left = time_left - 1000;
+    timer.innerHTML = ' ' + time_format(time_left);
+    if (time_left < 0) timer.style.color = 'red';
+  }, 1000);
+
+  slide_number_div(k).appendChild(timer);
+
+  slideshow.on('showSlide', function(slide) {
+    var i = slide.getSlideIndex(), n = current_page_number(i);
+    // reset timer when a new slide is shown and the page number is changed
+    if (last_page_number !== n) {
+      time_left = time; last_page_number = n;
+      timer.innerHTML = ' ' + time_format(time); timer.style.color = null;
+    }
+    slide_number_div(i).appendChild(timer);
+  });
+})(60000);
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

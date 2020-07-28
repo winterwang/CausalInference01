@@ -1,0 +1,129 @@
+---
+title: "Causal Inference <br>  "
+author: 
+    CWAN| 王　超辰 
+date: "2020-07-31 (Fri) <br> @HOME 15:00-16:00"
+output:
+  xaringan::moon_reader:
+    chakra: libs/remark-latest.min.js
+    css: xaringan-themer.css
+    lib_dir: libs
+    nature:
+      countdown: 60000
+      highlightStyle: github
+      highlightLines: true
+      highlightSpans: true
+      countIncrementalSlides: false
+      ratio: 16:11
+editor_options: 
+  chunk_output_type: console
+---
+
+---
+class: middle, inverse, center
+
+# Chapter 1, Definition
+
+
+---
+class: middle
+
+## Outline
+
+.large[
+- Purpose
+1. Individual causal effect
+2. Average causal effects
+3. Measures of causal effect
+4. Random variability
+5. Causation versus association
+]
+
+---
+class: middle
+
+## Purpose
+
+.full-width[.content-box-red[.bold[
+To introduce the **mathematical notation** <br> that could formalize the causal intuition.
+]]]
+
+---
+class: middle
+
+## Individual causal effect (1)
+
+.full-width[.content-box-red[.bold[
+We compare (mentally) the outcome <br> **when an action $A$ is taken** <br> with the outcome <br> **when the action $A$ is withheld.**
+]]]
+
+.med[
+- Zeus is waiting for a heart transplant. 
+  - He dies five days later after receiving a new heart
+  - He survives five days later if he did not had transplant
+  - We say **the heart transplant caused** Zeus's death.
+]
+
+---
+class: middle
+
+## Individual causal effect (2)
+
+.full-width[.content-box-red[.bold[
+We compare (mentally) the outcome <br> **when an action $A$ is taken** <br> with the outcome <br> **when the action $A$ is withheld.**
+]]]
+
+.med[
+- Hera is also waiting for a heart transplant. 
+  - She survives five days later after heart transplant
+  - She also survives five days later if she did not had transplant
+  - We say **the heart transplant has no causal effect**.
+]
+
+---
+class: middle
+## Individual causal effect (3)
+
+.full-width[.content-box-red[.bold[
+We compare (mentally) the outcome 
+<br> **when an action $A$ is taken** 
+<br> with the outcome 
+<br> **when the action $A$ is withheld.** 
+<br>  $A$ could be an intervention, an exposure, 
+<br>  or a treatment.
+]]]
+
+---
+class: middle
+## Individual causal effect (4)
+
+- Consider a dichotomous treatment variable $A$
+    - 1 = treated
+    - 0 = untreated
+- And a dichotomous outcome variable $Y$
+    - 1 = death
+    - 0 = survival
+- We define: 
+    - $Y^{a = 1}$: the outcome that would be observed under treatment $a = 1$
+    - $Y^{a = 0}$: $Y$ under treatment $a = 0$
+ 
+---
+class: middle
+## Individual causal effect (5)
+
+.pull-left[
+- Zeus has: 
+    - $Y^{a = 1} = 1$
+    - $Y^{a = 0} = 0$
+- Hera has: 
+    - $Y^{a = 1} = 0$
+    - $Y^{a = 0} = 0$
+]
+
+.pull-right[
+- $Y^{a = 1} \neq Y^{a = 0}$ <br> then there is a <br> **causal effect**
+- $Y^{a = 1}, Y^{a = 0}$ are <br> **potential or counterfactual outcomes**
+]
+
+???
+- Potential because either of these two outcomes can be potentially observed
