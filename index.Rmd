@@ -19,7 +19,7 @@ editor_options:
   chunk_output_type: console
 ---
 
----
+
 class: middle, inverse, center
 
 # Chapter 1, Definition
