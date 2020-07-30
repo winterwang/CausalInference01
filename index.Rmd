@@ -571,3 +571,8 @@ class: top, center, inverse
 background-image: url("./fig/causalnotassociation.mp4")
 background-position: 50% 50%
 background-size: contain
+
+---
+class: middle, inverse, center
+
+# Chapter 2, Definition
