@@ -564,3 +564,10 @@ Suppose that 5-year mortality for aspirin vs. no aspirin,
 
 This is possible because individuals at high risk of CVD death are preferentially prescribed aspirin. 
 If a physician decides to withhold aspirin because those who treated had a greater risk of dying compared with untreated. This is a malpractice.
+
+
+---
+class: top, center, inverse
+background-image: url("./fig/causalnotassociation.mp4")
+background-position: 50% 50%
+background-size: contain
