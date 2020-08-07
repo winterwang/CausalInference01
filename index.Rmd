@@ -14,7 +14,7 @@ output:
       highlightLines: true
       highlightSpans: true
       countIncrementalSlides: false
-      ratio: 16:11
+      ratio: 14:9
 editor_options: 
   chunk_output_type: console
 ---
