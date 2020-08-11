@@ -1,5 +1,5 @@
 ---
-title: "Causal Inference <br>  "
+title: "Causal Inference"
 author: 
     CWAN| 王　超辰 
 date: "2020-07-31 (Fri) <br> @HOME 15:00-16:00"
@@ -575,4 +575,4 @@ background-size: contain
 ---
 class: middle, inverse, center
 
-# Chapter 2, Definition
+# Chapter 2, Randomized Experiments
