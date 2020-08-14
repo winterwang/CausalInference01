@@ -847,6 +847,385 @@ $$\text{Pr}[Y^{a = 1} = 1 | A =1] = \text{Pr}[Y = 1 | A = 1]$$
 ]
 
 ---
+class: middle, 
+
+## Conditional randomization
+
+.pull-left[.med[
+- $L$ is a prognostic factor  <br> (1 if critical condition,  <br>  0 otherwise)
+- Conditional randomization design: 
+    - Randomly select 75% from those who is in critical condition
+    - Randomly select 50% from those who is in noncritical condition
+
+]]
+
+.pull-right[
+<style type="text/css">
+.tg  {border-collapse:collapse;border-color:#bbb;border-spacing:0;}
+.tg td{background-color:#E0FFEB;border-color:#bbb;border-style:solid;border-width:1px;color:#594F4F;
+  font-family:Arial, sans-serif;font-size:18px;overflow:hidden;padding:10px 5px;word-break:normal;}
+.tg th{background-color:#9DE0AD;border-color:#bbb;border-style:solid;border-width:1px;color:#493F3F;
+  font-family:Arial, sans-serif;font-size:18px;font-weight:normal;overflow:hidden;padding:10px 5px;word-break:normal;}
+.tg .tg-c3ow{border-color:inherit;text-align:center;vertical-align:top}
+.tg .tg-0pky{border-color:inherit;text-align:left;vertical-align:top}
+.tg .tg-7btt{border-color:inherit;font-weight:bold;text-align:center;vertical-align:top}
+.tg .tg-fymr{border-color:inherit;font-weight:bold;text-align:left;vertical-align:top}
+</style>
+<table class="tg">
+<thead>
+  <tr>
+    <th class="tg-0pky"></th>
+    <th class="tg-7btt">L</th>
+    <th class="tg-7btt">A</th>
+    <th class="tg-7btt">Y</th>
+    <th class="tg-0pky"></th>
+    <th class="tg-7btt">L</th>
+    <th class="tg-7btt">A</th>
+    <th class="tg-7btt">Y</th>
+  </tr>
+</thead>
+<tbody>
+  <tr>
+    <td class="tg-fymr">Rheia</td>
+    <td class="tg-c3ow">0</td>
+    <td class="tg-c3ow">0</td>
+    <td class="tg-c3ow">0</td>
+    <td class="tg-fymr">Leto</td>
+    <td class="tg-c3ow">1</td>
+    <td class="tg-c3ow">0</td>
+    <td class="tg-c3ow">0</td>
+  </tr>
+  <tr>
+    <td class="tg-fymr">Kronos</td>
+    <td class="tg-c3ow">0</td>
+    <td class="tg-c3ow">0</td>
+    <td class="tg-c3ow">1</td>
+    <td class="tg-fymr">Ares</td>
+    <td class="tg-c3ow">1</td>
+    <td class="tg-c3ow">1</td>
+    <td class="tg-c3ow">1</td>
+  </tr>
+  <tr>
+    <td class="tg-fymr">Demeter</td>
+    <td class="tg-c3ow">0</td>
+    <td class="tg-c3ow">0</td>
+    <td class="tg-c3ow">0</td>
+    <td class="tg-fymr">Athena</td>
+    <td class="tg-c3ow">1</td>
+    <td class="tg-c3ow">1</td>
+    <td class="tg-c3ow">1</td>
+  </tr>
+  <tr>
+    <td class="tg-fymr">Hades</td>
+    <td class="tg-c3ow">0</td>
+    <td class="tg-c3ow">0</td>
+    <td class="tg-c3ow">0</td>
+    <td class="tg-fymr">Hephaestus</td>
+    <td class="tg-c3ow">1</td>
+    <td class="tg-c3ow">1</td>
+    <td class="tg-c3ow">1</td>
+  </tr>
+  <tr>
+    <td class="tg-fymr">Hestia</td>
+    <td class="tg-c3ow">0</td>
+    <td class="tg-c3ow">1</td>
+    <td class="tg-c3ow">0</td>
+    <td class="tg-fymr">Aphrodite</td>
+    <td class="tg-c3ow">1</td>
+    <td class="tg-c3ow">1</td>
+    <td class="tg-c3ow">1</td>
+  </tr>
+  <tr>
+    <td class="tg-fymr">Poseidon</td>
+    <td class="tg-c3ow">0</td>
+    <td class="tg-c3ow">1</td>
+    <td class="tg-c3ow">0</td>
+    <td class="tg-fymr">Cyclope</td>
+    <td class="tg-c3ow">1</td>
+    <td class="tg-c3ow">1</td>
+    <td class="tg-c3ow">1</td>
+  </tr>
+  <tr>
+    <td class="tg-fymr">Hera</td>
+    <td class="tg-c3ow">0</td>
+    <td class="tg-c3ow">1</td>
+    <td class="tg-c3ow">0</td>
+    <td class="tg-fymr">Persephone</td>
+    <td class="tg-c3ow">1</td>
+    <td class="tg-c3ow">1</td>
+    <td class="tg-c3ow">1</td>
+  </tr>
+  <tr>
+    <td class="tg-fymr">Zeus</td>
+    <td class="tg-c3ow">0</td>
+    <td class="tg-c3ow">1</td>
+    <td class="tg-c3ow">1</td>
+    <td class="tg-fymr">Hermes</td>
+    <td class="tg-c3ow">1</td>
+    <td class="tg-c3ow">1</td>
+    <td class="tg-c3ow">0</td>
+  </tr>
+  <tr>
+    <td class="tg-fymr">Artemis</td>
+    <td class="tg-c3ow">1</td>
+    <td class="tg-c3ow">0</td>
+    <td class="tg-c3ow">1</td>
+    <td class="tg-fymr">Hebe</td>
+    <td class="tg-c3ow">1</td>
+    <td class="tg-c3ow">1</td>
+    <td class="tg-c3ow">0</td>
+  </tr>
+  <tr>
+    <td class="tg-fymr">Apollo</td>
+    <td class="tg-c3ow">1</td>
+    <td class="tg-c3ow">0</td>
+    <td class="tg-c3ow">1</td>
+    <td class="tg-fymr">Dionysus</td>
+    <td class="tg-c3ow">1</td>
+    <td class="tg-c3ow">1</td>
+    <td class="tg-c3ow">0</td>
+  </tr>
+</tbody>
+</table>
+]
+
+---
+class: middle
+
+## Conditional exchangeability (1)
+
+- Under the randomization conditional on $L$ design, we only have exchangeability property within each strata of the condition.
+- Because it is two randomized experiment combined: 
+    - one conducted in the subset of individuals in critical condition.
+    - the other in the subset of individuals in noncritical condition.
+
+
+
+---
+class: middle
+
+## Conditional exchangeability (2)
+
+Among those who in critical condition $(L = 1)$,
+
+$$\text{Pr}[Y^a = 1 | A = 1, L = 1] = \text{Pr}[Y^a = 1 | A = 0, L = 1]$$
+
+Or, 
+
+$$Y^a \perp \!\!\! \perp A |L = 1 \forall a$$
+
+Read as: <br> " $Y^a$ (the potential outcomes) and $A$ (the actual treatment groups) are independent given $L = 1$." 
+
+
+---
+class: middle
+
+## Conditional causal risk ratio 
+
+- Because association is causation within each subset
+- We can compute stratum-specific causal effect 
+    - $\frac{\text{Pr}[Y = 1 | L = 1, A = 1]}{\text{Pr}[Y = 1 | L = 1, A = 0]}$ in critical condition.
+    - $\frac{\text{Pr}[Y = 1 | L = 0, A = 1]}{\text{Pr}[Y = 1 | L = 0, A = 0]}$ in noncritical condition.
+    - If stratum-specific RRs are different between subsets, we say that the effect of treatment is **modified** by $L$, or that there is *effect modification* by $L$
+
+---
+class: middle
+
+## Standardization (1)
+
+.pull-left[.between[
+Among those in noncritical condition $(L = 0)$:
+- The risk of death among the treated: 
+<br> $\text{Pr}[Y = 1 | L = 0, A = 1] = 1/4$
+- The risk of death among the untreated:
+<br> $\text{Pr}[Y = 1 | L = 0, A = 0] = 1/4$
+
+Among those in critical condition $(L = 1)$:
+- The risk of death among the treated: 
+<br> $\text{Pr}[Y = 1 | L = 1, A = 1] = 6/9 = \frac{2}{3}$
+- The risk of death among the untreated:
+<br> $\text{Pr}[Y = 1 | L = 1, A = 0] = 2/3$
+
+]]
+
+.pull-right[
+<style type="text/css">
+.tg  {border-collapse:collapse;border-color:#bbb;border-spacing:0;}
+.tg td{background-color:#E0FFEB;border-color:#bbb;border-style:solid;border-width:1px;color:#594F4F;
+  font-family:Arial, sans-serif;font-size:14px;overflow:hidden;padding:10px 5px;word-break:normal;}
+.tg th{background-color:#9DE0AD;border-color:#bbb;border-style:solid;border-width:1px;color:#493F3F;
+  font-family:Arial, sans-serif;font-size:14px;font-weight:normal;overflow:hidden;padding:10px 5px;word-break:normal;}
+.tg .tg-02vm{background-color:#38fff8;border-color:#333333;text-align:center;vertical-align:top}
+.tg .tg-2jdy{background-color:#fe996b;border-color:#333333;text-align:center;vertical-align:top}
+.tg .tg-9ydz{border-color:#333333;font-weight:bold;text-align:center;vertical-align:top}
+.tg .tg-2ral{background-color:#f8ff00;border-color:#333333;text-align:center;vertical-align:top}
+.tg .tg-de2y{border-color:#333333;text-align:left;vertical-align:top}
+.tg .tg-sn4r{border-color:#333333;font-weight:bold;text-align:left;vertical-align:top}
+.tg .tg-amug{background-color:#cbcefb;border-color:#333333;text-align:center;vertical-align:top}
+</style>
+<table class="tg">
+<thead>
+  <tr>
+    <th class="tg-de2y"></th>
+    <th class="tg-9ydz">L</th>
+    <th class="tg-9ydz">A</th>
+    <th class="tg-9ydz">Y</th>
+    <th class="tg-de2y"></th>
+    <th class="tg-9ydz">L</th>
+    <th class="tg-9ydz">A</th>
+    <th class="tg-9ydz">Y</th>
+  </tr>
+</thead>
+<tbody>
+  <tr>
+    <td class="tg-sn4r">Rheia</td>
+    <td class="tg-2jdy">0</td>
+    <td class="tg-2jdy">0</td>
+    <td class="tg-2jdy">0</td>
+    <td class="tg-sn4r">Leto</td>
+    <td class="tg-02vm">1</td>
+    <td class="tg-02vm">0</td>
+    <td class="tg-02vm">0</td>
+  </tr>
+  <tr>
+    <td class="tg-sn4r">Kronos</td>
+    <td class="tg-2jdy">0</td>
+    <td class="tg-2jdy">0</td>
+    <td class="tg-2jdy">1</td>
+    <td class="tg-sn4r">Ares</td>
+    <td class="tg-amug">1</td>
+    <td class="tg-amug">1</td>
+    <td class="tg-amug">1</td>
+  </tr>
+  <tr>
+    <td class="tg-sn4r">Demeter</td>
+    <td class="tg-2jdy">0</td>
+    <td class="tg-2jdy">0</td>
+    <td class="tg-2jdy">0</td>
+    <td class="tg-sn4r">Athena</td>
+    <td class="tg-amug">1</td>
+    <td class="tg-amug">1</td>
+    <td class="tg-amug">1</td>
+  </tr>
+  <tr>
+    <td class="tg-sn4r">Hades</td>
+    <td class="tg-2jdy">0</td>
+    <td class="tg-2jdy">0</td>
+    <td class="tg-2jdy">0</td>
+    <td class="tg-sn4r">Hephaestus</td>
+    <td class="tg-amug">1</td>
+    <td class="tg-amug">1</td>
+    <td class="tg-amug">1</td>
+  </tr>
+  <tr>
+    <td class="tg-sn4r">Hestia</td>
+    <td class="tg-2ral">0</td>
+    <td class="tg-2ral">1</td>
+    <td class="tg-2ral">0</td>
+    <td class="tg-sn4r">Aphrodite</td>
+    <td class="tg-amug">1</td>
+    <td class="tg-amug">1</td>
+    <td class="tg-amug">1</td>
+  </tr>
+  <tr>
+    <td class="tg-sn4r">Poseidon</td>
+    <td class="tg-2ral">0</td>
+    <td class="tg-2ral">1</td>
+    <td class="tg-2ral">0</td>
+    <td class="tg-sn4r">Cyclope</td>
+    <td class="tg-amug">1</td>
+    <td class="tg-amug">1</td>
+    <td class="tg-amug">1</td>
+  </tr>
+  <tr>
+    <td class="tg-sn4r">Hera</td>
+    <td class="tg-2ral">0</td>
+    <td class="tg-2ral">1</td>
+    <td class="tg-2ral">0</td>
+    <td class="tg-sn4r">Persephone</td>
+    <td class="tg-amug">1</td>
+    <td class="tg-amug">1</td>
+    <td class="tg-amug">1</td>
+  </tr>
+  <tr>
+    <td class="tg-sn4r">Zeus</td>
+    <td class="tg-2ral">0</td>
+    <td class="tg-2ral">1</td>
+    <td class="tg-2ral">1</td>
+    <td class="tg-sn4r">Hermes</td>
+    <td class="tg-amug">1</td>
+    <td class="tg-amug">1</td>
+    <td class="tg-amug">0</td>
+  </tr>
+  <tr>
+    <td class="tg-sn4r">Artemis</td>
+    <td class="tg-02vm">1</td>
+    <td class="tg-02vm">0</td>
+    <td class="tg-02vm">1</td>
+    <td class="tg-sn4r">Hebe</td>
+    <td class="tg-amug">1</td>
+    <td class="tg-amug">1</td>
+    <td class="tg-amug">0</td>
+  </tr>
+  <tr>
+    <td class="tg-sn4r">Apollo</td>
+    <td class="tg-02vm">1</td>
+    <td class="tg-02vm">0</td>
+    <td class="tg-02vm">1</td>
+    <td class="tg-sn4r">Dionysus</td>
+    <td class="tg-amug">1</td>
+    <td class="tg-amug">1</td>
+    <td class="tg-amug">0</td>
+  </tr>
+</tbody>
+</table>
+]
+
+---
+class: middle
+
+## Standardization (2) - the combined causal risk ratio
+
+$$
+\frac{\text{Pr}[Y^{a = 1} = 1]}{\text{Pr}[Y^{a = 0} = 1]}
+$$
+
+.med[
+- The numerator is the risk if all 20 individuals had been treated
+    - $\frac{1}{4}$ in 8 non-critical; and $\frac{2}{3}$ in 12 critical:
+      - $\frac{1}{4} \times \frac{8}{20} + \frac{2}{3} \times \frac{12}{20} =0.5$
+- The denominatior is the risk if all 20 individuals had been untreated
+    - $\frac{1}{4}$ in 8 non-critical; and $\frac{2}{3}$ in 12 critical:
+      - $\frac{1}{4} \times \frac{8}{20} + \frac{2}{3} \times \frac{12}{20} =0.5$
+]
+
+
+---
+class: middle
+
+## Standardization (3) - the combined causal risk ratio
+
+$$
+\frac{\text{Pr}[Y^{a = 1} = 1]}{\text{Pr}[Y^{a = 0} = 1]} = 0.5/0.5 = 1
+$$
+
+
+.full-width[.content-box-red[.bold[
+.small[
+More formally, <br>
+$\text{Pr}[Y^{a} = 1]$ is **the weighted average of the stratum-specific risks**, the weights is the proportion of individuals in each subset: 
+<br> $$\text{Pr}[Y^{a} = 1] = \text{Pr}[Y^a = 1|L = 0]\text{Pr}[L = 0] \\+ \text{Pr}[Y^a = 1|L = 1]\text{Pr}[L = 1]$$
+This is known in epidemiology as **standardization**.
+
+]]]]
+
+---
+class: middle
+
+## Inverse probability weighting
+
+
+---
 class: middle, inverse, center
 
 # Chapter 3 <br> Observational Studies

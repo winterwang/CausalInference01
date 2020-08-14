@@ -846,6 +846,385 @@ In the presence of exchangeability. **Association is Causation.**
 ]
 
 ---
+class: middle, 
+
+## Conditional randomization
+
+.pull-left[.med[
+- `\(L\)` is a prognostic factor  &lt;br&gt; (1 if critical condition,  &lt;br&gt;  0 otherwise)
+- Conditional randomization design: 
+    - Randomly select 75% from those who is in critical condition
+    - Randomly select 50% from those who is in noncritical condition
+
+]]
+
+.pull-right[
+&lt;style type="text/css"&gt;
+.tg  {border-collapse:collapse;border-color:#bbb;border-spacing:0;}
+.tg td{background-color:#E0FFEB;border-color:#bbb;border-style:solid;border-width:1px;color:#594F4F;
+  font-family:Arial, sans-serif;font-size:18px;overflow:hidden;padding:10px 5px;word-break:normal;}
+.tg th{background-color:#9DE0AD;border-color:#bbb;border-style:solid;border-width:1px;color:#493F3F;
+  font-family:Arial, sans-serif;font-size:18px;font-weight:normal;overflow:hidden;padding:10px 5px;word-break:normal;}
+.tg .tg-c3ow{border-color:inherit;text-align:center;vertical-align:top}
+.tg .tg-0pky{border-color:inherit;text-align:left;vertical-align:top}
+.tg .tg-7btt{border-color:inherit;font-weight:bold;text-align:center;vertical-align:top}
+.tg .tg-fymr{border-color:inherit;font-weight:bold;text-align:left;vertical-align:top}
+&lt;/style&gt;
+&lt;table class="tg"&gt;
+&lt;thead&gt;
+  &lt;tr&gt;
+    &lt;th class="tg-0pky"&gt;&lt;/th&gt;
+    &lt;th class="tg-7btt"&gt;L&lt;/th&gt;
+    &lt;th class="tg-7btt"&gt;A&lt;/th&gt;
+    &lt;th class="tg-7btt"&gt;Y&lt;/th&gt;
+    &lt;th class="tg-0pky"&gt;&lt;/th&gt;
+    &lt;th class="tg-7btt"&gt;L&lt;/th&gt;
+    &lt;th class="tg-7btt"&gt;A&lt;/th&gt;
+    &lt;th class="tg-7btt"&gt;Y&lt;/th&gt;
+  &lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+    &lt;td class="tg-fymr"&gt;Rheia&lt;/td&gt;
+    &lt;td class="tg-c3ow"&gt;0&lt;/td&gt;
+    &lt;td class="tg-c3ow"&gt;0&lt;/td&gt;
+    &lt;td class="tg-c3ow"&gt;0&lt;/td&gt;
+    &lt;td class="tg-fymr"&gt;Leto&lt;/td&gt;
+    &lt;td class="tg-c3ow"&gt;1&lt;/td&gt;
+    &lt;td class="tg-c3ow"&gt;0&lt;/td&gt;
+    &lt;td class="tg-c3ow"&gt;0&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td class="tg-fymr"&gt;Kronos&lt;/td&gt;
+    &lt;td class="tg-c3ow"&gt;0&lt;/td&gt;
+    &lt;td class="tg-c3ow"&gt;0&lt;/td&gt;
+    &lt;td class="tg-c3ow"&gt;1&lt;/td&gt;
+    &lt;td class="tg-fymr"&gt;Ares&lt;/td&gt;
+    &lt;td class="tg-c3ow"&gt;1&lt;/td&gt;
+    &lt;td class="tg-c3ow"&gt;1&lt;/td&gt;
+    &lt;td class="tg-c3ow"&gt;1&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td class="tg-fymr"&gt;Demeter&lt;/td&gt;
+    &lt;td class="tg-c3ow"&gt;0&lt;/td&gt;
+    &lt;td class="tg-c3ow"&gt;0&lt;/td&gt;
+    &lt;td class="tg-c3ow"&gt;0&lt;/td&gt;
+    &lt;td class="tg-fymr"&gt;Athena&lt;/td&gt;
+    &lt;td class="tg-c3ow"&gt;1&lt;/td&gt;
+    &lt;td class="tg-c3ow"&gt;1&lt;/td&gt;
+    &lt;td class="tg-c3ow"&gt;1&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td class="tg-fymr"&gt;Hades&lt;/td&gt;
+    &lt;td class="tg-c3ow"&gt;0&lt;/td&gt;
+    &lt;td class="tg-c3ow"&gt;0&lt;/td&gt;
+    &lt;td class="tg-c3ow"&gt;0&lt;/td&gt;
+    &lt;td class="tg-fymr"&gt;Hephaestus&lt;/td&gt;
+    &lt;td class="tg-c3ow"&gt;1&lt;/td&gt;
+    &lt;td class="tg-c3ow"&gt;1&lt;/td&gt;
+    &lt;td class="tg-c3ow"&gt;1&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td class="tg-fymr"&gt;Hestia&lt;/td&gt;
+    &lt;td class="tg-c3ow"&gt;0&lt;/td&gt;
+    &lt;td class="tg-c3ow"&gt;1&lt;/td&gt;
+    &lt;td class="tg-c3ow"&gt;0&lt;/td&gt;
+    &lt;td class="tg-fymr"&gt;Aphrodite&lt;/td&gt;
+    &lt;td class="tg-c3ow"&gt;1&lt;/td&gt;
+    &lt;td class="tg-c3ow"&gt;1&lt;/td&gt;
+    &lt;td class="tg-c3ow"&gt;1&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td class="tg-fymr"&gt;Poseidon&lt;/td&gt;
+    &lt;td class="tg-c3ow"&gt;0&lt;/td&gt;
+    &lt;td class="tg-c3ow"&gt;1&lt;/td&gt;
+    &lt;td class="tg-c3ow"&gt;0&lt;/td&gt;
+    &lt;td class="tg-fymr"&gt;Cyclope&lt;/td&gt;
+    &lt;td class="tg-c3ow"&gt;1&lt;/td&gt;
+    &lt;td class="tg-c3ow"&gt;1&lt;/td&gt;
+    &lt;td class="tg-c3ow"&gt;1&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td class="tg-fymr"&gt;Hera&lt;/td&gt;
+    &lt;td class="tg-c3ow"&gt;0&lt;/td&gt;
+    &lt;td class="tg-c3ow"&gt;1&lt;/td&gt;
+    &lt;td class="tg-c3ow"&gt;0&lt;/td&gt;
+    &lt;td class="tg-fymr"&gt;Persephone&lt;/td&gt;
+    &lt;td class="tg-c3ow"&gt;1&lt;/td&gt;
+    &lt;td class="tg-c3ow"&gt;1&lt;/td&gt;
+    &lt;td class="tg-c3ow"&gt;1&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td class="tg-fymr"&gt;Zeus&lt;/td&gt;
+    &lt;td class="tg-c3ow"&gt;0&lt;/td&gt;
+    &lt;td class="tg-c3ow"&gt;1&lt;/td&gt;
+    &lt;td class="tg-c3ow"&gt;1&lt;/td&gt;
+    &lt;td class="tg-fymr"&gt;Hermes&lt;/td&gt;
+    &lt;td class="tg-c3ow"&gt;1&lt;/td&gt;
+    &lt;td class="tg-c3ow"&gt;1&lt;/td&gt;
+    &lt;td class="tg-c3ow"&gt;0&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td class="tg-fymr"&gt;Artemis&lt;/td&gt;
+    &lt;td class="tg-c3ow"&gt;1&lt;/td&gt;
+    &lt;td class="tg-c3ow"&gt;0&lt;/td&gt;
+    &lt;td class="tg-c3ow"&gt;1&lt;/td&gt;
+    &lt;td class="tg-fymr"&gt;Hebe&lt;/td&gt;
+    &lt;td class="tg-c3ow"&gt;1&lt;/td&gt;
+    &lt;td class="tg-c3ow"&gt;1&lt;/td&gt;
+    &lt;td class="tg-c3ow"&gt;0&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td class="tg-fymr"&gt;Apollo&lt;/td&gt;
+    &lt;td class="tg-c3ow"&gt;1&lt;/td&gt;
+    &lt;td class="tg-c3ow"&gt;0&lt;/td&gt;
+    &lt;td class="tg-c3ow"&gt;1&lt;/td&gt;
+    &lt;td class="tg-fymr"&gt;Dionysus&lt;/td&gt;
+    &lt;td class="tg-c3ow"&gt;1&lt;/td&gt;
+    &lt;td class="tg-c3ow"&gt;1&lt;/td&gt;
+    &lt;td class="tg-c3ow"&gt;0&lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+]
+
+---
+class: middle
+
+## Conditional exchangeability (1)
+
+- Under the randomization conditional on `\(L\)` design, we only have exchangeability property within each strata of the condition.
+- Because it is two randomized experiment combined: 
+    - one conducted in the subset of individuals in critical condition.
+    - the other in the subset of individuals in noncritical condition.
+
+
+
+---
+class: middle
+
+## Conditional exchangeability (2)
+
+Among those who in critical condition `\((L = 1)\)`,
+
+`$$\text{Pr}[Y^a = 1 | A = 1, L = 1] = \text{Pr}[Y^a = 1 | A = 0, L = 1]$$`
+
+Or, 
+
+`$$Y^a \perp \!\!\! \perp A |L = 1 \forall a$$`
+
+Read as: &lt;br&gt; " `\(Y^a\)` (the potential outcomes) and `\(A\)` (the actual treatment groups) are independent given `\(L = 1\)`." 
+
+
+---
+class: middle
+
+## Conditional causal risk ratio 
+
+- Because association is causation within each subset
+- We can compute stratum-specific causal effect 
+    - `\(\frac{\text{Pr}[Y = 1 | L = 1, A = 1]}{\text{Pr}[Y = 1 | L = 1, A = 0]}\)` in critical condition.
+    - `\(\frac{\text{Pr}[Y = 1 | L = 0, A = 1]}{\text{Pr}[Y = 1 | L = 0, A = 0]}\)` in noncritical condition.
+    - If stratum-specific RRs are different between subsets, we say that the effect of treatment is **modified** by `\(L\)`, or that there is *effect modification* by `\(L\)`
+
+---
+class: middle
+
+## Standardization (1)
+
+.pull-left[.between[
+Among those in noncritical condition `\((L = 0)\)`:
+- The risk of death among the treated: 
+&lt;br&gt; `\(\text{Pr}[Y = 1 | L = 0, A = 1] = 1/4\)`
+- The risk of death among the untreated:
+&lt;br&gt; `\(\text{Pr}[Y = 1 | L = 0, A = 0] = 1/4\)`
+
+Among those in critical condition `\((L = 1)\)`:
+- The risk of death among the treated: 
+&lt;br&gt; `\(\text{Pr}[Y = 1 | L = 1, A = 1] = 6/9 = \frac{2}{3}\)`
+- The risk of death among the untreated:
+&lt;br&gt; `\(\text{Pr}[Y = 1 | L = 1, A = 0] = 2/3\)`
+
+]]
+
+.pull-right[
+&lt;style type="text/css"&gt;
+.tg  {border-collapse:collapse;border-color:#bbb;border-spacing:0;}
+.tg td{background-color:#E0FFEB;border-color:#bbb;border-style:solid;border-width:1px;color:#594F4F;
+  font-family:Arial, sans-serif;font-size:14px;overflow:hidden;padding:10px 5px;word-break:normal;}
+.tg th{background-color:#9DE0AD;border-color:#bbb;border-style:solid;border-width:1px;color:#493F3F;
+  font-family:Arial, sans-serif;font-size:14px;font-weight:normal;overflow:hidden;padding:10px 5px;word-break:normal;}
+.tg .tg-02vm{background-color:#38fff8;border-color:#333333;text-align:center;vertical-align:top}
+.tg .tg-2jdy{background-color:#fe996b;border-color:#333333;text-align:center;vertical-align:top}
+.tg .tg-9ydz{border-color:#333333;font-weight:bold;text-align:center;vertical-align:top}
+.tg .tg-2ral{background-color:#f8ff00;border-color:#333333;text-align:center;vertical-align:top}
+.tg .tg-de2y{border-color:#333333;text-align:left;vertical-align:top}
+.tg .tg-sn4r{border-color:#333333;font-weight:bold;text-align:left;vertical-align:top}
+.tg .tg-amug{background-color:#cbcefb;border-color:#333333;text-align:center;vertical-align:top}
+&lt;/style&gt;
+&lt;table class="tg"&gt;
+&lt;thead&gt;
+  &lt;tr&gt;
+    &lt;th class="tg-de2y"&gt;&lt;/th&gt;
+    &lt;th class="tg-9ydz"&gt;L&lt;/th&gt;
+    &lt;th class="tg-9ydz"&gt;A&lt;/th&gt;
+    &lt;th class="tg-9ydz"&gt;Y&lt;/th&gt;
+    &lt;th class="tg-de2y"&gt;&lt;/th&gt;
+    &lt;th class="tg-9ydz"&gt;L&lt;/th&gt;
+    &lt;th class="tg-9ydz"&gt;A&lt;/th&gt;
+    &lt;th class="tg-9ydz"&gt;Y&lt;/th&gt;
+  &lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+    &lt;td class="tg-sn4r"&gt;Rheia&lt;/td&gt;
+    &lt;td class="tg-2jdy"&gt;0&lt;/td&gt;
+    &lt;td class="tg-2jdy"&gt;0&lt;/td&gt;
+    &lt;td class="tg-2jdy"&gt;0&lt;/td&gt;
+    &lt;td class="tg-sn4r"&gt;Leto&lt;/td&gt;
+    &lt;td class="tg-02vm"&gt;1&lt;/td&gt;
+    &lt;td class="tg-02vm"&gt;0&lt;/td&gt;
+    &lt;td class="tg-02vm"&gt;0&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td class="tg-sn4r"&gt;Kronos&lt;/td&gt;
+    &lt;td class="tg-2jdy"&gt;0&lt;/td&gt;
+    &lt;td class="tg-2jdy"&gt;0&lt;/td&gt;
+    &lt;td class="tg-2jdy"&gt;1&lt;/td&gt;
+    &lt;td class="tg-sn4r"&gt;Ares&lt;/td&gt;
+    &lt;td class="tg-amug"&gt;1&lt;/td&gt;
+    &lt;td class="tg-amug"&gt;1&lt;/td&gt;
+    &lt;td class="tg-amug"&gt;1&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td class="tg-sn4r"&gt;Demeter&lt;/td&gt;
+    &lt;td class="tg-2jdy"&gt;0&lt;/td&gt;
+    &lt;td class="tg-2jdy"&gt;0&lt;/td&gt;
+    &lt;td class="tg-2jdy"&gt;0&lt;/td&gt;
+    &lt;td class="tg-sn4r"&gt;Athena&lt;/td&gt;
+    &lt;td class="tg-amug"&gt;1&lt;/td&gt;
+    &lt;td class="tg-amug"&gt;1&lt;/td&gt;
+    &lt;td class="tg-amug"&gt;1&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td class="tg-sn4r"&gt;Hades&lt;/td&gt;
+    &lt;td class="tg-2jdy"&gt;0&lt;/td&gt;
+    &lt;td class="tg-2jdy"&gt;0&lt;/td&gt;
+    &lt;td class="tg-2jdy"&gt;0&lt;/td&gt;
+    &lt;td class="tg-sn4r"&gt;Hephaestus&lt;/td&gt;
+    &lt;td class="tg-amug"&gt;1&lt;/td&gt;
+    &lt;td class="tg-amug"&gt;1&lt;/td&gt;
+    &lt;td class="tg-amug"&gt;1&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td class="tg-sn4r"&gt;Hestia&lt;/td&gt;
+    &lt;td class="tg-2ral"&gt;0&lt;/td&gt;
+    &lt;td class="tg-2ral"&gt;1&lt;/td&gt;
+    &lt;td class="tg-2ral"&gt;0&lt;/td&gt;
+    &lt;td class="tg-sn4r"&gt;Aphrodite&lt;/td&gt;
+    &lt;td class="tg-amug"&gt;1&lt;/td&gt;
+    &lt;td class="tg-amug"&gt;1&lt;/td&gt;
+    &lt;td class="tg-amug"&gt;1&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td class="tg-sn4r"&gt;Poseidon&lt;/td&gt;
+    &lt;td class="tg-2ral"&gt;0&lt;/td&gt;
+    &lt;td class="tg-2ral"&gt;1&lt;/td&gt;
+    &lt;td class="tg-2ral"&gt;0&lt;/td&gt;
+    &lt;td class="tg-sn4r"&gt;Cyclope&lt;/td&gt;
+    &lt;td class="tg-amug"&gt;1&lt;/td&gt;
+    &lt;td class="tg-amug"&gt;1&lt;/td&gt;
+    &lt;td class="tg-amug"&gt;1&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td class="tg-sn4r"&gt;Hera&lt;/td&gt;
+    &lt;td class="tg-2ral"&gt;0&lt;/td&gt;
+    &lt;td class="tg-2ral"&gt;1&lt;/td&gt;
+    &lt;td class="tg-2ral"&gt;0&lt;/td&gt;
+    &lt;td class="tg-sn4r"&gt;Persephone&lt;/td&gt;
+    &lt;td class="tg-amug"&gt;1&lt;/td&gt;
+    &lt;td class="tg-amug"&gt;1&lt;/td&gt;
+    &lt;td class="tg-amug"&gt;1&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td class="tg-sn4r"&gt;Zeus&lt;/td&gt;
+    &lt;td class="tg-2ral"&gt;0&lt;/td&gt;
+    &lt;td class="tg-2ral"&gt;1&lt;/td&gt;
+    &lt;td class="tg-2ral"&gt;1&lt;/td&gt;
+    &lt;td class="tg-sn4r"&gt;Hermes&lt;/td&gt;
+    &lt;td class="tg-amug"&gt;1&lt;/td&gt;
+    &lt;td class="tg-amug"&gt;1&lt;/td&gt;
+    &lt;td class="tg-amug"&gt;0&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td class="tg-sn4r"&gt;Artemis&lt;/td&gt;
+    &lt;td class="tg-02vm"&gt;1&lt;/td&gt;
+    &lt;td class="tg-02vm"&gt;0&lt;/td&gt;
+    &lt;td class="tg-02vm"&gt;1&lt;/td&gt;
+    &lt;td class="tg-sn4r"&gt;Hebe&lt;/td&gt;
+    &lt;td class="tg-amug"&gt;1&lt;/td&gt;
+    &lt;td class="tg-amug"&gt;1&lt;/td&gt;
+    &lt;td class="tg-amug"&gt;0&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td class="tg-sn4r"&gt;Apollo&lt;/td&gt;
+    &lt;td class="tg-02vm"&gt;1&lt;/td&gt;
+    &lt;td class="tg-02vm"&gt;0&lt;/td&gt;
+    &lt;td class="tg-02vm"&gt;1&lt;/td&gt;
+    &lt;td class="tg-sn4r"&gt;Dionysus&lt;/td&gt;
+    &lt;td class="tg-amug"&gt;1&lt;/td&gt;
+    &lt;td class="tg-amug"&gt;1&lt;/td&gt;
+    &lt;td class="tg-amug"&gt;0&lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+]
+
+---
+class: middle
+
+## Standardization (2) - the combined causal risk ratio
+
+$$
+\frac{\text{Pr}[Y^{a = 1} = 1]}{\text{Pr}[Y^{a = 0} = 1]}
+$$
+
+.med[
+- The numerator is the risk if all 20 individuals had been treated
+    - `\(\frac{1}{4}\)` in 8 non-critical; and `\(\frac{2}{3}\)` in 12 critical:
+      - `\(\frac{1}{4} \times \frac{8}{20} + \frac{2}{3} \times \frac{12}{20} =0.5\)`
+- The denominatior is the risk if all 20 individuals had been untreated
+    - `\(\frac{1}{4}\)` in 8 non-critical; and `\(\frac{2}{3}\)` in 12 critical:
+      - `\(\frac{1}{4} \times \frac{8}{20} + \frac{2}{3} \times \frac{12}{20} =0.5\)`
+]
+
+
+---
+class: middle
+
+## Standardization (3) - the combined causal risk ratio
+
+$$
+\frac{\text{Pr}[Y^{a = 1} = 1]}{\text{Pr}[Y^{a = 0} = 1]} = 0.5/0.5 = 1
+$$
+
+
+.full-width[.content-box-red[.bold[
+.small[
+More formally, &lt;br&gt;
+`\(\text{Pr}[Y^{a} = 1]\)` is **the weighted average of the stratum-specific risks**, the weights is the proportion of individuals in each subset: 
+&lt;br&gt; `$$\text{Pr}[Y^{a} = 1] = \text{Pr}[Y^a = 1|L = 0]\text{Pr}[L = 0] \\+ \text{Pr}[Y^a = 1|L = 1]\text{Pr}[L = 1]$$`
+This is known in epidemiology as **standardization**.
+
+]]]]
+
+---
+class: middle
+
+## Inverse probability weighting
+
+
+---
 class: middle, inverse, center
 
 # Chapter 3 &lt;br&gt; Observational Studies
