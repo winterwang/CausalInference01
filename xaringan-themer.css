@@ -121,6 +121,16 @@ a, a > code {
   float: left;
   width: 47%;
 }
+
+.pull-halfleft {
+  float: left;
+  width: 45%;
+}
+.pull-halfright {
+  float: left;
+  width: 47%;
+}
+
 .pull-right {
   float: right;
   width: 40%;

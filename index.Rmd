@@ -22,7 +22,7 @@ editor_options:
 
 class: middle, inverse, center
 
-# Chapter 1, Definition
+# Chapter 1 <br> Definition
 
 
 ---
@@ -575,4 +575,278 @@ background-size: contain
 ---
 class: middle, inverse, center
 
-# Chapter 2, Randomized Experiments
+# Chapter 2 <br> Randomized Experiments
+
+
+---
+class: middle
+
+## Outline
+
+- Randomization
+
+- Conditional randomization
+
+- Standardization
+
+- Inverse probability weighting
+
+
+---
+class: middle 
+
+### Only one of the counterfactual outcome is known 
+
+<style type="text/css">
+.tg  {border-collapse:collapse;border-color:#bbb;border-spacing:0;}
+.tg td{background-color:#E0FFEB;border-color:#bbb;border-style:solid;border-width:1px;color:#594F4F;
+  font-family:Arial, sans-serif;font-size:16px;overflow:hidden;padding:10px 5px;word-break:normal;}
+.tg th{background-color:#9DE0AD;border-color:#bbb;border-style:solid;border-width:1px;color:#493F3F;
+  font-family:Arial, sans-serif;font-size:18px;font-weight:normal;overflow:hidden;padding:10px 5px;word-break:normal;}
+.tg .tg-1wig{font-weight:bold;text-align:left;vertical-align:top}
+.tg .tg-cmwg{background-color:#ffccc9;text-align:center;vertical-align:top}
+.tg .tg-pbtr{background-color:#ffccc9;font-weight:bold;text-align:center;vertical-align:top}
+.tg .tg-baqh{text-align:center;vertical-align:top}
+.tg .tg-0lax{text-align:left;vertical-align:top}
+.tg .tg-amwm{font-weight:bold;text-align:center;vertical-align:top}
+.tg .tg-5qfb{background-color:#ffce93;font-weight:bold;text-align:center;vertical-align:top}
+.tg .tg-ifcm{background-color:#ffce93;text-align:center;vertical-align:top}
+</style>
+<table class="tg">
+<thead>
+  <tr>
+    <th class="tg-0lax"></th>
+    <th class="tg-amwm"> \[A\] </th>
+    <th class="tg-amwm">\[Y\]</th>
+    <th class="tg-pbtr">\[Y^0\]</th>
+    <th class="tg-5qfb">\[Y^1\]</th>
+    <th class="tg-0lax"></th>
+    <th class="tg-baqh">\[A\]</th>
+    <th class="tg-amwm">\[Y\]</th>
+    <th class="tg-pbtr">\[Y^0\]</th>
+    <th class="tg-5qfb">\[Y^1\]</th>
+  </tr>
+</thead>
+<tbody>
+  <tr>
+    <td class="tg-1wig">Rheia</td>
+    <td class="tg-baqh">0</td>
+    <td class="tg-baqh">0</td>
+    <td class="tg-cmwg">0</td>
+    <td class="tg-ifcm">?</td>
+    <td class="tg-1wig">Leto</td>
+    <td class="tg-baqh">0</td>
+    <td class="tg-baqh">0</td>
+    <td class="tg-cmwg">0</td>
+    <td class="tg-ifcm">?</td>
+  </tr>
+  <tr>
+    <td class="tg-1wig">Kronos</td>
+    <td class="tg-baqh">0</td>
+    <td class="tg-baqh">1</td>
+    <td class="tg-cmwg">1</td>
+    <td class="tg-ifcm">?</td>
+    <td class="tg-1wig">Ares</td>
+    <td class="tg-baqh">1</td>
+    <td class="tg-baqh">1</td>
+    <td class="tg-cmwg">?</td>
+    <td class="tg-ifcm">1</td>
+  </tr>
+  <tr>
+    <td class="tg-1wig">Demeter</td>
+    <td class="tg-baqh">0</td>
+    <td class="tg-baqh">0</td>
+    <td class="tg-cmwg">0</td>
+    <td class="tg-ifcm">?</td>
+    <td class="tg-1wig">Athena</td>
+    <td class="tg-baqh">1</td>
+    <td class="tg-baqh">1</td>
+    <td class="tg-cmwg">?</td>
+    <td class="tg-ifcm">1</td>
+  </tr>
+  <tr>
+    <td class="tg-1wig">Hades</td>
+    <td class="tg-baqh">0</td>
+    <td class="tg-baqh">0</td>
+    <td class="tg-cmwg">0</td>
+    <td class="tg-ifcm">?</td>
+    <td class="tg-1wig">Hephaestus</td>
+    <td class="tg-baqh">1</td>
+    <td class="tg-baqh">1</td>
+    <td class="tg-cmwg">?</td>
+    <td class="tg-ifcm">1</td>
+  </tr>
+  <tr>
+    <td class="tg-1wig">Hestia</td>
+    <td class="tg-baqh">1</td>
+    <td class="tg-baqh">0</td>
+    <td class="tg-cmwg">?</td>
+    <td class="tg-ifcm">0</td>
+    <td class="tg-1wig">Aphrodite</td>
+    <td class="tg-baqh">1</td>
+    <td class="tg-baqh">1</td>
+    <td class="tg-cmwg">?</td>
+    <td class="tg-ifcm">1</td>
+  </tr>
+  <tr>
+    <td class="tg-1wig">Poseidon</td>
+    <td class="tg-baqh">1</td>
+    <td class="tg-baqh">0</td>
+    <td class="tg-cmwg">?</td>
+    <td class="tg-ifcm">1</td>
+    <td class="tg-1wig">Cyclope</td>
+    <td class="tg-baqh">1</td>
+    <td class="tg-baqh">1</td>
+    <td class="tg-cmwg">?</td>
+    <td class="tg-ifcm">1</td>
+  </tr>
+  <tr>
+    <td class="tg-1wig">Hera</td>
+    <td class="tg-baqh">1</td>
+    <td class="tg-baqh">0</td>
+    <td class="tg-cmwg">?</td>
+    <td class="tg-ifcm">1</td>
+    <td class="tg-1wig">Persephone</td>
+    <td class="tg-baqh">1</td>
+    <td class="tg-baqh">1</td>
+    <td class="tg-cmwg">?</td>
+    <td class="tg-ifcm">1</td>
+  </tr>
+  <tr>
+    <td class="tg-1wig">Zeus</td>
+    <td class="tg-baqh">1</td>
+    <td class="tg-baqh">1</td>
+    <td class="tg-cmwg">?</td>
+    <td class="tg-ifcm">1</td>
+    <td class="tg-1wig">Hermes</td>
+    <td class="tg-baqh">1</td>
+    <td class="tg-baqh">0</td>
+    <td class="tg-cmwg">?</td>
+    <td class="tg-ifcm">0</td>
+  </tr>
+  <tr>
+    <td class="tg-1wig">Artemis</td>
+    <td class="tg-baqh">0</td>
+    <td class="tg-baqh">1</td>
+    <td class="tg-cmwg">1</td>
+    <td class="tg-ifcm">?</td>
+    <td class="tg-1wig">Hebe</td>
+    <td class="tg-baqh">1</td>
+    <td class="tg-baqh">0</td>
+    <td class="tg-cmwg">?</td>
+    <td class="tg-ifcm">0</td>
+  </tr>
+  <tr>
+    <td class="tg-1wig">Apollo</td>
+    <td class="tg-baqh">0</td>
+    <td class="tg-baqh">1</td>
+    <td class="tg-cmwg">1</td>
+    <td class="tg-ifcm">?</td>
+    <td class="tg-1wig">Dionysus</td>
+    <td class="tg-baqh">1</td>
+    <td class="tg-baqh">0</td>
+    <td class="tg-cmwg">?</td>
+    <td class="tg-ifcm">0</td>
+  </tr>
+</tbody>
+</table>
+
+???
+The data in this table can only good to compute association measures.
+
+
+---
+class: middle
+
+## Randomization
+
+- Randomized studies also can only generate data with missing values of the counterfactual outcomes
+
+- However, randomization ensures that these missing values **occurred by chance**.
+
+
+---
+class: middle
+## Exchangeability (1)
+
+.full-width[.content-box-red[.bold[
+An ideal randomized experiments ensures that the treatment groups are **exchangeable**.
+]]]
+
+.pull-halfleft[.med[
+- Treatment in white 
+![](fig/Randomization0.png)
+- associational risk ratio: 0.3/0.6 = 0.5
+- associational risk difference: 0.3 - 0.6 = -0.3
+
+]]
+
+.pull-halfright[.med[
+- Treatment in grey
+![](fig/Randomization1.png)
+- associational risk ratio: 0.3/0.6 = 0.5
+- associational risk difference: 0.3 - 0.6 = -0.3
+]]
+
+
+
+---
+class: middle
+## Exchangeability (2)
+
+
+.pull-halfleft[.med[
+- Treatment in white 
+![](fig/Randomization0.png)
+- associational risk ratio: 0.3/0.6 = 0.5
+- associational risk difference: 0.3 - 0.6 = -0.3
+]]
+
+.pull-halfright[.med[
+- Treatment in grey
+![](fig/Randomization1.png)
+- associational risk ratio: 0.3/0.6 = 0.5
+- associational risk difference: 0.3 - 0.6 = -0.3
+]]
+
+---
+class: midde
+## Exchangeability (3)
+
+
+.full-width[.content-box-red[.bold[
+.small[
+- The risk under potential treatment $a$ **among the treated** <br> $\text{Pr}[Y^a = 1 | A =1]$ equals
+- The risk under potential treatment $a$ **among the untreated** <br>  $\text{Pr}[Y^a = 1 | A =0]$ equals 
+- The risk under potential treatment $a$ **in the whole population** <br> $\text{Pr}[Y^a = 1]$
+
+$$Y^a \perp \!\!\! \perp A \forall \text{ (= for all) } a$$
+
+- The actual treatment $A$ **does not predict** the counterfactual outcome $Y^a$.
+
+- Randomization is so highly valued since it is expected to produce this exchangeability.
+]]]]
+
+---
+class: midde
+## Why exchangeability is so great?
+
+
+.med[
+In the presence of exchangeability. **Association is Causation.**
+
+- The counterfactual risk in the treatment group is equal to the counterfactual risk under treatment in the entire population.
+
+$$\text{Pr}[Y^{a = 1} = 1 | A =1] = \text{Pr}[Y^{a = 1} = 1]$$
+
+- And the counterfactual risk in the treatment group is equal to their observed actual outcome (by consistency).
+
+$$\text{Pr}[Y^{a = 1} = 1 | A =1] = \text{Pr}[Y = 1 | A = 1]$$
+
+- **The risk in the treated is the same as the risk as if everybody was treated.**
+]
+
+---
+class: middle, inverse, center
+
+# Chapter 3 <br> Observational Studies
