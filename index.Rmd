@@ -1224,6 +1224,237 @@ class: middle
 
 ## Inverse probability weighting
 
+---
+class: middle
+
+##  Inverse probability weighting (1)
+
+So far, 
+
+- the causal risk ratio was computed in a conditionally randomized experiment via standardization. 
+
+From this slide, 
+
+- we compute this same causal risk ratio via inverse probability weighting.
+
+
+---
+class: middle
+
+##  Data as a probability tree:
+
+
+.pull-left[
+<style type="text/css">
+.tg  {border-collapse:collapse;border-color:#bbb;border-spacing:0;}
+.tg td{background-color:#E0FFEB;border-color:#bbb;border-style:solid;border-width:1px;color:#594F4F;
+  font-family:Arial, sans-serif;font-size:14px;overflow:hidden;padding:10px 5px;word-break:normal;}
+.tg th{background-color:#9DE0AD;border-color:#bbb;border-style:solid;border-width:1px;color:#493F3F;
+  font-family:Arial, sans-serif;font-size:14px;font-weight:normal;overflow:hidden;padding:10px 5px;word-break:normal;}
+.tg .tg-02vm{background-color:#38fff8;border-color:#333333;text-align:center;vertical-align:top}
+.tg .tg-2jdy{background-color:#fe996b;border-color:#333333;text-align:center;vertical-align:top}
+.tg .tg-9ydz{border-color:#333333;font-weight:bold;text-align:center;vertical-align:top}
+.tg .tg-2ral{background-color:#f8ff00;border-color:#333333;text-align:center;vertical-align:top}
+.tg .tg-de2y{border-color:#333333;text-align:left;vertical-align:top}
+.tg .tg-sn4r{border-color:#333333;font-weight:bold;text-align:left;vertical-align:top}
+.tg .tg-amug{background-color:#cbcefb;border-color:#333333;text-align:center;vertical-align:top}
+</style>
+<table class="tg">
+<thead>
+  <tr>
+    <th class="tg-de2y"></th>
+    <th class="tg-9ydz">L</th>
+    <th class="tg-9ydz">A</th>
+    <th class="tg-9ydz">Y</th>
+    <th class="tg-de2y"></th>
+    <th class="tg-9ydz">L</th>
+    <th class="tg-9ydz">A</th>
+    <th class="tg-9ydz">Y</th>
+  </tr>
+</thead>
+<tbody>
+  <tr>
+    <td class="tg-sn4r">Rheia</td>
+    <td class="tg-2jdy">0</td>
+    <td class="tg-2jdy">0</td>
+    <td class="tg-2jdy">0</td>
+    <td class="tg-sn4r">Leto</td>
+    <td class="tg-02vm">1</td>
+    <td class="tg-02vm">0</td>
+    <td class="tg-02vm">0</td>
+  </tr>
+  <tr>
+    <td class="tg-sn4r">Kronos</td>
+    <td class="tg-2jdy">0</td>
+    <td class="tg-2jdy">0</td>
+    <td class="tg-2jdy">1</td>
+    <td class="tg-sn4r">Ares</td>
+    <td class="tg-amug">1</td>
+    <td class="tg-amug">1</td>
+    <td class="tg-amug">1</td>
+  </tr>
+  <tr>
+    <td class="tg-sn4r">Demeter</td>
+    <td class="tg-2jdy">0</td>
+    <td class="tg-2jdy">0</td>
+    <td class="tg-2jdy">0</td>
+    <td class="tg-sn4r">Athena</td>
+    <td class="tg-amug">1</td>
+    <td class="tg-amug">1</td>
+    <td class="tg-amug">1</td>
+  </tr>
+  <tr>
+    <td class="tg-sn4r">Hades</td>
+    <td class="tg-2jdy">0</td>
+    <td class="tg-2jdy">0</td>
+    <td class="tg-2jdy">0</td>
+    <td class="tg-sn4r">Hephaestus</td>
+    <td class="tg-amug">1</td>
+    <td class="tg-amug">1</td>
+    <td class="tg-amug">1</td>
+  </tr>
+  <tr>
+    <td class="tg-sn4r">Hestia</td>
+    <td class="tg-2ral">0</td>
+    <td class="tg-2ral">1</td>
+    <td class="tg-2ral">0</td>
+    <td class="tg-sn4r">Aphrodite</td>
+    <td class="tg-amug">1</td>
+    <td class="tg-amug">1</td>
+    <td class="tg-amug">1</td>
+  </tr>
+  <tr>
+    <td class="tg-sn4r">Poseidon</td>
+    <td class="tg-2ral">0</td>
+    <td class="tg-2ral">1</td>
+    <td class="tg-2ral">0</td>
+    <td class="tg-sn4r">Cyclope</td>
+    <td class="tg-amug">1</td>
+    <td class="tg-amug">1</td>
+    <td class="tg-amug">1</td>
+  </tr>
+  <tr>
+    <td class="tg-sn4r">Hera</td>
+    <td class="tg-2ral">0</td>
+    <td class="tg-2ral">1</td>
+    <td class="tg-2ral">0</td>
+    <td class="tg-sn4r">Persephone</td>
+    <td class="tg-amug">1</td>
+    <td class="tg-amug">1</td>
+    <td class="tg-amug">1</td>
+  </tr>
+  <tr>
+    <td class="tg-sn4r">Zeus</td>
+    <td class="tg-2ral">0</td>
+    <td class="tg-2ral">1</td>
+    <td class="tg-2ral">1</td>
+    <td class="tg-sn4r">Hermes</td>
+    <td class="tg-amug">1</td>
+    <td class="tg-amug">1</td>
+    <td class="tg-amug">0</td>
+  </tr>
+  <tr>
+    <td class="tg-sn4r">Artemis</td>
+    <td class="tg-02vm">1</td>
+    <td class="tg-02vm">0</td>
+    <td class="tg-02vm">1</td>
+    <td class="tg-sn4r">Hebe</td>
+    <td class="tg-amug">1</td>
+    <td class="tg-amug">1</td>
+    <td class="tg-amug">0</td>
+  </tr>
+  <tr>
+    <td class="tg-sn4r">Apollo</td>
+    <td class="tg-02vm">1</td>
+    <td class="tg-02vm">0</td>
+    <td class="tg-02vm">1</td>
+    <td class="tg-sn4r">Dionysus</td>
+    <td class="tg-amug">1</td>
+    <td class="tg-amug">1</td>
+    <td class="tg-amug">0</td>
+  </tr>
+</tbody>
+</table>
+]
+
+
+```{r echo=FALSE,  dpi=275}
+knitr::include_graphics("fig/Tree00.png")
+```
+
+
+---
+class: middle 
+
+### Use the prob tree to compute the causal risk ratio (1)
+
+
+.pull-left[.med[
+- The denominator of the causal risk ratio, $\text{Pr}[Y^{a = 0} = 1]$ 
+<br> is the counterfactual risk 
+<br> of death **had everybody remained untreated**.
+- $\text{Pr}[Y^{a = 0} = 1] \\= (2 + 8)/20 = 0.5$
+]]
+
+
+```{r echo=FALSE,  dpi=275}
+knitr::include_graphics("fig/Tree01.png")
+```
+
+
+---
+class: middle 
+
+### Use the prob tree to compute the causal risk ratio (2)
+
+
+.pull-left[.med[
+- The numerator of the causal risk ratio, $\text{Pr}[Y^{a = 1} = 1]$ 
+<br> is the counterfactual risk 
+<br> of death **had everybody remained treated**.
+- $\text{Pr}[Y^{a = 1} = 1] \\= (2 + 8)/20 = 0.5$
+- The causal risk ratio is
+<br> $0.5 / 0.5 = 1$
+]]
+
+
+```{r echo=FALSE,  dpi=285}
+knitr::include_graphics("fig/Tree02.png")
+```
+
+
+---
+class: top, left
+background-image: url("./fig/Tree weights.png")
+background-position: 60% 50%
+background-size: contain
+
+## How did this work?
+
+
+---
+class: middle
+
+
+##  Inverse probability weighting (3)
+
+.full-width[.content-box-red[.bold[.med[
+This is called **inverse probability weighting (IPW)**. 
+
+- The pseudo-population is created by weighting each individual in the population by the **inverse of the conditional probability of receiving treatments** 
+
+- IPW yielded the same result as standardization. 
+<br>In fact, they are mathematically equivalent. 
+
+]]]]
+
+
+
+<!-- ```{r echo=FALSE,  dpi=285} -->
+<!-- knitr::include_graphics("fig/Tree weights.png") -->
+<!-- ``` -->
+
+
 
 ---
 class: middle, inverse, center

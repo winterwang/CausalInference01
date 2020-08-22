@@ -1223,6 +1223,231 @@ class: middle
 
 ## Inverse probability weighting
 
+---
+class: middle
+
+##  Inverse probability weighting (1)
+
+So far, 
+
+- the causal risk ratio was computed in a conditionally randomized experiment via standardization. 
+
+From this slide, 
+
+- we compute this same causal risk ratio via inverse probability weighting.
+
+
+---
+class: middle
+
+##  Data as a probability tree:
+
+
+.pull-left[
+&lt;style type="text/css"&gt;
+.tg  {border-collapse:collapse;border-color:#bbb;border-spacing:0;}
+.tg td{background-color:#E0FFEB;border-color:#bbb;border-style:solid;border-width:1px;color:#594F4F;
+  font-family:Arial, sans-serif;font-size:14px;overflow:hidden;padding:10px 5px;word-break:normal;}
+.tg th{background-color:#9DE0AD;border-color:#bbb;border-style:solid;border-width:1px;color:#493F3F;
+  font-family:Arial, sans-serif;font-size:14px;font-weight:normal;overflow:hidden;padding:10px 5px;word-break:normal;}
+.tg .tg-02vm{background-color:#38fff8;border-color:#333333;text-align:center;vertical-align:top}
+.tg .tg-2jdy{background-color:#fe996b;border-color:#333333;text-align:center;vertical-align:top}
+.tg .tg-9ydz{border-color:#333333;font-weight:bold;text-align:center;vertical-align:top}
+.tg .tg-2ral{background-color:#f8ff00;border-color:#333333;text-align:center;vertical-align:top}
+.tg .tg-de2y{border-color:#333333;text-align:left;vertical-align:top}
+.tg .tg-sn4r{border-color:#333333;font-weight:bold;text-align:left;vertical-align:top}
+.tg .tg-amug{background-color:#cbcefb;border-color:#333333;text-align:center;vertical-align:top}
+&lt;/style&gt;
+&lt;table class="tg"&gt;
+&lt;thead&gt;
+  &lt;tr&gt;
+    &lt;th class="tg-de2y"&gt;&lt;/th&gt;
+    &lt;th class="tg-9ydz"&gt;L&lt;/th&gt;
+    &lt;th class="tg-9ydz"&gt;A&lt;/th&gt;
+    &lt;th class="tg-9ydz"&gt;Y&lt;/th&gt;
+    &lt;th class="tg-de2y"&gt;&lt;/th&gt;
+    &lt;th class="tg-9ydz"&gt;L&lt;/th&gt;
+    &lt;th class="tg-9ydz"&gt;A&lt;/th&gt;
+    &lt;th class="tg-9ydz"&gt;Y&lt;/th&gt;
+  &lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+    &lt;td class="tg-sn4r"&gt;Rheia&lt;/td&gt;
+    &lt;td class="tg-2jdy"&gt;0&lt;/td&gt;
+    &lt;td class="tg-2jdy"&gt;0&lt;/td&gt;
+    &lt;td class="tg-2jdy"&gt;0&lt;/td&gt;
+    &lt;td class="tg-sn4r"&gt;Leto&lt;/td&gt;
+    &lt;td class="tg-02vm"&gt;1&lt;/td&gt;
+    &lt;td class="tg-02vm"&gt;0&lt;/td&gt;
+    &lt;td class="tg-02vm"&gt;0&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td class="tg-sn4r"&gt;Kronos&lt;/td&gt;
+    &lt;td class="tg-2jdy"&gt;0&lt;/td&gt;
+    &lt;td class="tg-2jdy"&gt;0&lt;/td&gt;
+    &lt;td class="tg-2jdy"&gt;1&lt;/td&gt;
+    &lt;td class="tg-sn4r"&gt;Ares&lt;/td&gt;
+    &lt;td class="tg-amug"&gt;1&lt;/td&gt;
+    &lt;td class="tg-amug"&gt;1&lt;/td&gt;
+    &lt;td class="tg-amug"&gt;1&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td class="tg-sn4r"&gt;Demeter&lt;/td&gt;
+    &lt;td class="tg-2jdy"&gt;0&lt;/td&gt;
+    &lt;td class="tg-2jdy"&gt;0&lt;/td&gt;
+    &lt;td class="tg-2jdy"&gt;0&lt;/td&gt;
+    &lt;td class="tg-sn4r"&gt;Athena&lt;/td&gt;
+    &lt;td class="tg-amug"&gt;1&lt;/td&gt;
+    &lt;td class="tg-amug"&gt;1&lt;/td&gt;
+    &lt;td class="tg-amug"&gt;1&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td class="tg-sn4r"&gt;Hades&lt;/td&gt;
+    &lt;td class="tg-2jdy"&gt;0&lt;/td&gt;
+    &lt;td class="tg-2jdy"&gt;0&lt;/td&gt;
+    &lt;td class="tg-2jdy"&gt;0&lt;/td&gt;
+    &lt;td class="tg-sn4r"&gt;Hephaestus&lt;/td&gt;
+    &lt;td class="tg-amug"&gt;1&lt;/td&gt;
+    &lt;td class="tg-amug"&gt;1&lt;/td&gt;
+    &lt;td class="tg-amug"&gt;1&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td class="tg-sn4r"&gt;Hestia&lt;/td&gt;
+    &lt;td class="tg-2ral"&gt;0&lt;/td&gt;
+    &lt;td class="tg-2ral"&gt;1&lt;/td&gt;
+    &lt;td class="tg-2ral"&gt;0&lt;/td&gt;
+    &lt;td class="tg-sn4r"&gt;Aphrodite&lt;/td&gt;
+    &lt;td class="tg-amug"&gt;1&lt;/td&gt;
+    &lt;td class="tg-amug"&gt;1&lt;/td&gt;
+    &lt;td class="tg-amug"&gt;1&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td class="tg-sn4r"&gt;Poseidon&lt;/td&gt;
+    &lt;td class="tg-2ral"&gt;0&lt;/td&gt;
+    &lt;td class="tg-2ral"&gt;1&lt;/td&gt;
+    &lt;td class="tg-2ral"&gt;0&lt;/td&gt;
+    &lt;td class="tg-sn4r"&gt;Cyclope&lt;/td&gt;
+    &lt;td class="tg-amug"&gt;1&lt;/td&gt;
+    &lt;td class="tg-amug"&gt;1&lt;/td&gt;
+    &lt;td class="tg-amug"&gt;1&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td class="tg-sn4r"&gt;Hera&lt;/td&gt;
+    &lt;td class="tg-2ral"&gt;0&lt;/td&gt;
+    &lt;td class="tg-2ral"&gt;1&lt;/td&gt;
+    &lt;td class="tg-2ral"&gt;0&lt;/td&gt;
+    &lt;td class="tg-sn4r"&gt;Persephone&lt;/td&gt;
+    &lt;td class="tg-amug"&gt;1&lt;/td&gt;
+    &lt;td class="tg-amug"&gt;1&lt;/td&gt;
+    &lt;td class="tg-amug"&gt;1&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td class="tg-sn4r"&gt;Zeus&lt;/td&gt;
+    &lt;td class="tg-2ral"&gt;0&lt;/td&gt;
+    &lt;td class="tg-2ral"&gt;1&lt;/td&gt;
+    &lt;td class="tg-2ral"&gt;1&lt;/td&gt;
+    &lt;td class="tg-sn4r"&gt;Hermes&lt;/td&gt;
+    &lt;td class="tg-amug"&gt;1&lt;/td&gt;
+    &lt;td class="tg-amug"&gt;1&lt;/td&gt;
+    &lt;td class="tg-amug"&gt;0&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td class="tg-sn4r"&gt;Artemis&lt;/td&gt;
+    &lt;td class="tg-02vm"&gt;1&lt;/td&gt;
+    &lt;td class="tg-02vm"&gt;0&lt;/td&gt;
+    &lt;td class="tg-02vm"&gt;1&lt;/td&gt;
+    &lt;td class="tg-sn4r"&gt;Hebe&lt;/td&gt;
+    &lt;td class="tg-amug"&gt;1&lt;/td&gt;
+    &lt;td class="tg-amug"&gt;1&lt;/td&gt;
+    &lt;td class="tg-amug"&gt;0&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td class="tg-sn4r"&gt;Apollo&lt;/td&gt;
+    &lt;td class="tg-02vm"&gt;1&lt;/td&gt;
+    &lt;td class="tg-02vm"&gt;0&lt;/td&gt;
+    &lt;td class="tg-02vm"&gt;1&lt;/td&gt;
+    &lt;td class="tg-sn4r"&gt;Dionysus&lt;/td&gt;
+    &lt;td class="tg-amug"&gt;1&lt;/td&gt;
+    &lt;td class="tg-amug"&gt;1&lt;/td&gt;
+    &lt;td class="tg-amug"&gt;0&lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+]
+
+
+&lt;img src="fig/Tree00.png" width="418" /&gt;
+
+
+---
+class: middle 
+
+### Use the prob tree to compute the causal risk ratio (1)
+
+
+.pull-left[.med[
+- The denominator of the causal risk ratio, `\(\text{Pr}[Y^{a = 0} = 1]\)` 
+&lt;br&gt; is the counterfactual risk 
+&lt;br&gt; of death **had everybody remained untreated**.
+- `\(\text{Pr}[Y^{a = 0} = 1] \\= (2 + 8)/20 = 0.5\)`
+]]
+
+
+&lt;img src="fig/Tree01.png" width="420" /&gt;
+
+
+---
+class: middle 
+
+### Use the prob tree to compute the causal risk ratio (2)
+
+
+.pull-left[.med[
+- The numerator of the causal risk ratio, `\(\text{Pr}[Y^{a = 1} = 1]\)` 
+&lt;br&gt; is the counterfactual risk 
+&lt;br&gt; of death **had everybody remained treated**.
+- `\(\text{Pr}[Y^{a = 1} = 1] \\= (2 + 8)/20 = 0.5\)`
+- The causal risk ratio is
+&lt;br&gt; `\(0.5 / 0.5 = 1\)`
+]]
+
+
+&lt;img src="fig/Tree02.png" width="419" /&gt;
+
+
+---
+class: top, left
+background-image: url("./fig/Tree weights.png")
+background-position: 60% 50%
+background-size: contain
+
+## How did this work?
+
+
+---
+class: middle
+
+
+##  Inverse probability weighting (3)
+
+.full-width[.content-box-red[.bold[.med[
+This is called **inverse probability weighting (IPW)**. 
+
+- The pseudo-population is created by weighting each individual in the population by the **inverse of the conditional probability of receiving treatments** 
+
+- IPW yielded the same result as standardization. 
+&lt;br&gt;In fact, they are mathematically equivalent. 
+
+]]]]
+
+
+
+&lt;!-- ```{r echo=FALSE,  dpi=285} --&gt;
+&lt;!-- knitr::include_graphics("fig/Tree weights.png") --&gt;
+&lt;!-- ``` --&gt;
+
+
 
 ---
 class: middle, inverse, center
