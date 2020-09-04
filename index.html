@@ -763,6 +763,7 @@ class: middle
 
 - However, randomization ensures that these missing values **occurred by chance**.
 
+As a result, effect measures can be computed - **consistently estimated** - in randomized experiments despite the missing data.
 
 ---
 class: middle
@@ -787,7 +788,13 @@ An ideal randomized experiments ensures that the treatment groups are **exchange
 - associational risk difference: 0.3 - 0.6 = -0.3
 ]]
 
+???
 
+- If we randomly assign group labels. 
+- We will have the same results of association measures both ways.
+- Because we believe that the proportion of deaths among treated or untreated no matter who was treated are the same. 
+- So in the study, who was actually treated or untreated does not change the results of our observations `\(\text{Pr}[Y =1 | A = 0]\)`
+- We call this feature as "exchangeability".
 
 ---
 class: middle
@@ -808,6 +815,13 @@ class: middle
 - associational risk difference: 0.3 - 0.6 = -0.3
 ]]
 
+
+???
+
+- This exchangeability means that the risk of death in the white would have been the same as the risk of death in the grey had individuals in the white received the treatment given to the grey.
+
+
+
 ---
 class: midde
 ## Exchangeability (3)
@@ -825,6 +839,11 @@ class: midde
 
 - Randomization is so highly valued since it is expected to produce this exchangeability.
 ]]]]
+
+
+???
+
+- Which means that the risk (here is the proportion of death) under potential treatment does not depend on whether individuals were actually treated or not. 
 
 ---
 class: midde
