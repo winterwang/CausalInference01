@@ -862,7 +862,7 @@ $$\text{Pr}[Y^{a = 1} = 1 | A =1] = \text{Pr}[Y^{a = 1} = 1]$$
 
 $$\text{Pr}[Y^{a = 1} = 1 | A =1] = \text{Pr}[Y = 1 | A = 1]$$
 
-- **The risk in the treated is the same as the risk as if everybody was treated.**
+- **The risk in the treated is the same as the risk as if everybody had been treated.**
 ]
 
 ---
@@ -873,8 +873,8 @@ class: middle,
 .pull-left[.med[
 - $L$ is a prognostic factor  <br> (1 if critical condition,  <br>  0 otherwise)
 - Conditional randomization design: 
-    - Randomly select 75% from those who is in critical condition
     - Randomly select 50% from those who is in noncritical condition
+    - Randomly select 75% from those who is in critical condition
 
 ]]
 
@@ -1200,6 +1200,14 @@ Among those in critical condition $(L = 1)$:
 </table>
 ]
 
+
+???
+
+- As one example, you may be interested in the average causal effect in the entire population, rather than in the stratum-specific average causal effects. 
+- IF you do not expect to have information about L for making a decision in the future (for example, the variable L is expensive to measure on everybody), we can use two ways to have the same results. The first way is called standardization. 
+
+
+
 ---
 class: middle
 
@@ -1239,7 +1247,7 @@ This is known in epidemiology as **standardization**.
 ]]]]
 
 ---
-class: middle
+class: middle, center, inverse
 
 ## Inverse probability weighting
 
@@ -1450,6 +1458,14 @@ background-size: contain
 
 ## How did this work?
 
+???
+
+- The two trees in the previous figures can be combined together as shown here. 
+- This pooled population is twice as large as the original study sample, is called pseudo-population. 
+
+- If we look carefully that in the first arm of treatment, four untreated individuals with non-critical condition are now used to create a 8 members of the psudo-population. That means each of them receives a weight of 2, which is equal to the inverse of 0.5.
+
+- Similarly, the 9 treated individuals with critical condition are used to create a 12 member of the pseudo-population. Each of them receives a weight of 1.33 = 1/0.75
 
 ---
 class: middle
@@ -1467,13 +1483,13 @@ This is called **inverse probability weighting (IPW)**.
 
 ]]]]
 
+---
+class: middle
 
+# Summary
 
-<!-- ```{r echo=FALSE,  dpi=285} -->
-<!-- knitr::include_graphics("fig/Tree weights.png") -->
-<!-- ``` -->
-
-
+- Both standardization and IP weighting simulate what would have been observed if the variable $L$ had not been used to decide the probability of treatment, we often say that these methods **adjust/control for $L$**.
+- However, we cannot always do randomized control study. Frequently, we turn to observational study for answers. 
 
 ---
 class: middle, inverse, center
