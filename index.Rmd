@@ -1505,3 +1505,28 @@ class: middle
 
 .full-width[.content-box-red[.bold[
 This Chapter reviews some conditions under which observational studies lead to valid causal inference.]]]
+
+
+---
+class: middle 
+
+## Identifiability conditions (1)
+
+Observational associations studies are **less convincing** (than randomized experiment) to be given a causal interpretation. Because,
+
+- In reality, patients who actually received the heart transplant were more likely to have a severe heart condition.
+- Then if they had not received transplant they would haven been expected to have **greater** death risk compared to those who actually did not receive the heart transplant. 
+
+
+---
+class: middle
+
+## Identifiability conditions (2)
+
+- If there was a true beneficial effect of heart transplant on mortality then the associational risk ratio would be **smaller than 1**);
+
+- If greater mortality risk in those who received heart transplant was true then the associational risk ratio would be **greater than 1**.
+
+- An associational risk ratio of 1.1 from an observational study would be biased (compromised between the above two situations).
+
+
