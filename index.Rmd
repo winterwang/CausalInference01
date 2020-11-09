@@ -1495,3 +1495,13 @@ class: middle
 class: middle, inverse, center
 
 # Chapter 3 <br> Observational Studies
+
+---
+class: middle
+
+# Purpose
+
+> Much human knowledge is derived from observational studies. 
+
+.full-width[.content-box-red[.bold[
+This Chapter reviews some conditions under which observational studies lead to valid causal inference.]]]
