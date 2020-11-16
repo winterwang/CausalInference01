@@ -1520,9 +1520,161 @@ class: middle
 
 - If greater mortality risk in those who received heart transplant was true then the associational risk ratio would be **greater than 1**.
 
-- An associational risk ratio of 1.1 from an observational study would be biased (compromised between the above two situations).
+- An associational risk ratio of say, 1.1 from an observational study would be biased (compromised between the above two situations).
 
+---
+class: middle
 
+## Identifiability conditions (3)
+
+.full-width[.content-box-red[.bold[
+We need three conditions for an observational study to be conceptualized as a conditional randomized experiment:
+- Consistency (Slide [**No. 10**](https://wangcc.me/CausalInference01/#10))
+- Exchangeability (Slide [**No. 31-34**](https://wangcc.me/CausalInference01/#31))
+- Positivity: &lt;br&gt; Prob of receiving every value of treatment (conditional on `\(L\)`) is `\(\geqslant 0\)`.
+]]]
+
+---
+class: middle 
+
+.pull-left[
+- If the same data (now shown `\(\rightarrow\)`) are from an observational study.
+- And the three conditions holds 
+- We can also compute the associational risk ratio = 1 and interpret it as an causal risk ratio
+]
+
+.pull-right[
+&lt;style type="text/css"&gt;
+.tg  {border-collapse:collapse;border-color:#bbb;border-spacing:0;}
+.tg td{background-color:#E0FFEB;border-color:#bbb;border-style:solid;border-width:1px;color:#594F4F;
+  font-family:Arial, sans-serif;font-size:14px;overflow:hidden;padding:10px 5px;word-break:normal;}
+.tg th{background-color:#9DE0AD;border-color:#bbb;border-style:solid;border-width:1px;color:#493F3F;
+  font-family:Arial, sans-serif;font-size:14px;font-weight:normal;overflow:hidden;padding:10px 5px;word-break:normal;}
+.tg .tg-02vm{background-color:#38fff8;border-color:#333333;text-align:center;vertical-align:top}
+.tg .tg-2jdy{background-color:#fe996b;border-color:#333333;text-align:center;vertical-align:top}
+.tg .tg-9ydz{border-color:#333333;font-weight:bold;text-align:center;vertical-align:top}
+.tg .tg-2ral{background-color:#f8ff00;border-color:#333333;text-align:center;vertical-align:top}
+.tg .tg-de2y{border-color:#333333;text-align:left;vertical-align:top}
+.tg .tg-sn4r{border-color:#333333;font-weight:bold;text-align:left;vertical-align:top}
+.tg .tg-amug{background-color:#cbcefb;border-color:#333333;text-align:center;vertical-align:top}
+&lt;/style&gt;
+&lt;table class="tg"&gt;
+&lt;thead&gt;
+  &lt;tr&gt;
+    &lt;th class="tg-de2y"&gt;&lt;/th&gt;
+    &lt;th class="tg-9ydz"&gt;L&lt;/th&gt;
+    &lt;th class="tg-9ydz"&gt;A&lt;/th&gt;
+    &lt;th class="tg-9ydz"&gt;Y&lt;/th&gt;
+    &lt;th class="tg-de2y"&gt;&lt;/th&gt;
+    &lt;th class="tg-9ydz"&gt;L&lt;/th&gt;
+    &lt;th class="tg-9ydz"&gt;A&lt;/th&gt;
+    &lt;th class="tg-9ydz"&gt;Y&lt;/th&gt;
+  &lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+    &lt;td class="tg-sn4r"&gt;Rheia&lt;/td&gt;
+    &lt;td class="tg-2jdy"&gt;0&lt;/td&gt;
+    &lt;td class="tg-2jdy"&gt;0&lt;/td&gt;
+    &lt;td class="tg-2jdy"&gt;0&lt;/td&gt;
+    &lt;td class="tg-sn4r"&gt;Leto&lt;/td&gt;
+    &lt;td class="tg-02vm"&gt;1&lt;/td&gt;
+    &lt;td class="tg-02vm"&gt;0&lt;/td&gt;
+    &lt;td class="tg-02vm"&gt;0&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td class="tg-sn4r"&gt;Kronos&lt;/td&gt;
+    &lt;td class="tg-2jdy"&gt;0&lt;/td&gt;
+    &lt;td class="tg-2jdy"&gt;0&lt;/td&gt;
+    &lt;td class="tg-2jdy"&gt;1&lt;/td&gt;
+    &lt;td class="tg-sn4r"&gt;Ares&lt;/td&gt;
+    &lt;td class="tg-amug"&gt;1&lt;/td&gt;
+    &lt;td class="tg-amug"&gt;1&lt;/td&gt;
+    &lt;td class="tg-amug"&gt;1&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td class="tg-sn4r"&gt;Demeter&lt;/td&gt;
+    &lt;td class="tg-2jdy"&gt;0&lt;/td&gt;
+    &lt;td class="tg-2jdy"&gt;0&lt;/td&gt;
+    &lt;td class="tg-2jdy"&gt;0&lt;/td&gt;
+    &lt;td class="tg-sn4r"&gt;Athena&lt;/td&gt;
+    &lt;td class="tg-amug"&gt;1&lt;/td&gt;
+    &lt;td class="tg-amug"&gt;1&lt;/td&gt;
+    &lt;td class="tg-amug"&gt;1&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td class="tg-sn4r"&gt;Hades&lt;/td&gt;
+    &lt;td class="tg-2jdy"&gt;0&lt;/td&gt;
+    &lt;td class="tg-2jdy"&gt;0&lt;/td&gt;
+    &lt;td class="tg-2jdy"&gt;0&lt;/td&gt;
+    &lt;td class="tg-sn4r"&gt;Hephaestus&lt;/td&gt;
+    &lt;td class="tg-amug"&gt;1&lt;/td&gt;
+    &lt;td class="tg-amug"&gt;1&lt;/td&gt;
+    &lt;td class="tg-amug"&gt;1&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td class="tg-sn4r"&gt;Hestia&lt;/td&gt;
+    &lt;td class="tg-2ral"&gt;0&lt;/td&gt;
+    &lt;td class="tg-2ral"&gt;1&lt;/td&gt;
+    &lt;td class="tg-2ral"&gt;0&lt;/td&gt;
+    &lt;td class="tg-sn4r"&gt;Aphrodite&lt;/td&gt;
+    &lt;td class="tg-amug"&gt;1&lt;/td&gt;
+    &lt;td class="tg-amug"&gt;1&lt;/td&gt;
+    &lt;td class="tg-amug"&gt;1&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td class="tg-sn4r"&gt;Poseidon&lt;/td&gt;
+    &lt;td class="tg-2ral"&gt;0&lt;/td&gt;
+    &lt;td class="tg-2ral"&gt;1&lt;/td&gt;
+    &lt;td class="tg-2ral"&gt;0&lt;/td&gt;
+    &lt;td class="tg-sn4r"&gt;Cyclope&lt;/td&gt;
+    &lt;td class="tg-amug"&gt;1&lt;/td&gt;
+    &lt;td class="tg-amug"&gt;1&lt;/td&gt;
+    &lt;td class="tg-amug"&gt;1&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td class="tg-sn4r"&gt;Hera&lt;/td&gt;
+    &lt;td class="tg-2ral"&gt;0&lt;/td&gt;
+    &lt;td class="tg-2ral"&gt;1&lt;/td&gt;
+    &lt;td class="tg-2ral"&gt;0&lt;/td&gt;
+    &lt;td class="tg-sn4r"&gt;Persephone&lt;/td&gt;
+    &lt;td class="tg-amug"&gt;1&lt;/td&gt;
+    &lt;td class="tg-amug"&gt;1&lt;/td&gt;
+    &lt;td class="tg-amug"&gt;1&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td class="tg-sn4r"&gt;Zeus&lt;/td&gt;
+    &lt;td class="tg-2ral"&gt;0&lt;/td&gt;
+    &lt;td class="tg-2ral"&gt;1&lt;/td&gt;
+    &lt;td class="tg-2ral"&gt;1&lt;/td&gt;
+    &lt;td class="tg-sn4r"&gt;Hermes&lt;/td&gt;
+    &lt;td class="tg-amug"&gt;1&lt;/td&gt;
+    &lt;td class="tg-amug"&gt;1&lt;/td&gt;
+    &lt;td class="tg-amug"&gt;0&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td class="tg-sn4r"&gt;Artemis&lt;/td&gt;
+    &lt;td class="tg-02vm"&gt;1&lt;/td&gt;
+    &lt;td class="tg-02vm"&gt;0&lt;/td&gt;
+    &lt;td class="tg-02vm"&gt;1&lt;/td&gt;
+    &lt;td class="tg-sn4r"&gt;Hebe&lt;/td&gt;
+    &lt;td class="tg-amug"&gt;1&lt;/td&gt;
+    &lt;td class="tg-amug"&gt;1&lt;/td&gt;
+    &lt;td class="tg-amug"&gt;0&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td class="tg-sn4r"&gt;Apollo&lt;/td&gt;
+    &lt;td class="tg-02vm"&gt;1&lt;/td&gt;
+    &lt;td class="tg-02vm"&gt;0&lt;/td&gt;
+    &lt;td class="tg-02vm"&gt;1&lt;/td&gt;
+    &lt;td class="tg-sn4r"&gt;Dionysus&lt;/td&gt;
+    &lt;td class="tg-amug"&gt;1&lt;/td&gt;
+    &lt;td class="tg-amug"&gt;1&lt;/td&gt;
+    &lt;td class="tg-amug"&gt;0&lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+]
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="libs/remark-latest.min.js"></script>
