@@ -1691,7 +1691,7 @@ class: middle
 ---
 class: middle 
 
-## Exchangeability 
+## Exchangeability  (1)
 
 <!-- - Data  -->
 <!-- - Assumptions (all 3 of the conditions) -->
@@ -1700,6 +1700,9 @@ class: middle
 - The exchangeability does not hold because $L = 1$ for
 <br> $9/13 \approx 69\%$ treated 
 <br> $3/7 \approx 43\%$ untreated 
+- However, by conditional randomize design, **exchangeability holds within levels of the variable $L$** 
+$$Y^a \perp \!\!\! \perp A |L$$
+- The same data could have arisen from an observational study in which doctors tend to direct the heart transplants to those who need them most (in $L = 1$).
 ]]
 
 
@@ -1836,3 +1839,182 @@ class: middle
 </tbody>
 </table>
 ]
+
+
+???
+
+- Treated patients had on average, worse condition at the start of study
+
+
+---
+class: middle
+## Exchangeability (2)
+
+.pull-left[.small[
+This table can come from either: 
+
+- an observational study in which the probability of treatment <br> $A=1$ is 0.75 for $L = 1$, and <br> $A = 1$ is 0.5 for $L = 0$
+
+OR 
+
+- a conditional randomized study in which the doctors randomly assigned treatment <br> $A=1$ is 0.75 for $L = 1$, and <br> $A = 1$ is 0.5 for $L = 0$
+
+**Both are logically equivalent.**
+]]
+
+.pull-right[
+<style type="text/css">
+.tg  {border-collapse:collapse;border-color:#bbb;border-spacing:0;}
+.tg td{background-color:#E0FFEB;border-color:#bbb;border-style:solid;border-width:1px;color:#594F4F;
+  font-family:Arial, sans-serif;font-size:14px;overflow:hidden;padding:10px 5px;word-break:normal;}
+.tg th{background-color:#9DE0AD;border-color:#bbb;border-style:solid;border-width:1px;color:#493F3F;
+  font-family:Arial, sans-serif;font-size:14px;font-weight:normal;overflow:hidden;padding:10px 5px;word-break:normal;}
+.tg .tg-02vm{background-color:#38fff8;border-color:#333333;text-align:center;vertical-align:top}
+.tg .tg-2jdy{background-color:#fe996b;border-color:#333333;text-align:center;vertical-align:top}
+.tg .tg-9ydz{border-color:#333333;font-weight:bold;text-align:center;vertical-align:top}
+.tg .tg-2ral{background-color:#f8ff00;border-color:#333333;text-align:center;vertical-align:top}
+.tg .tg-de2y{border-color:#333333;text-align:left;vertical-align:top}
+.tg .tg-sn4r{border-color:#333333;font-weight:bold;text-align:left;vertical-align:top}
+.tg .tg-amug{background-color:#cbcefb;border-color:#333333;text-align:center;vertical-align:top}
+</style>
+<table class="tg">
+<thead>
+  <tr>
+    <th class="tg-de2y"></th>
+    <th class="tg-9ydz">L</th>
+    <th class="tg-9ydz">A</th>
+    <th class="tg-9ydz">Y</th>
+    <th class="tg-de2y"></th>
+    <th class="tg-9ydz">L</th>
+    <th class="tg-9ydz">A</th>
+    <th class="tg-9ydz">Y</th>
+  </tr>
+</thead>
+<tbody>
+  <tr>
+    <td class="tg-sn4r">Rheia</td>
+    <td class="tg-2jdy">0</td>
+    <td class="tg-2jdy">0</td>
+    <td class="tg-2jdy">0</td>
+    <td class="tg-sn4r">Leto</td>
+    <td class="tg-02vm">1</td>
+    <td class="tg-02vm">0</td>
+    <td class="tg-02vm">0</td>
+  </tr>
+  <tr>
+    <td class="tg-sn4r">Kronos</td>
+    <td class="tg-2jdy">0</td>
+    <td class="tg-2jdy">0</td>
+    <td class="tg-2jdy">1</td>
+    <td class="tg-sn4r">Ares</td>
+    <td class="tg-amug">1</td>
+    <td class="tg-amug">1</td>
+    <td class="tg-amug">1</td>
+  </tr>
+  <tr>
+    <td class="tg-sn4r">Demeter</td>
+    <td class="tg-2jdy">0</td>
+    <td class="tg-2jdy">0</td>
+    <td class="tg-2jdy">0</td>
+    <td class="tg-sn4r">Athena</td>
+    <td class="tg-amug">1</td>
+    <td class="tg-amug">1</td>
+    <td class="tg-amug">1</td>
+  </tr>
+  <tr>
+    <td class="tg-sn4r">Hades</td>
+    <td class="tg-2jdy">0</td>
+    <td class="tg-2jdy">0</td>
+    <td class="tg-2jdy">0</td>
+    <td class="tg-sn4r">Hephaestus</td>
+    <td class="tg-amug">1</td>
+    <td class="tg-amug">1</td>
+    <td class="tg-amug">1</td>
+  </tr>
+  <tr>
+    <td class="tg-sn4r">Hestia</td>
+    <td class="tg-2ral">0</td>
+    <td class="tg-2ral">1</td>
+    <td class="tg-2ral">0</td>
+    <td class="tg-sn4r">Aphrodite</td>
+    <td class="tg-amug">1</td>
+    <td class="tg-amug">1</td>
+    <td class="tg-amug">1</td>
+  </tr>
+  <tr>
+    <td class="tg-sn4r">Poseidon</td>
+    <td class="tg-2ral">0</td>
+    <td class="tg-2ral">1</td>
+    <td class="tg-2ral">0</td>
+    <td class="tg-sn4r">Cyclope</td>
+    <td class="tg-amug">1</td>
+    <td class="tg-amug">1</td>
+    <td class="tg-amug">1</td>
+  </tr>
+  <tr>
+    <td class="tg-sn4r">Hera</td>
+    <td class="tg-2ral">0</td>
+    <td class="tg-2ral">1</td>
+    <td class="tg-2ral">0</td>
+    <td class="tg-sn4r">Persephone</td>
+    <td class="tg-amug">1</td>
+    <td class="tg-amug">1</td>
+    <td class="tg-amug">1</td>
+  </tr>
+  <tr>
+    <td class="tg-sn4r">Zeus</td>
+    <td class="tg-2ral">0</td>
+    <td class="tg-2ral">1</td>
+    <td class="tg-2ral">1</td>
+    <td class="tg-sn4r">Hermes</td>
+    <td class="tg-amug">1</td>
+    <td class="tg-amug">1</td>
+    <td class="tg-amug">0</td>
+  </tr>
+  <tr>
+    <td class="tg-sn4r">Artemis</td>
+    <td class="tg-02vm">1</td>
+    <td class="tg-02vm">0</td>
+    <td class="tg-02vm">1</td>
+    <td class="tg-sn4r">Hebe</td>
+    <td class="tg-amug">1</td>
+    <td class="tg-amug">1</td>
+    <td class="tg-amug">0</td>
+  </tr>
+  <tr>
+    <td class="tg-sn4r">Apollo</td>
+    <td class="tg-02vm">1</td>
+    <td class="tg-02vm">0</td>
+    <td class="tg-02vm">1</td>
+    <td class="tg-sn4r">Dionysus</td>
+    <td class="tg-amug">1</td>
+    <td class="tg-amug">1</td>
+    <td class="tg-amug">0</td>
+  </tr>
+</tbody>
+</table>
+]
+
+
+---
+class: middle
+
+## Exchangeability (3)
+
+
+.full-width[.content-box-red[.bold[.small[
+Sadly, we don't know if there is another **(unobserved) outcome predictor** that is unequally distributed between the treated and untreated.
+]]]]
+
+.small[
+For example, Smoking is an important outcome predictor. But **unknown to the investigators**, if two individuals with critical condition $L = 1$. 
+- one of them is a smoker and another one is a nonsmoker. 
+- doctors prefer to transplant hearts into nonsmokers.  
+- the distribution of smoking within the stratum $L = 1$ differs between <br> the treated (with lower proportion of smokers) <br> the untreated (with higher proportion of smokers)
+- **Conditional exchangeability does not hold.**
+]
+
+---
+class: middle
+
+## Positivity

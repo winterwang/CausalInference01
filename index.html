@@ -1683,7 +1683,7 @@ class: middle
 ---
 class: middle 
 
-## Exchangeability 
+## Exchangeability  (1)
 
 &lt;!-- - Data  --&gt;
 &lt;!-- - Assumptions (all 3 of the conditions) --&gt;
@@ -1692,6 +1692,9 @@ class: middle
 - The exchangeability does not hold because `\(L = 1\)` for
 &lt;br&gt; `\(9/13 \approx 69\%\)` treated 
 &lt;br&gt; `\(3/7 \approx 43\%\)` untreated 
+- However, by conditional randomize design, **exchangeability holds within levels of the variable `\(L\)`** 
+`$$Y^a \perp \!\!\! \perp A |L$$`
+- The same data could have arisen from an observational study in which doctors tend to direct the heart transplants to those who need them most (in `\(L = 1\)`).
 ]]
 
 
@@ -1828,6 +1831,185 @@ class: middle
 &lt;/tbody&gt;
 &lt;/table&gt;
 ]
+
+
+???
+
+- Treated patients had on average, worse condition at the start of study
+
+
+---
+class: middle
+## Exchangeability (2)
+
+.pull-left[.small[
+This table can come from either: 
+
+- an observational study in which the probability of treatment &lt;br&gt; `\(A=1\)` is 0.75 for `\(L = 1\)`, and &lt;br&gt; `\(A = 1\)` is 0.5 for `\(L = 0\)`
+
+OR 
+
+- a conditional randomized study in which the doctors randomly assigned treatment &lt;br&gt; `\(A=1\)` is 0.75 for `\(L = 1\)`, and &lt;br&gt; `\(A = 1\)` is 0.5 for `\(L = 0\)`
+
+**Both are logically equivalent.**
+]]
+
+.pull-right[
+&lt;style type="text/css"&gt;
+.tg  {border-collapse:collapse;border-color:#bbb;border-spacing:0;}
+.tg td{background-color:#E0FFEB;border-color:#bbb;border-style:solid;border-width:1px;color:#594F4F;
+  font-family:Arial, sans-serif;font-size:14px;overflow:hidden;padding:10px 5px;word-break:normal;}
+.tg th{background-color:#9DE0AD;border-color:#bbb;border-style:solid;border-width:1px;color:#493F3F;
+  font-family:Arial, sans-serif;font-size:14px;font-weight:normal;overflow:hidden;padding:10px 5px;word-break:normal;}
+.tg .tg-02vm{background-color:#38fff8;border-color:#333333;text-align:center;vertical-align:top}
+.tg .tg-2jdy{background-color:#fe996b;border-color:#333333;text-align:center;vertical-align:top}
+.tg .tg-9ydz{border-color:#333333;font-weight:bold;text-align:center;vertical-align:top}
+.tg .tg-2ral{background-color:#f8ff00;border-color:#333333;text-align:center;vertical-align:top}
+.tg .tg-de2y{border-color:#333333;text-align:left;vertical-align:top}
+.tg .tg-sn4r{border-color:#333333;font-weight:bold;text-align:left;vertical-align:top}
+.tg .tg-amug{background-color:#cbcefb;border-color:#333333;text-align:center;vertical-align:top}
+&lt;/style&gt;
+&lt;table class="tg"&gt;
+&lt;thead&gt;
+  &lt;tr&gt;
+    &lt;th class="tg-de2y"&gt;&lt;/th&gt;
+    &lt;th class="tg-9ydz"&gt;L&lt;/th&gt;
+    &lt;th class="tg-9ydz"&gt;A&lt;/th&gt;
+    &lt;th class="tg-9ydz"&gt;Y&lt;/th&gt;
+    &lt;th class="tg-de2y"&gt;&lt;/th&gt;
+    &lt;th class="tg-9ydz"&gt;L&lt;/th&gt;
+    &lt;th class="tg-9ydz"&gt;A&lt;/th&gt;
+    &lt;th class="tg-9ydz"&gt;Y&lt;/th&gt;
+  &lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+    &lt;td class="tg-sn4r"&gt;Rheia&lt;/td&gt;
+    &lt;td class="tg-2jdy"&gt;0&lt;/td&gt;
+    &lt;td class="tg-2jdy"&gt;0&lt;/td&gt;
+    &lt;td class="tg-2jdy"&gt;0&lt;/td&gt;
+    &lt;td class="tg-sn4r"&gt;Leto&lt;/td&gt;
+    &lt;td class="tg-02vm"&gt;1&lt;/td&gt;
+    &lt;td class="tg-02vm"&gt;0&lt;/td&gt;
+    &lt;td class="tg-02vm"&gt;0&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td class="tg-sn4r"&gt;Kronos&lt;/td&gt;
+    &lt;td class="tg-2jdy"&gt;0&lt;/td&gt;
+    &lt;td class="tg-2jdy"&gt;0&lt;/td&gt;
+    &lt;td class="tg-2jdy"&gt;1&lt;/td&gt;
+    &lt;td class="tg-sn4r"&gt;Ares&lt;/td&gt;
+    &lt;td class="tg-amug"&gt;1&lt;/td&gt;
+    &lt;td class="tg-amug"&gt;1&lt;/td&gt;
+    &lt;td class="tg-amug"&gt;1&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td class="tg-sn4r"&gt;Demeter&lt;/td&gt;
+    &lt;td class="tg-2jdy"&gt;0&lt;/td&gt;
+    &lt;td class="tg-2jdy"&gt;0&lt;/td&gt;
+    &lt;td class="tg-2jdy"&gt;0&lt;/td&gt;
+    &lt;td class="tg-sn4r"&gt;Athena&lt;/td&gt;
+    &lt;td class="tg-amug"&gt;1&lt;/td&gt;
+    &lt;td class="tg-amug"&gt;1&lt;/td&gt;
+    &lt;td class="tg-amug"&gt;1&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td class="tg-sn4r"&gt;Hades&lt;/td&gt;
+    &lt;td class="tg-2jdy"&gt;0&lt;/td&gt;
+    &lt;td class="tg-2jdy"&gt;0&lt;/td&gt;
+    &lt;td class="tg-2jdy"&gt;0&lt;/td&gt;
+    &lt;td class="tg-sn4r"&gt;Hephaestus&lt;/td&gt;
+    &lt;td class="tg-amug"&gt;1&lt;/td&gt;
+    &lt;td class="tg-amug"&gt;1&lt;/td&gt;
+    &lt;td class="tg-amug"&gt;1&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td class="tg-sn4r"&gt;Hestia&lt;/td&gt;
+    &lt;td class="tg-2ral"&gt;0&lt;/td&gt;
+    &lt;td class="tg-2ral"&gt;1&lt;/td&gt;
+    &lt;td class="tg-2ral"&gt;0&lt;/td&gt;
+    &lt;td class="tg-sn4r"&gt;Aphrodite&lt;/td&gt;
+    &lt;td class="tg-amug"&gt;1&lt;/td&gt;
+    &lt;td class="tg-amug"&gt;1&lt;/td&gt;
+    &lt;td class="tg-amug"&gt;1&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td class="tg-sn4r"&gt;Poseidon&lt;/td&gt;
+    &lt;td class="tg-2ral"&gt;0&lt;/td&gt;
+    &lt;td class="tg-2ral"&gt;1&lt;/td&gt;
+    &lt;td class="tg-2ral"&gt;0&lt;/td&gt;
+    &lt;td class="tg-sn4r"&gt;Cyclope&lt;/td&gt;
+    &lt;td class="tg-amug"&gt;1&lt;/td&gt;
+    &lt;td class="tg-amug"&gt;1&lt;/td&gt;
+    &lt;td class="tg-amug"&gt;1&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td class="tg-sn4r"&gt;Hera&lt;/td&gt;
+    &lt;td class="tg-2ral"&gt;0&lt;/td&gt;
+    &lt;td class="tg-2ral"&gt;1&lt;/td&gt;
+    &lt;td class="tg-2ral"&gt;0&lt;/td&gt;
+    &lt;td class="tg-sn4r"&gt;Persephone&lt;/td&gt;
+    &lt;td class="tg-amug"&gt;1&lt;/td&gt;
+    &lt;td class="tg-amug"&gt;1&lt;/td&gt;
+    &lt;td class="tg-amug"&gt;1&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td class="tg-sn4r"&gt;Zeus&lt;/td&gt;
+    &lt;td class="tg-2ral"&gt;0&lt;/td&gt;
+    &lt;td class="tg-2ral"&gt;1&lt;/td&gt;
+    &lt;td class="tg-2ral"&gt;1&lt;/td&gt;
+    &lt;td class="tg-sn4r"&gt;Hermes&lt;/td&gt;
+    &lt;td class="tg-amug"&gt;1&lt;/td&gt;
+    &lt;td class="tg-amug"&gt;1&lt;/td&gt;
+    &lt;td class="tg-amug"&gt;0&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td class="tg-sn4r"&gt;Artemis&lt;/td&gt;
+    &lt;td class="tg-02vm"&gt;1&lt;/td&gt;
+    &lt;td class="tg-02vm"&gt;0&lt;/td&gt;
+    &lt;td class="tg-02vm"&gt;1&lt;/td&gt;
+    &lt;td class="tg-sn4r"&gt;Hebe&lt;/td&gt;
+    &lt;td class="tg-amug"&gt;1&lt;/td&gt;
+    &lt;td class="tg-amug"&gt;1&lt;/td&gt;
+    &lt;td class="tg-amug"&gt;0&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td class="tg-sn4r"&gt;Apollo&lt;/td&gt;
+    &lt;td class="tg-02vm"&gt;1&lt;/td&gt;
+    &lt;td class="tg-02vm"&gt;0&lt;/td&gt;
+    &lt;td class="tg-02vm"&gt;1&lt;/td&gt;
+    &lt;td class="tg-sn4r"&gt;Dionysus&lt;/td&gt;
+    &lt;td class="tg-amug"&gt;1&lt;/td&gt;
+    &lt;td class="tg-amug"&gt;1&lt;/td&gt;
+    &lt;td class="tg-amug"&gt;0&lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+]
+
+
+---
+class: middle
+
+## Exchangeability (3)
+
+
+.full-width[.content-box-red[.bold[.small[
+Sadly, we don't know if there is another **(unobserved) outcome predictor** that is unequally distributed between the treated and untreated.
+]]]]
+
+.small[
+For example, Smoking is an important outcome predictor. But **unknown to the investigators**, if two individuals with critical condition `\(L = 1\)`. 
+- one of them is a smoker and another one is a nonsmoker. 
+- doctors prefer to transplant hearts into nonsmokers.  
+- the distribution of smoking within the stratum `\(L = 1\)` differs between &lt;br&gt; the treated (with lower proportion of smokers) &lt;br&gt; the untreated (with higher proportion of smokers)
+- **Conditional exchangeability does not hold.**
+]
+
+---
+class: middle
+
+## Positivity
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="libs/remark-latest.min.js"></script>
