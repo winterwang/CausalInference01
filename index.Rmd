@@ -1538,7 +1538,7 @@ class: middle
 We need three conditions for an observational study to be conceptualized as a conditional randomized experiment:
 - Consistency (Slide [**No. 10**](https://wangcc.me/CausalInference01/#10))
 - Exchangeability (Slide [**No. 31-34**](https://wangcc.me/CausalInference01/#31))
-- Positivity: <br> Prob of receiving every value of treatment (conditional on $L$) is $\geqslant 0$.
+- Positivity: <br> Prob of receiving every value of treatment (conditional on $L$) is $> 0$.
 ]]]
 
 ---
@@ -1550,6 +1550,159 @@ class: middle
 - And the three conditions holds 
 - We can also compute the associational risk ratio = 1 and interpret it as a causal risk ratio
 ]
+
+.pull-right[
+<style type="text/css">
+.tg  {border-collapse:collapse;border-color:#bbb;border-spacing:0;}
+.tg td{background-color:#E0FFEB;border-color:#bbb;border-style:solid;border-width:1px;color:#594F4F;
+  font-family:Arial, sans-serif;font-size:14px;overflow:hidden;padding:10px 5px;word-break:normal;}
+.tg th{background-color:#9DE0AD;border-color:#bbb;border-style:solid;border-width:1px;color:#493F3F;
+  font-family:Arial, sans-serif;font-size:14px;font-weight:normal;overflow:hidden;padding:10px 5px;word-break:normal;}
+.tg .tg-02vm{background-color:#38fff8;border-color:#333333;text-align:center;vertical-align:top}
+.tg .tg-2jdy{background-color:#fe996b;border-color:#333333;text-align:center;vertical-align:top}
+.tg .tg-9ydz{border-color:#333333;font-weight:bold;text-align:center;vertical-align:top}
+.tg .tg-2ral{background-color:#f8ff00;border-color:#333333;text-align:center;vertical-align:top}
+.tg .tg-de2y{border-color:#333333;text-align:left;vertical-align:top}
+.tg .tg-sn4r{border-color:#333333;font-weight:bold;text-align:left;vertical-align:top}
+.tg .tg-amug{background-color:#cbcefb;border-color:#333333;text-align:center;vertical-align:top}
+</style>
+<table class="tg">
+<thead>
+  <tr>
+    <th class="tg-de2y"></th>
+    <th class="tg-9ydz">L</th>
+    <th class="tg-9ydz">A</th>
+    <th class="tg-9ydz">Y</th>
+    <th class="tg-de2y"></th>
+    <th class="tg-9ydz">L</th>
+    <th class="tg-9ydz">A</th>
+    <th class="tg-9ydz">Y</th>
+  </tr>
+</thead>
+<tbody>
+  <tr>
+    <td class="tg-sn4r">Rheia</td>
+    <td class="tg-2jdy">0</td>
+    <td class="tg-2jdy">0</td>
+    <td class="tg-2jdy">0</td>
+    <td class="tg-sn4r">Leto</td>
+    <td class="tg-02vm">1</td>
+    <td class="tg-02vm">0</td>
+    <td class="tg-02vm">0</td>
+  </tr>
+  <tr>
+    <td class="tg-sn4r">Kronos</td>
+    <td class="tg-2jdy">0</td>
+    <td class="tg-2jdy">0</td>
+    <td class="tg-2jdy">1</td>
+    <td class="tg-sn4r">Ares</td>
+    <td class="tg-amug">1</td>
+    <td class="tg-amug">1</td>
+    <td class="tg-amug">1</td>
+  </tr>
+  <tr>
+    <td class="tg-sn4r">Demeter</td>
+    <td class="tg-2jdy">0</td>
+    <td class="tg-2jdy">0</td>
+    <td class="tg-2jdy">0</td>
+    <td class="tg-sn4r">Athena</td>
+    <td class="tg-amug">1</td>
+    <td class="tg-amug">1</td>
+    <td class="tg-amug">1</td>
+  </tr>
+  <tr>
+    <td class="tg-sn4r">Hades</td>
+    <td class="tg-2jdy">0</td>
+    <td class="tg-2jdy">0</td>
+    <td class="tg-2jdy">0</td>
+    <td class="tg-sn4r">Hephaestus</td>
+    <td class="tg-amug">1</td>
+    <td class="tg-amug">1</td>
+    <td class="tg-amug">1</td>
+  </tr>
+  <tr>
+    <td class="tg-sn4r">Hestia</td>
+    <td class="tg-2ral">0</td>
+    <td class="tg-2ral">1</td>
+    <td class="tg-2ral">0</td>
+    <td class="tg-sn4r">Aphrodite</td>
+    <td class="tg-amug">1</td>
+    <td class="tg-amug">1</td>
+    <td class="tg-amug">1</td>
+  </tr>
+  <tr>
+    <td class="tg-sn4r">Poseidon</td>
+    <td class="tg-2ral">0</td>
+    <td class="tg-2ral">1</td>
+    <td class="tg-2ral">0</td>
+    <td class="tg-sn4r">Cyclope</td>
+    <td class="tg-amug">1</td>
+    <td class="tg-amug">1</td>
+    <td class="tg-amug">1</td>
+  </tr>
+  <tr>
+    <td class="tg-sn4r">Hera</td>
+    <td class="tg-2ral">0</td>
+    <td class="tg-2ral">1</td>
+    <td class="tg-2ral">0</td>
+    <td class="tg-sn4r">Persephone</td>
+    <td class="tg-amug">1</td>
+    <td class="tg-amug">1</td>
+    <td class="tg-amug">1</td>
+  </tr>
+  <tr>
+    <td class="tg-sn4r">Zeus</td>
+    <td class="tg-2ral">0</td>
+    <td class="tg-2ral">1</td>
+    <td class="tg-2ral">1</td>
+    <td class="tg-sn4r">Hermes</td>
+    <td class="tg-amug">1</td>
+    <td class="tg-amug">1</td>
+    <td class="tg-amug">0</td>
+  </tr>
+  <tr>
+    <td class="tg-sn4r">Artemis</td>
+    <td class="tg-02vm">1</td>
+    <td class="tg-02vm">0</td>
+    <td class="tg-02vm">1</td>
+    <td class="tg-sn4r">Hebe</td>
+    <td class="tg-amug">1</td>
+    <td class="tg-amug">1</td>
+    <td class="tg-amug">0</td>
+  </tr>
+  <tr>
+    <td class="tg-sn4r">Apollo</td>
+    <td class="tg-02vm">1</td>
+    <td class="tg-02vm">0</td>
+    <td class="tg-02vm">1</td>
+    <td class="tg-sn4r">Dionysus</td>
+    <td class="tg-amug">1</td>
+    <td class="tg-amug">1</td>
+    <td class="tg-amug">0</td>
+  </tr>
+</tbody>
+</table>
+]
+
+???
+
+- Let's look at the conditions one by one in details
+
+---
+class: middle 
+
+## Exchangeability 
+
+<!-- - Data  -->
+<!-- - Assumptions (all 3 of the conditions) -->
+
+.pull-left[.small[
+- The exchangeability does not hold because $L = 1$ for
+<br> $9/13 \approx 69\%$ treated 
+<br> $3/7 \approx 43\%$ untreated 
+]]
+
+
 
 .pull-right[
 <style type="text/css">
