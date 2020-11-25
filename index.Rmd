@@ -2046,3 +2046,8 @@ For example,
 
 - positivity is violated if doctors always transplant a heart for patients in critical condition: 
 <br> $\text{Pr}([A = 0 | L = 1]) = 0$
+
+
+---
+class: middle
+
