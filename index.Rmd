@@ -2051,3 +2051,13 @@ For example,
 ---
 class: middle
 
+## Postivity (4)
+
+
+.pull-left[
+]
+
+```{r echo=FALSE,  dpi=270}
+knitr::include_graphics("fig/positivity0.jpeg")
+```
+
