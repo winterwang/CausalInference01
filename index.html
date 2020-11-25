@@ -2002,14 +2002,42 @@ Sadly, we don't know if there is another **(unobserved) outcome predictor** that
 For example, Smoking is an important outcome predictor. But **unknown to the investigators**, if two individuals with critical condition `\(L = 1\)`. 
 - one of them is a smoker and another one is a nonsmoker. 
 - doctors prefer to transplant hearts into nonsmokers.  
-- the distribution of smoking within the stratum `\(L = 1\)` differs between &lt;br&gt; the treated (with lower proportion of smokers) &lt;br&gt; the untreated (with higher proportion of smokers)
+- the distribution of smoking within the stratum `\(L = 1\)` differs between &lt;br&gt; the treated (with lower propor（tion of smokers) &lt;br&gt; the untreated (with higher proportion of smokers)
 - **Conditional exchangeability does not hold.**
 ]
 
 ---
 class: middle
 
-## Positivity
+## Positivity (1)
+
+.full-width[.content-box-red[.bold[.med[
+We must ensure that there is a probability greater than 0 - **a positive probability** - of being assigned to each of the treatment levels. 
+&lt;br&gt; This is the **positivity** condition (assumption).
+]]]]
+
+---
+class: middle
+
+## Positivity (2)
+
+.full-width[.content-box-red[.bold[.med[
+Positivity is only required for the variables `\(L\)` that are required for exchangeability.
+]]]]
+
+For example, "having blue eyes" is not necessary for positivity, because (hopefully) it does not affect the results of heart transplantation.
+
+---
+class: middle
+
+## Positivity (3)
+
+In observational studies, positivity and exchangeability are not guaranteed. 
+
+For example, 
+
+- positivity is violated if doctors always transplant a heart for patients in critical condition: 
+&lt;br&gt; `\(\text{Pr}([A = 0 | L = 1]) = 0\)`
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="libs/remark-latest.min.js"></script>
