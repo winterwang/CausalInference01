@@ -2054,10 +2054,30 @@ class: middle
 ## Postivity (4)
 
 
-.pull-left[
-]
+.pull-left[.med[
+If $N = 0$ for $A = 0, L = 1$ (untreated with critical condition), then there is no information to simulate what would have happened <br> **had all treated individuals been untreated.**
 
-```{r echo=FALSE,  dpi=270}
+]]
+
+
+
+```{r echo=FALSE,  dpi=320}
 knitr::include_graphics("fig/positivity0.jpeg")
 ```
 
+
+---
+class: middle
+
+## Consistency (1)
+
+.full-width[.content-box-red[.bold[.med[
+Consistency means that 
+
+- **the observed outcome** for every treated individual **equals his/her outcome if had been treated.** 
+- **the observed outcome** for every untreated individual **equals his/her outcome if remain untreated. **
+
+$$
+Y^a = Y  \text{ (= for all) } a
+$$
+]]]]
