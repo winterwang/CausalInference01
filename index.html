@@ -2103,6 +2103,53 @@ Consider again a randomized experiment on the causal effect of heart transplant 
 ???
 
 Otherwise, each doctor might conduct a different version of the treatment of "heart transplant"
+
+
+---
+class: middle
+
+### What if there are multiple versions of treatment?
+
+The average causal effect of "heart transplant" may well different between studies in which most doctors used different kinds of approaches: 
+
+- a traditional surgical technique
+- a novel surgical technique
+
+Treatment value `\(a\)` are ill-defined `\(\rightarrow\)` the counterfactual outcomes `\(Y^a\)` will be ill-defined `\(\rightarrow\)` the causal effect will be ill-defined.
+
+
+---
+class: middle
+
+### Definition of treatment `\(a\)` is much harder for observational studies
+
+Suppose that a research question asks the causal effect of obesity `\(A\)` at age 40 on the risk of mortality `\(Y\)` by age 50 in a certain population. So what exactly is meant by **"the risk of all individuals had been obese?**
+
+- an individual might be obese at age 40 for 20 years; 
+- another might be obese at age 40 for 2 years only. 
+
+There are multiple versions of the treatment `\(A = 1\)` defined by duration, recency, and intensity. 
+
+???
+
+Each of them may have different effects on mortality.
+
+---
+class: middle
+
+### For example, 
+
+.pull-left[.med[
+- Zeus is obese at age 40 `\((A = 1)\)` and then had a fatal myocardial infarction at age 49 `\((Y =1)\)`. 
+- If we knew that Zeus had genes that predisposed him to large amounts of fat tissue in both waist and coronary arteries. 
+- So Zues died despite exercising moderately, keeping a healthy diet.
+]]
+
+.pull-right[.med[
+- Zues became obese after a lifetime of lack of exercise, too many calories intake. But he still alive after age of 50 `\((Y = 0)\)`. 
+
+- So there are two versions of counterfactual outcomes under "being obese at 40"
+]]
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="libs/remark-latest.min.js"></script>
