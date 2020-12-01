@@ -2081,3 +2081,35 @@ $$
 Y^a = Y  \text{ (= for all) } a
 $$
 ]]]]
+
+
+---
+class: middle
+
+## Consistency (2)
+
+Actually, there are two components in the consistency condition:
+
+- a precise definition of the counterfactual outcomes $Y^a$ via a detailed specification $a$
+
+- The linkage of the conterfactual outcomes to the observed outcomes 
+
+We will look at these components one by one.
+
+
+---
+class: middle
+
+### Precise definition of $a$
+
+Consider again a randomized experiment on the causal effect of heart transplant $A$ on 5-year mortality $Y$.
+
+- Before enrolling patients, there should be a protocol to define the treatments, precisely in detail: 
+<br> heart transplant: $A = 1$
+<br> medical therapy: $A = 0$
+
+- details should include: pre-operative procedures, anesthesia, surgical technique, post-operative care, immunosuppressive therapy, etc. 
+
+???
+
+Otherwise, each doctor might conduct a different version of the treatment of "heart transplant"
