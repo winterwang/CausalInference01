@@ -2238,6 +2238,7 @@ class: middle
 
 - Can we assume that the effects of all versions of treatments are identical, or treatment-variation irrelevant?
 
+--
 - Good for some cases: 
 
 --
@@ -2253,3 +2254,13 @@ class: middle
 ???
 
 - Some interventions would increase the risk others might decrease the risk. 
+
+
+---
+class: middle, inverse, center
+
+# Chapter 4 <br> Effect modification
+
+
+---
+class: middle
