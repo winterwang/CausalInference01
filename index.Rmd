@@ -2603,80 +2603,78 @@ class: middle
   font-family:Arial, sans-serif;font-size:14px;overflow:hidden;padding:10px 5px;word-break:normal;}
 .tg th{background-color:#9DE0AD;border-color:#bbb;border-style:solid;border-width:1px;color:#493F3F;
   font-family:Arial, sans-serif;font-size:14px;font-weight:normal;overflow:hidden;padding:10px 5px;word-break:normal;}
-.tg .tg-x5oc{background-color:#fe996b;border-color:inherit;text-align:left;vertical-align:top}
-.tg .tg-56tm{background-color:#9de0ad;border-color:inherit;text-align:left;vertical-align:top}
-.tg .tg-0pky{border-color:inherit;text-align:left;vertical-align:top}
-.tg .tg-qsp3{background-color:#e0ffeb;border-color:inherit;text-align:left;vertical-align:top}
+.tg .tg-e76x{background-color:#fe996b;text-align:left;vertical-align:top}
+.tg .tg-0lax{text-align:left;vertical-align:top}
 </style>
 <table class="tg">
 <thead>
   <tr>
-    <th class="tg-0pky"></th>
-    <th class="tg-0pky"> \[\mathbf{V}\] </th>
-    <th class="tg-0pky"> \[\mathbf{Y^{a = 0}}\] </th>
-    <th class="tg-0pky"> \[\mathbf{Y^{a = 1}}\] </th>
+    <th class="tg-0lax"></th>
+    <th class="tg-0lax"> \[\mathbf{V}\] </th>
+    <th class="tg-0lax"> \[\mathbf{Y^{a = 0}}\] </th>
+    <th class="tg-0lax"> \[\mathbf{Y^{a = 1}}\] </th>
   </tr>
 </thead>
 <tbody>
   <tr>
-    <td class="tg-0pky">Rheia</td>
-    <td class="tg-qsp3">1</td>
-    <td class="tg-0pky">0</td>
-    <td class="tg-x5oc">1</td>
+    <td class="tg-0lax">Rheia</td>
+    <td class="tg-0lax">1</td>
+    <td class="tg-0lax">0</td>
+    <td class="tg-e76x">1</td>
   </tr>
   <tr>
-    <td class="tg-0pky">Demeter</td>
-    <td class="tg-qsp3">1</td>
-    <td class="tg-0pky">0</td>
-    <td class="tg-0pky">0</td>
+    <td class="tg-0lax">Demeter</td>
+    <td class="tg-0lax">1</td>
+    <td class="tg-0lax">0</td>
+    <td class="tg-0lax">0</td>
   </tr>
   <tr>
-    <td class="tg-0pky">Hestia</td>
-    <td class="tg-qsp3">1</td>
-    <td class="tg-0pky">0</td>
-    <td class="tg-0pky">0</td>
+    <td class="tg-0lax">Hestia</td>
+    <td class="tg-0lax">1</td>
+    <td class="tg-0lax">0</td>
+    <td class="tg-0lax">0</td>
   </tr>
   <tr>
-    <td class="tg-0pky">Hera</td>
-    <td class="tg-qsp3">1</td>
-    <td class="tg-0pky">0</td>
-    <td class="tg-0pky">0</td>
+    <td class="tg-0lax">Hera</td>
+    <td class="tg-0lax">1</td>
+    <td class="tg-0lax">0</td>
+    <td class="tg-0lax">0</td>
   </tr>
   <tr>
-    <td class="tg-0pky">Artemis</td>
-    <td class="tg-qsp3">1</td>
-    <td class="tg-x5oc">1</td>
-    <td class="tg-x5oc">1</td>
+    <td class="tg-0lax">Artemis</td>
+    <td class="tg-0lax">1</td>
+    <td class="tg-e76x">1</td>
+    <td class="tg-e76x">1</td>
   </tr>
   <tr>
-    <td class="tg-0pky">Leto</td>
-    <td class="tg-qsp3">1</td>
-    <td class="tg-0pky">0</td>
-    <td class="tg-x5oc">1</td>
+    <td class="tg-0lax">Leto</td>
+    <td class="tg-0lax">1</td>
+    <td class="tg-0lax">0</td>
+    <td class="tg-e76x">1</td>
   </tr>
   <tr>
-    <td class="tg-0pky">Athena</td>
-    <td class="tg-qsp3">1</td>
-    <td class="tg-x5oc">1</td>
-    <td class="tg-x5oc">1</td>
+    <td class="tg-0lax">Athena</td>
+    <td class="tg-0lax">1</td>
+    <td class="tg-e76x">1</td>
+    <td class="tg-e76x">1</td>
   </tr>
   <tr>
-    <td class="tg-0pky">Aphrodite</td>
-    <td class="tg-qsp3">1</td>
-    <td class="tg-0pky">0</td>
-    <td class="tg-x5oc">1</td>
+    <td class="tg-0lax">Aphrodite</td>
+    <td class="tg-0lax">1</td>
+    <td class="tg-0lax">0</td>
+    <td class="tg-e76x">1</td>
   </tr>
   <tr>
-    <td class="tg-0pky">Persephone</td>
-    <td class="tg-qsp3">1</td>
-    <td class="tg-x5oc">1</td>
-    <td class="tg-x5oc">1</td>
+    <td class="tg-0lax">Persephone</td>
+    <td class="tg-0lax">1</td>
+    <td class="tg-e76x">1</td>
+    <td class="tg-e76x">1</td>
   </tr>
   <tr>
-    <td class="tg-0pky">Hebe</td>
-    <td class="tg-qsp3">1</td>
-    <td class="tg-x5oc">1</td>
-    <td class="tg-0pky">0</td>
+    <td class="tg-0lax">Hebe</td>
+    <td class="tg-0lax">1</td>
+    <td class="tg-0lax">1</td>
+    <td class="tg-0lax">0</td>
   </tr>
 </tbody>
 </table>
@@ -2787,5 +2785,6 @@ class: middle
 ]
 
 
-
+---
+class: middle
 
