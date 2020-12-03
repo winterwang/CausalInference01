@@ -2254,6 +2254,527 @@ class: middle, inverse, center
 
 ---
 class: middle
+
+
+## Outline
+
+- Definition of effect modification
+
+- Stratification to identify effect modification
+
+- Why care about it
+
+- Matching to adjust
+
+- Effect modification and adjustment
+
+
+---
+class: middle
+
+## Purpose 
+
+&gt; Many causal questions are about the subsets of the population. Sometimes you don't care about the variations of the effect across different groups.
+
+
+.full-width[.content-box-red[.bold[
+ The causal effect depends on the characteristics of the particular population under study.
+]]]
+
+
+---
+class: middle
+
+## Definition of effect modification
+
+.pull-left[&lt;style type="text/css"&gt;
+.tg  {border-collapse:collapse;border-color:#bbb;border-spacing:0;}
+.tg td{background-color:#E0FFEB;border-color:#bbb;border-style:solid;border-width:1px;color:#594F4F;
+  font-family:Arial, sans-serif;font-size:14px;overflow:hidden;padding:10px 5px;word-break:normal;}
+.tg th{background-color:#9DE0AD;border-color:#bbb;border-style:solid;border-width:1px;color:#493F3F;
+  font-family:Arial, sans-serif;font-size:14px;font-weight:normal;overflow:hidden;padding:10px 5px;word-break:normal;}
+.tg .tg-ltxa{background-color:#ffccc9;text-align:left;vertical-align:top}
+.tg .tg-0lax{text-align:left;vertical-align:top}
+&lt;/style&gt;
+&lt;table class="tg"&gt;
+&lt;thead&gt;
+  &lt;tr&gt;
+    &lt;th class="tg-0lax"&gt;&lt;/th&gt;
+    &lt;th class="tg-ltxa"&gt;\[\mathbf{V}\]&lt;/th&gt;
+    &lt;th class="tg-0lax"&gt;\[\mathbf{Y^{a = 0}}\] &lt;/th&gt;
+    &lt;th class="tg-0lax"&gt; \[\mathbf{Y^{a = 1}}\] &lt;/th&gt;
+    &lt;th class="tg-0lax"&gt;&lt;/th&gt;
+    &lt;th class="tg-ltxa"&gt;\[\mathbf{V}\]&lt;/th&gt;
+    &lt;th class="tg-0lax"&gt; \[\mathbf{Y^{a = 0}}\] &lt;/th&gt;
+    &lt;th class="tg-0lax"&gt; \[\mathbf{Y^{a = 1}}\] &lt;/th&gt;
+  &lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+    &lt;td class="tg-0lax"&gt;Rheia&lt;/td&gt;
+    &lt;td class="tg-ltxa"&gt;1&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;0&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;1&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;Leto&lt;/td&gt;
+    &lt;td class="tg-ltxa"&gt;1&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;0&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;1&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td class="tg-0lax"&gt;Kronos&lt;/td&gt;
+    &lt;td class="tg-ltxa"&gt;0&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;1&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;0&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;Ares&lt;/td&gt;
+    &lt;td class="tg-ltxa"&gt;0&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;1&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;1&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td class="tg-0lax"&gt;Demeter&lt;/td&gt;
+    &lt;td class="tg-ltxa"&gt;1&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;0&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;0&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;Athena&lt;/td&gt;
+    &lt;td class="tg-ltxa"&gt;1&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;1&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;1&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td class="tg-0lax"&gt;Hades&lt;/td&gt;
+    &lt;td class="tg-ltxa"&gt;0&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;0&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;0&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;Hephaestus&lt;/td&gt;
+    &lt;td class="tg-ltxa"&gt;0&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;0&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;1&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td class="tg-0lax"&gt;Hestia&lt;/td&gt;
+    &lt;td class="tg-ltxa"&gt;1&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;0&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;0&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;Aphrodite&lt;/td&gt;
+    &lt;td class="tg-ltxa"&gt;1&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;0&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;1&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td class="tg-0lax"&gt;Poseidon&lt;/td&gt;
+    &lt;td class="tg-ltxa"&gt;0&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;1&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;0&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;Cyclope&lt;/td&gt;
+    &lt;td class="tg-ltxa"&gt;0&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;0&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;1&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td class="tg-0lax"&gt;Hera&lt;/td&gt;
+    &lt;td class="tg-ltxa"&gt;1&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;0&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;0&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;Persephone&lt;/td&gt;
+    &lt;td class="tg-ltxa"&gt;1&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;1&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;1&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td class="tg-0lax"&gt;Zeus&lt;/td&gt;
+    &lt;td class="tg-ltxa"&gt;0&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;0&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;1&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;Hermes&lt;/td&gt;
+    &lt;td class="tg-ltxa"&gt;0&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;1&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;0&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td class="tg-0lax"&gt;Artemis&lt;/td&gt;
+    &lt;td class="tg-ltxa"&gt;1&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;1&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;1&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;Hebe&lt;/td&gt;
+    &lt;td class="tg-ltxa"&gt;1&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;1&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;0&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td class="tg-0lax"&gt;Apollo&lt;/td&gt;
+    &lt;td class="tg-ltxa"&gt;0&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;1&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;0&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;Dionysus&lt;/td&gt;
+    &lt;td class="tg-ltxa"&gt;0&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;1&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;0&lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+]
+
+
+.pull-right[.small[
+- We concluded that the average causal effect of was null (Slide [**No. 12**](https://wangcc.me/CausalInference01/#12)).
+
+- 10 out of 20 would have died if they had received the treatment
+`\(\text{Pr}[\mathbf{Y}^{a = 1} = 1] = 10/20 \\ = 0.5\)`
+
+- 10 out of 20 would have died if they if they had not received the treatment
+`\(\text{Pr}[\mathbf{Y}^{a = 0} = 1] = 10/20 \\ = 0.5\)`
+]]
+ 
+---
+
+### Causal Effect in men/women?
+
+
+
+.pull-left[&lt;style type="text/css"&gt;
+.tg  {border-collapse:collapse;border-color:#bbb;border-spacing:0;}
+.tg td{background-color:#E0FFEB;border-color:#bbb;border-style:solid;border-width:1px;color:#594F4F;
+  font-family:Arial, sans-serif;font-size:14px;overflow:hidden;padding:10px 5px;word-break:normal;}
+.tg th{background-color:#9DE0AD;border-color:#bbb;border-style:solid;border-width:1px;color:#493F3F;
+  font-family:Arial, sans-serif;font-size:14px;font-weight:normal;overflow:hidden;padding:10px 5px;word-break:normal;}
+.tg .tg-ltxa{background-color:#ffccc9;text-align:left;vertical-align:top}
+.tg .tg-0lax{text-align:left;vertical-align:top}
+&lt;/style&gt;
+&lt;table class="tg"&gt;
+&lt;thead&gt;
+  &lt;tr&gt;
+    &lt;th class="tg-0lax"&gt;&lt;/th&gt;
+    &lt;th class="tg-ltxa"&gt;\[\mathbf{V}\]&lt;/th&gt;
+    &lt;th class="tg-0lax"&gt;\[\mathbf{Y^{a = 0}}\] &lt;/th&gt;
+    &lt;th class="tg-0lax"&gt; \[\mathbf{Y^{a = 1}}\] &lt;/th&gt;
+    &lt;th class="tg-0lax"&gt;&lt;/th&gt;
+    &lt;th class="tg-ltxa"&gt;\[\mathbf{V}\]&lt;/th&gt;
+    &lt;th class="tg-0lax"&gt; \[\mathbf{Y^{a = 0}}\] &lt;/th&gt;
+    &lt;th class="tg-0lax"&gt; \[\mathbf{Y^{a = 1}}\] &lt;/th&gt;
+  &lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+    &lt;td class="tg-0lax"&gt;Rheia&lt;/td&gt;
+    &lt;td class="tg-ltxa"&gt;1&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;0&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;1&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;Leto&lt;/td&gt;
+    &lt;td class="tg-ltxa"&gt;1&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;0&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;1&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td class="tg-0lax"&gt;Kronos&lt;/td&gt;
+    &lt;td class="tg-ltxa"&gt;0&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;1&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;0&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;Ares&lt;/td&gt;
+    &lt;td class="tg-ltxa"&gt;0&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;1&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;1&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td class="tg-0lax"&gt;Demeter&lt;/td&gt;
+    &lt;td class="tg-ltxa"&gt;1&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;0&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;0&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;Athena&lt;/td&gt;
+    &lt;td class="tg-ltxa"&gt;1&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;1&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;1&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td class="tg-0lax"&gt;Hades&lt;/td&gt;
+    &lt;td class="tg-ltxa"&gt;0&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;0&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;0&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;Hephaestus&lt;/td&gt;
+    &lt;td class="tg-ltxa"&gt;0&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;0&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;1&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td class="tg-0lax"&gt;Hestia&lt;/td&gt;
+    &lt;td class="tg-ltxa"&gt;1&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;0&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;0&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;Aphrodite&lt;/td&gt;
+    &lt;td class="tg-ltxa"&gt;1&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;0&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;1&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td class="tg-0lax"&gt;Poseidon&lt;/td&gt;
+    &lt;td class="tg-ltxa"&gt;0&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;1&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;0&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;Cyclope&lt;/td&gt;
+    &lt;td class="tg-ltxa"&gt;0&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;0&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;1&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td class="tg-0lax"&gt;Hera&lt;/td&gt;
+    &lt;td class="tg-ltxa"&gt;1&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;0&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;0&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;Persephone&lt;/td&gt;
+    &lt;td class="tg-ltxa"&gt;1&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;1&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;1&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td class="tg-0lax"&gt;Zeus&lt;/td&gt;
+    &lt;td class="tg-ltxa"&gt;0&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;0&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;1&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;Hermes&lt;/td&gt;
+    &lt;td class="tg-ltxa"&gt;0&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;1&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;0&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td class="tg-0lax"&gt;Artemis&lt;/td&gt;
+    &lt;td class="tg-ltxa"&gt;1&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;1&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;1&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;Hebe&lt;/td&gt;
+    &lt;td class="tg-ltxa"&gt;1&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;1&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;0&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td class="tg-0lax"&gt;Apollo&lt;/td&gt;
+    &lt;td class="tg-ltxa"&gt;0&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;1&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;0&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;Dionysus&lt;/td&gt;
+    &lt;td class="tg-ltxa"&gt;0&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;1&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;0&lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+]
+
+
+.pull-right[.small[
+- The causal risk ratio was `\(0.5/0.5 = 1\)`
+
+- The causal risk difference was `\(0.5 - 0.5 = 0\)`
+
+- What is the average causal effect in men? and in women?
+
+- To answer this question, we will need to **restrict the analysis to men and women**, respectively.
+]]
+
+---
+class: middle
+
+### Causal effects in women
+
+.pull-left[.small[
+- The risk under treatment is 
+&lt;br&gt; `\(\text{Pr}[Y^{a = 1} | V = 1] = 6/10\)`
+- The risk under no treatment is
+&lt;br&gt; `\(\text{Pr}[Y^{a = 0} | V = 1] = 4/10\)`
+- Therefore, 
+  - the causal risk ratio is `\(0.6/0.4 = 1.5\)`
+  - The causal risk difference is `\(0.6 - 0.4 = 0.2\)`
+
+- On average, heart transplant `\(A\)` increases the risk of death `\(Y\)` in women.
+]]
+
+.pull-right[
+&lt;style type="text/css"&gt;
+.tg  {border-collapse:collapse;border-color:#bbb;border-spacing:0;}
+.tg td{background-color:#E0FFEB;border-color:#bbb;border-style:solid;border-width:1px;color:#594F4F;
+  font-family:Arial, sans-serif;font-size:14px;overflow:hidden;padding:10px 5px;word-break:normal;}
+.tg th{background-color:#9DE0AD;border-color:#bbb;border-style:solid;border-width:1px;color:#493F3F;
+  font-family:Arial, sans-serif;font-size:14px;font-weight:normal;overflow:hidden;padding:10px 5px;word-break:normal;}
+.tg .tg-x5oc{background-color:#fe996b;border-color:inherit;text-align:left;vertical-align:top}
+.tg .tg-56tm{background-color:#9de0ad;border-color:inherit;text-align:left;vertical-align:top}
+.tg .tg-0pky{border-color:inherit;text-align:left;vertical-align:top}
+.tg .tg-qsp3{background-color:#e0ffeb;border-color:inherit;text-align:left;vertical-align:top}
+&lt;/style&gt;
+&lt;table class="tg"&gt;
+&lt;thead&gt;
+  &lt;tr&gt;
+    &lt;th class="tg-0pky"&gt;&lt;/th&gt;
+    &lt;th class="tg-0pky"&gt; \[\mathbf{V}\] &lt;/th&gt;
+    &lt;th class="tg-0pky"&gt; \[\mathbf{Y^{a = 0}}\] &lt;/th&gt;
+    &lt;th class="tg-0pky"&gt; \[\mathbf{Y^{a = 1}}\] &lt;/th&gt;
+  &lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+    &lt;td class="tg-0pky"&gt;Rheia&lt;/td&gt;
+    &lt;td class="tg-qsp3"&gt;1&lt;/td&gt;
+    &lt;td class="tg-0pky"&gt;0&lt;/td&gt;
+    &lt;td class="tg-x5oc"&gt;1&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td class="tg-0pky"&gt;Demeter&lt;/td&gt;
+    &lt;td class="tg-qsp3"&gt;1&lt;/td&gt;
+    &lt;td class="tg-0pky"&gt;0&lt;/td&gt;
+    &lt;td class="tg-0pky"&gt;0&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td class="tg-0pky"&gt;Hestia&lt;/td&gt;
+    &lt;td class="tg-qsp3"&gt;1&lt;/td&gt;
+    &lt;td class="tg-0pky"&gt;0&lt;/td&gt;
+    &lt;td class="tg-0pky"&gt;0&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td class="tg-0pky"&gt;Hera&lt;/td&gt;
+    &lt;td class="tg-qsp3"&gt;1&lt;/td&gt;
+    &lt;td class="tg-0pky"&gt;0&lt;/td&gt;
+    &lt;td class="tg-0pky"&gt;0&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td class="tg-0pky"&gt;Artemis&lt;/td&gt;
+    &lt;td class="tg-qsp3"&gt;1&lt;/td&gt;
+    &lt;td class="tg-x5oc"&gt;1&lt;/td&gt;
+    &lt;td class="tg-x5oc"&gt;1&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td class="tg-0pky"&gt;Leto&lt;/td&gt;
+    &lt;td class="tg-qsp3"&gt;1&lt;/td&gt;
+    &lt;td class="tg-0pky"&gt;0&lt;/td&gt;
+    &lt;td class="tg-x5oc"&gt;1&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td class="tg-0pky"&gt;Athena&lt;/td&gt;
+    &lt;td class="tg-qsp3"&gt;1&lt;/td&gt;
+    &lt;td class="tg-x5oc"&gt;1&lt;/td&gt;
+    &lt;td class="tg-x5oc"&gt;1&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td class="tg-0pky"&gt;Aphrodite&lt;/td&gt;
+    &lt;td class="tg-qsp3"&gt;1&lt;/td&gt;
+    &lt;td class="tg-0pky"&gt;0&lt;/td&gt;
+    &lt;td class="tg-x5oc"&gt;1&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td class="tg-0pky"&gt;Persephone&lt;/td&gt;
+    &lt;td class="tg-qsp3"&gt;1&lt;/td&gt;
+    &lt;td class="tg-x5oc"&gt;1&lt;/td&gt;
+    &lt;td class="tg-x5oc"&gt;1&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td class="tg-0pky"&gt;Hebe&lt;/td&gt;
+    &lt;td class="tg-qsp3"&gt;1&lt;/td&gt;
+    &lt;td class="tg-x5oc"&gt;1&lt;/td&gt;
+    &lt;td class="tg-0pky"&gt;0&lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+]
+
+
+---
+class: middle
+
+### Causal effects in men
+
+
+.pull-left[.small[
+- The risk under treatment is 
+&lt;br&gt; `\(\text{Pr}[Y^{a = 1} | V = 0] = 4/10\)`
+- The risk under no treatment is
+&lt;br&gt; `\(\text{Pr}[Y^{a = 0} | V = 0] = 6/10\)`
+- Therefore, 
+  - the causal risk ratio is `\(0.4/0.6 = 2/3\)`
+  - The causal risk difference is `\(0.4 - 0.6 = -0.2\)`
+
+- On average, heart transplant `\(A\)` decreases the risk of death `\(Y\)` in men.
+]]
+
+
+.pull-right[
+&lt;style type="text/css"&gt;
+.tg  {border-collapse:collapse;border-color:#bbb;border-spacing:0;}
+.tg td{background-color:#E0FFEB;border-color:#bbb;border-style:solid;border-width:1px;color:#594F4F;
+  font-family:Arial, sans-serif;font-size:14px;overflow:hidden;padding:10px 5px;word-break:normal;}
+.tg th{background-color:#9DE0AD;border-color:#bbb;border-style:solid;border-width:1px;color:#493F3F;
+  font-family:Arial, sans-serif;font-size:14px;font-weight:normal;overflow:hidden;padding:10px 5px;word-break:normal;}
+.tg .tg-e76x{background-color:#fe996b;text-align:left;vertical-align:top}
+.tg .tg-0lax{text-align:left;vertical-align:top}
+&lt;/style&gt;
+&lt;table class="tg"&gt;
+&lt;thead&gt;
+  &lt;tr&gt;
+    &lt;th class="tg-0lax"&gt;&lt;/th&gt;
+    &lt;th class="tg-0lax"&gt;\[\mathbf{V}\]&lt;/th&gt;
+    &lt;th class="tg-0lax"&gt;\[\mathbf{Y^{a = 0}}\] &lt;/th&gt;
+    &lt;th class="tg-0lax"&gt; \[\mathbf{Y^{a = 1}}\] &lt;/th&gt;
+  &lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+    &lt;td class="tg-0lax"&gt;Kronos&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;0&lt;/td&gt;
+    &lt;td class="tg-e76x"&gt;1&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;0&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td class="tg-0lax"&gt;Hades&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;0&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;0&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;0&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td class="tg-0lax"&gt;Poseidon&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;0&lt;/td&gt;
+    &lt;td class="tg-e76x"&gt;1&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;0&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td class="tg-0lax"&gt;Zeus&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;0&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;0&lt;/td&gt;
+    &lt;td class="tg-e76x"&gt;1&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td class="tg-0lax"&gt;Apollo&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;0&lt;/td&gt;
+    &lt;td class="tg-e76x"&gt;1&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;0&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td class="tg-0lax"&gt;Ares&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;0&lt;/td&gt;
+    &lt;td class="tg-e76x"&gt;1&lt;/td&gt;
+    &lt;td class="tg-e76x"&gt;1&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td class="tg-0lax"&gt;Hephaestus&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;0&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;0&lt;/td&gt;
+    &lt;td class="tg-e76x"&gt;1&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td class="tg-0lax"&gt;Cyclope&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;0&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;0&lt;/td&gt;
+    &lt;td class="tg-e76x"&gt;1&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td class="tg-0lax"&gt;Hermes&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;0&lt;/td&gt;
+    &lt;td class="tg-e76x"&gt;1&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;0&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td class="tg-0lax"&gt;Dionysus&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;0&lt;/td&gt;
+    &lt;td class="tg-e76x"&gt;1&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;0&lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+]
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="libs/remark-latest.min.js"></script>

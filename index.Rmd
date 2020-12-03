@@ -2264,3 +2264,528 @@ class: middle, inverse, center
 
 ---
 class: middle
+
+
+## Outline
+
+- Definition of effect modification
+
+- Stratification to identify effect modification
+
+- Why care about it
+
+- Matching to adjust
+
+- Effect modification and adjustment
+
+
+---
+class: middle
+
+## Purpose 
+
+> Many causal questions are about the subsets of the population. Sometimes you don't care about the variations of the effect across different groups.
+
+
+.full-width[.content-box-red[.bold[
+ The causal effect depends on the characteristics of the particular population under study.
+]]]
+
+
+---
+class: middle
+
+## Definition of effect modification
+
+.pull-left[<style type="text/css">
+.tg  {border-collapse:collapse;border-color:#bbb;border-spacing:0;}
+.tg td{background-color:#E0FFEB;border-color:#bbb;border-style:solid;border-width:1px;color:#594F4F;
+  font-family:Arial, sans-serif;font-size:14px;overflow:hidden;padding:10px 5px;word-break:normal;}
+.tg th{background-color:#9DE0AD;border-color:#bbb;border-style:solid;border-width:1px;color:#493F3F;
+  font-family:Arial, sans-serif;font-size:14px;font-weight:normal;overflow:hidden;padding:10px 5px;word-break:normal;}
+.tg .tg-ltxa{background-color:#ffccc9;text-align:left;vertical-align:top}
+.tg .tg-0lax{text-align:left;vertical-align:top}
+</style>
+<table class="tg">
+<thead>
+  <tr>
+    <th class="tg-0lax"></th>
+    <th class="tg-ltxa">\[\mathbf{V}\]</th>
+    <th class="tg-0lax">\[\mathbf{Y^{a = 0}}\] </th>
+    <th class="tg-0lax"> \[\mathbf{Y^{a = 1}}\] </th>
+    <th class="tg-0lax"></th>
+    <th class="tg-ltxa">\[\mathbf{V}\]</th>
+    <th class="tg-0lax"> \[\mathbf{Y^{a = 0}}\] </th>
+    <th class="tg-0lax"> \[\mathbf{Y^{a = 1}}\] </th>
+  </tr>
+</thead>
+<tbody>
+  <tr>
+    <td class="tg-0lax">Rheia</td>
+    <td class="tg-ltxa">1</td>
+    <td class="tg-0lax">0</td>
+    <td class="tg-0lax">1</td>
+    <td class="tg-0lax">Leto</td>
+    <td class="tg-ltxa">1</td>
+    <td class="tg-0lax">0</td>
+    <td class="tg-0lax">1</td>
+  </tr>
+  <tr>
+    <td class="tg-0lax">Kronos</td>
+    <td class="tg-ltxa">0</td>
+    <td class="tg-0lax">1</td>
+    <td class="tg-0lax">0</td>
+    <td class="tg-0lax">Ares</td>
+    <td class="tg-ltxa">0</td>
+    <td class="tg-0lax">1</td>
+    <td class="tg-0lax">1</td>
+  </tr>
+  <tr>
+    <td class="tg-0lax">Demeter</td>
+    <td class="tg-ltxa">1</td>
+    <td class="tg-0lax">0</td>
+    <td class="tg-0lax">0</td>
+    <td class="tg-0lax">Athena</td>
+    <td class="tg-ltxa">1</td>
+    <td class="tg-0lax">1</td>
+    <td class="tg-0lax">1</td>
+  </tr>
+  <tr>
+    <td class="tg-0lax">Hades</td>
+    <td class="tg-ltxa">0</td>
+    <td class="tg-0lax">0</td>
+    <td class="tg-0lax">0</td>
+    <td class="tg-0lax">Hephaestus</td>
+    <td class="tg-ltxa">0</td>
+    <td class="tg-0lax">0</td>
+    <td class="tg-0lax">1</td>
+  </tr>
+  <tr>
+    <td class="tg-0lax">Hestia</td>
+    <td class="tg-ltxa">1</td>
+    <td class="tg-0lax">0</td>
+    <td class="tg-0lax">0</td>
+    <td class="tg-0lax">Aphrodite</td>
+    <td class="tg-ltxa">1</td>
+    <td class="tg-0lax">0</td>
+    <td class="tg-0lax">1</td>
+  </tr>
+  <tr>
+    <td class="tg-0lax">Poseidon</td>
+    <td class="tg-ltxa">0</td>
+    <td class="tg-0lax">1</td>
+    <td class="tg-0lax">0</td>
+    <td class="tg-0lax">Cyclope</td>
+    <td class="tg-ltxa">0</td>
+    <td class="tg-0lax">0</td>
+    <td class="tg-0lax">1</td>
+  </tr>
+  <tr>
+    <td class="tg-0lax">Hera</td>
+    <td class="tg-ltxa">1</td>
+    <td class="tg-0lax">0</td>
+    <td class="tg-0lax">0</td>
+    <td class="tg-0lax">Persephone</td>
+    <td class="tg-ltxa">1</td>
+    <td class="tg-0lax">1</td>
+    <td class="tg-0lax">1</td>
+  </tr>
+  <tr>
+    <td class="tg-0lax">Zeus</td>
+    <td class="tg-ltxa">0</td>
+    <td class="tg-0lax">0</td>
+    <td class="tg-0lax">1</td>
+    <td class="tg-0lax">Hermes</td>
+    <td class="tg-ltxa">0</td>
+    <td class="tg-0lax">1</td>
+    <td class="tg-0lax">0</td>
+  </tr>
+  <tr>
+    <td class="tg-0lax">Artemis</td>
+    <td class="tg-ltxa">1</td>
+    <td class="tg-0lax">1</td>
+    <td class="tg-0lax">1</td>
+    <td class="tg-0lax">Hebe</td>
+    <td class="tg-ltxa">1</td>
+    <td class="tg-0lax">1</td>
+    <td class="tg-0lax">0</td>
+  </tr>
+  <tr>
+    <td class="tg-0lax">Apollo</td>
+    <td class="tg-ltxa">0</td>
+    <td class="tg-0lax">1</td>
+    <td class="tg-0lax">0</td>
+    <td class="tg-0lax">Dionysus</td>
+    <td class="tg-ltxa">0</td>
+    <td class="tg-0lax">1</td>
+    <td class="tg-0lax">0</td>
+  </tr>
+</tbody>
+</table>
+]
+
+
+.pull-right[.small[
+- We concluded that the average causal effect of was null (Slide [**No. 12**](https://wangcc.me/CausalInference01/#12)).
+
+- 10 out of 20 would have died if they had received the treatment
+$\text{Pr}[\mathbf{Y}^{a = 1} = 1] = 10/20 \\ = 0.5$
+
+- 10 out of 20 would have died if they if they had not received the treatment
+$\text{Pr}[\mathbf{Y}^{a = 0} = 1] = 10/20 \\ = 0.5$
+]]
+ 
+---
+
+### Causal Effect in men/women?
+
+
+
+.pull-left[<style type="text/css">
+.tg  {border-collapse:collapse;border-color:#bbb;border-spacing:0;}
+.tg td{background-color:#E0FFEB;border-color:#bbb;border-style:solid;border-width:1px;color:#594F4F;
+  font-family:Arial, sans-serif;font-size:14px;overflow:hidden;padding:10px 5px;word-break:normal;}
+.tg th{background-color:#9DE0AD;border-color:#bbb;border-style:solid;border-width:1px;color:#493F3F;
+  font-family:Arial, sans-serif;font-size:14px;font-weight:normal;overflow:hidden;padding:10px 5px;word-break:normal;}
+.tg .tg-ltxa{background-color:#ffccc9;text-align:left;vertical-align:top}
+.tg .tg-0lax{text-align:left;vertical-align:top}
+</style>
+<table class="tg">
+<thead>
+  <tr>
+    <th class="tg-0lax"></th>
+    <th class="tg-ltxa">\[\mathbf{V}\]</th>
+    <th class="tg-0lax">\[\mathbf{Y^{a = 0}}\] </th>
+    <th class="tg-0lax"> \[\mathbf{Y^{a = 1}}\] </th>
+    <th class="tg-0lax"></th>
+    <th class="tg-ltxa">\[\mathbf{V}\]</th>
+    <th class="tg-0lax"> \[\mathbf{Y^{a = 0}}\] </th>
+    <th class="tg-0lax"> \[\mathbf{Y^{a = 1}}\] </th>
+  </tr>
+</thead>
+<tbody>
+  <tr>
+    <td class="tg-0lax">Rheia</td>
+    <td class="tg-ltxa">1</td>
+    <td class="tg-0lax">0</td>
+    <td class="tg-0lax">1</td>
+    <td class="tg-0lax">Leto</td>
+    <td class="tg-ltxa">1</td>
+    <td class="tg-0lax">0</td>
+    <td class="tg-0lax">1</td>
+  </tr>
+  <tr>
+    <td class="tg-0lax">Kronos</td>
+    <td class="tg-ltxa">0</td>
+    <td class="tg-0lax">1</td>
+    <td class="tg-0lax">0</td>
+    <td class="tg-0lax">Ares</td>
+    <td class="tg-ltxa">0</td>
+    <td class="tg-0lax">1</td>
+    <td class="tg-0lax">1</td>
+  </tr>
+  <tr>
+    <td class="tg-0lax">Demeter</td>
+    <td class="tg-ltxa">1</td>
+    <td class="tg-0lax">0</td>
+    <td class="tg-0lax">0</td>
+    <td class="tg-0lax">Athena</td>
+    <td class="tg-ltxa">1</td>
+    <td class="tg-0lax">1</td>
+    <td class="tg-0lax">1</td>
+  </tr>
+  <tr>
+    <td class="tg-0lax">Hades</td>
+    <td class="tg-ltxa">0</td>
+    <td class="tg-0lax">0</td>
+    <td class="tg-0lax">0</td>
+    <td class="tg-0lax">Hephaestus</td>
+    <td class="tg-ltxa">0</td>
+    <td class="tg-0lax">0</td>
+    <td class="tg-0lax">1</td>
+  </tr>
+  <tr>
+    <td class="tg-0lax">Hestia</td>
+    <td class="tg-ltxa">1</td>
+    <td class="tg-0lax">0</td>
+    <td class="tg-0lax">0</td>
+    <td class="tg-0lax">Aphrodite</td>
+    <td class="tg-ltxa">1</td>
+    <td class="tg-0lax">0</td>
+    <td class="tg-0lax">1</td>
+  </tr>
+  <tr>
+    <td class="tg-0lax">Poseidon</td>
+    <td class="tg-ltxa">0</td>
+    <td class="tg-0lax">1</td>
+    <td class="tg-0lax">0</td>
+    <td class="tg-0lax">Cyclope</td>
+    <td class="tg-ltxa">0</td>
+    <td class="tg-0lax">0</td>
+    <td class="tg-0lax">1</td>
+  </tr>
+  <tr>
+    <td class="tg-0lax">Hera</td>
+    <td class="tg-ltxa">1</td>
+    <td class="tg-0lax">0</td>
+    <td class="tg-0lax">0</td>
+    <td class="tg-0lax">Persephone</td>
+    <td class="tg-ltxa">1</td>
+    <td class="tg-0lax">1</td>
+    <td class="tg-0lax">1</td>
+  </tr>
+  <tr>
+    <td class="tg-0lax">Zeus</td>
+    <td class="tg-ltxa">0</td>
+    <td class="tg-0lax">0</td>
+    <td class="tg-0lax">1</td>
+    <td class="tg-0lax">Hermes</td>
+    <td class="tg-ltxa">0</td>
+    <td class="tg-0lax">1</td>
+    <td class="tg-0lax">0</td>
+  </tr>
+  <tr>
+    <td class="tg-0lax">Artemis</td>
+    <td class="tg-ltxa">1</td>
+    <td class="tg-0lax">1</td>
+    <td class="tg-0lax">1</td>
+    <td class="tg-0lax">Hebe</td>
+    <td class="tg-ltxa">1</td>
+    <td class="tg-0lax">1</td>
+    <td class="tg-0lax">0</td>
+  </tr>
+  <tr>
+    <td class="tg-0lax">Apollo</td>
+    <td class="tg-ltxa">0</td>
+    <td class="tg-0lax">1</td>
+    <td class="tg-0lax">0</td>
+    <td class="tg-0lax">Dionysus</td>
+    <td class="tg-ltxa">0</td>
+    <td class="tg-0lax">1</td>
+    <td class="tg-0lax">0</td>
+  </tr>
+</tbody>
+</table>
+]
+
+
+.pull-right[.small[
+- The causal risk ratio was $0.5/0.5 = 1$
+
+- The causal risk difference was $0.5 - 0.5 = 0$
+
+- What is the average causal effect in men? and in women?
+
+- To answer this question, we will need to **restrict the analysis to men and women**, respectively.
+]]
+
+---
+class: middle
+
+### Causal effects in women
+
+.pull-left[.small[
+- The risk under treatment is 
+<br> $\text{Pr}[Y^{a = 1} | V = 1] = 6/10$
+- The risk under no treatment is
+<br> $\text{Pr}[Y^{a = 0} | V = 1] = 4/10$
+- Therefore, 
+  - the causal risk ratio is $0.6/0.4 = 1.5$
+  - The causal risk difference is $0.6 - 0.4 = 0.2$
+
+- On average, heart transplant $A$ increases the risk of death $Y$ in women.
+]]
+
+.pull-right[
+<style type="text/css">
+.tg  {border-collapse:collapse;border-color:#bbb;border-spacing:0;}
+.tg td{background-color:#E0FFEB;border-color:#bbb;border-style:solid;border-width:1px;color:#594F4F;
+  font-family:Arial, sans-serif;font-size:14px;overflow:hidden;padding:10px 5px;word-break:normal;}
+.tg th{background-color:#9DE0AD;border-color:#bbb;border-style:solid;border-width:1px;color:#493F3F;
+  font-family:Arial, sans-serif;font-size:14px;font-weight:normal;overflow:hidden;padding:10px 5px;word-break:normal;}
+.tg .tg-x5oc{background-color:#fe996b;border-color:inherit;text-align:left;vertical-align:top}
+.tg .tg-56tm{background-color:#9de0ad;border-color:inherit;text-align:left;vertical-align:top}
+.tg .tg-0pky{border-color:inherit;text-align:left;vertical-align:top}
+.tg .tg-qsp3{background-color:#e0ffeb;border-color:inherit;text-align:left;vertical-align:top}
+</style>
+<table class="tg">
+<thead>
+  <tr>
+    <th class="tg-0pky"></th>
+    <th class="tg-0pky"> \[\mathbf{V}\] </th>
+    <th class="tg-0pky"> \[\mathbf{Y^{a = 0}}\] </th>
+    <th class="tg-0pky"> \[\mathbf{Y^{a = 1}}\] </th>
+  </tr>
+</thead>
+<tbody>
+  <tr>
+    <td class="tg-0pky">Rheia</td>
+    <td class="tg-qsp3">1</td>
+    <td class="tg-0pky">0</td>
+    <td class="tg-x5oc">1</td>
+  </tr>
+  <tr>
+    <td class="tg-0pky">Demeter</td>
+    <td class="tg-qsp3">1</td>
+    <td class="tg-0pky">0</td>
+    <td class="tg-0pky">0</td>
+  </tr>
+  <tr>
+    <td class="tg-0pky">Hestia</td>
+    <td class="tg-qsp3">1</td>
+    <td class="tg-0pky">0</td>
+    <td class="tg-0pky">0</td>
+  </tr>
+  <tr>
+    <td class="tg-0pky">Hera</td>
+    <td class="tg-qsp3">1</td>
+    <td class="tg-0pky">0</td>
+    <td class="tg-0pky">0</td>
+  </tr>
+  <tr>
+    <td class="tg-0pky">Artemis</td>
+    <td class="tg-qsp3">1</td>
+    <td class="tg-x5oc">1</td>
+    <td class="tg-x5oc">1</td>
+  </tr>
+  <tr>
+    <td class="tg-0pky">Leto</td>
+    <td class="tg-qsp3">1</td>
+    <td class="tg-0pky">0</td>
+    <td class="tg-x5oc">1</td>
+  </tr>
+  <tr>
+    <td class="tg-0pky">Athena</td>
+    <td class="tg-qsp3">1</td>
+    <td class="tg-x5oc">1</td>
+    <td class="tg-x5oc">1</td>
+  </tr>
+  <tr>
+    <td class="tg-0pky">Aphrodite</td>
+    <td class="tg-qsp3">1</td>
+    <td class="tg-0pky">0</td>
+    <td class="tg-x5oc">1</td>
+  </tr>
+  <tr>
+    <td class="tg-0pky">Persephone</td>
+    <td class="tg-qsp3">1</td>
+    <td class="tg-x5oc">1</td>
+    <td class="tg-x5oc">1</td>
+  </tr>
+  <tr>
+    <td class="tg-0pky">Hebe</td>
+    <td class="tg-qsp3">1</td>
+    <td class="tg-x5oc">1</td>
+    <td class="tg-0pky">0</td>
+  </tr>
+</tbody>
+</table>
+]
+
+
+---
+class: middle
+
+### Causal effects in men
+
+
+.pull-left[.small[
+- The risk under treatment is 
+<br> $\text{Pr}[Y^{a = 1} | V = 0] = 4/10$
+- The risk under no treatment is
+<br> $\text{Pr}[Y^{a = 0} | V = 0] = 6/10$
+- Therefore, 
+  - the causal risk ratio is $0.4/0.6 = 2/3$
+  - The causal risk difference is $0.4 - 0.6 = -0.2$
+
+- On average, heart transplant $A$ decreases the risk of death $Y$ in men.
+]]
+
+
+.pull-right[
+<style type="text/css">
+.tg  {border-collapse:collapse;border-color:#bbb;border-spacing:0;}
+.tg td{background-color:#E0FFEB;border-color:#bbb;border-style:solid;border-width:1px;color:#594F4F;
+  font-family:Arial, sans-serif;font-size:14px;overflow:hidden;padding:10px 5px;word-break:normal;}
+.tg th{background-color:#9DE0AD;border-color:#bbb;border-style:solid;border-width:1px;color:#493F3F;
+  font-family:Arial, sans-serif;font-size:14px;font-weight:normal;overflow:hidden;padding:10px 5px;word-break:normal;}
+.tg .tg-e76x{background-color:#fe996b;text-align:left;vertical-align:top}
+.tg .tg-0lax{text-align:left;vertical-align:top}
+</style>
+<table class="tg">
+<thead>
+  <tr>
+    <th class="tg-0lax"></th>
+    <th class="tg-0lax">\[\mathbf{V}\]</th>
+    <th class="tg-0lax">\[\mathbf{Y^{a = 0}}\] </th>
+    <th class="tg-0lax"> \[\mathbf{Y^{a = 1}}\] </th>
+  </tr>
+</thead>
+<tbody>
+  <tr>
+    <td class="tg-0lax">Kronos</td>
+    <td class="tg-0lax">0</td>
+    <td class="tg-e76x">1</td>
+    <td class="tg-0lax">0</td>
+  </tr>
+  <tr>
+    <td class="tg-0lax">Hades</td>
+    <td class="tg-0lax">0</td>
+    <td class="tg-0lax">0</td>
+    <td class="tg-0lax">0</td>
+  </tr>
+  <tr>
+    <td class="tg-0lax">Poseidon</td>
+    <td class="tg-0lax">0</td>
+    <td class="tg-e76x">1</td>
+    <td class="tg-0lax">0</td>
+  </tr>
+  <tr>
+    <td class="tg-0lax">Zeus</td>
+    <td class="tg-0lax">0</td>
+    <td class="tg-0lax">0</td>
+    <td class="tg-e76x">1</td>
+  </tr>
+  <tr>
+    <td class="tg-0lax">Apollo</td>
+    <td class="tg-0lax">0</td>
+    <td class="tg-e76x">1</td>
+    <td class="tg-0lax">0</td>
+  </tr>
+  <tr>
+    <td class="tg-0lax">Ares</td>
+    <td class="tg-0lax">0</td>
+    <td class="tg-e76x">1</td>
+    <td class="tg-e76x">1</td>
+  </tr>
+  <tr>
+    <td class="tg-0lax">Hephaestus</td>
+    <td class="tg-0lax">0</td>
+    <td class="tg-0lax">0</td>
+    <td class="tg-e76x">1</td>
+  </tr>
+  <tr>
+    <td class="tg-0lax">Cyclope</td>
+    <td class="tg-0lax">0</td>
+    <td class="tg-0lax">0</td>
+    <td class="tg-e76x">1</td>
+  </tr>
+  <tr>
+    <td class="tg-0lax">Hermes</td>
+    <td class="tg-0lax">0</td>
+    <td class="tg-e76x">1</td>
+    <td class="tg-0lax">0</td>
+  </tr>
+  <tr>
+    <td class="tg-0lax">Dionysus</td>
+    <td class="tg-0lax">0</td>
+    <td class="tg-e76x">1</td>
+    <td class="tg-0lax">0</td>
+  </tr>
+</tbody>
+</table>
+]
+
+
+
+
