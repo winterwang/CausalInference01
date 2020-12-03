@@ -2295,7 +2295,7 @@ class: middle
 ---
 class: middle
 
-## Definition of effect modification
+## Definition of effect modification (1)
 
 .pull-left[<style type="text/css">
 .tg  {border-collapse:collapse;border-color:#bbb;border-spacing:0;}
@@ -2788,3 +2788,59 @@ class: middle
 ---
 class: middle
 
+## Definition of effect modification (2)
+
+We saw that a null average causal effect in the population does not imply a null average causal effect in a subset of the population.
+
+.full-width[.content-box-red[.bold[.med[
+$V$ is a modifier of the effect of $A$ on $Y$ when the average causal effect **varies across levels of $V$**.
+]]]]
+
+.pull-left[.small[
+Additive effect modification: <br>
+$E[Y^{a = 1}  - Y^{a = 0} | V = 1] \\ \neq E[Y^{a = 1}  - Y^{a = 0} | V = 0]$
+]]
+
+.pull-right[.small[
+Multiplicative effect modification: <br>
+$\frac{E[Y^{a = 1} | V = 1]}{E[Y^{a = 0} | V = 1]} \neq \frac{E[Y^{a = 1} | V = 0]}{E[Y^{a = 0} | V = 0]}$
+]]
+
+
+---
+class: middle
+
+## Definition of effect modification (3)
+
+In the heart transplant example, there is a **qualitative effect modification** because the average causal effects in the subsets are in the opposite direction.
+
+--
+- When qualitative effect modification exists, both additive and multiplicative effect modification exist.
+
+--
+- When we don't find qualitative effect modification, there might be effect modification on either scale (additive or multiplicative).
+
+---
+class: middle
+
+### Example of effect modification only shown as multiplicative
+
+.pull-left[.small[
+- $\text{Pr}[Y^{a = 0} =1 | V = 1] = 0.8$ 
+- $\text{Pr}[Y^{a = 1} =1 | V = 1] = 0.9$ 
+]]
+
+.pull-right[.small[
+- $\text{Pr}[Y^{a = 0} =1 | V = 0] = 0.1$ 
+- $\text{Pr}[Y^{a = 1} =1 | V = 0] = 0.2$ 
+]]
+
+--
+.med[
+- Causal risk difference: $0.9 -0.8 = 0.2 - 0.1 = 0.1$ <br>(no additive effect modification)
+]
+
+--
+.med[
+- Causal risk ratio: $0.9 / 0.8 = 1.1 \neq 0.2 / 0.1 = 2$ <br>(multiplicative effect modification)
+]
