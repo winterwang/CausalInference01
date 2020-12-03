@@ -189,6 +189,7 @@ table.dataTable.hover tbody tr:hover, table.dataTable.display tbody tr:hover {
 .larger { font-size: 130% }
 .med { font-size: 85% }
 .small { font-size: 70% }
+.smaller { font-size: 65% }
 .between { font-size: 60% }
 .tiny { font-size: 50% }
 .verytiny { font-size: 40% }
