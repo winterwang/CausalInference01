@@ -3411,6 +3411,109 @@ class: middle
 class: middle
 
 ## Matching as another form of adjustment
+
+.pull-left[.med[
+- Matching is used to construct a subset of population in which the variable(s) `\(L\)` have the same distribution in both treated and untreated.
+- Matching ensures positivity.
+- Can be one-to-one, or one-to-many
+]]
+
+.pull-right[
+&lt;style type="text/css"&gt;
+.tg  {border-collapse:collapse;border-color:#bbb;border-spacing:0;}
+.tg td{background-color:#E0FFEB;border-color:#bbb;border-style:solid;border-width:1px;color:#594F4F;
+  font-family:Arial, sans-serif;font-size:14px;overflow:hidden;padding:10px 5px;word-break:normal;}
+.tg th{background-color:#9DE0AD;border-color:#bbb;border-style:solid;border-width:1px;color:#493F3F;
+  font-family:Arial, sans-serif;font-size:14px;font-weight:normal;overflow:hidden;padding:10px 5px;word-break:normal;}
+.tg .tg-0lax{text-align:left;vertical-align:top}
+&lt;/style&gt;
+&lt;table class="tg"&gt;
+&lt;thead&gt;
+  &lt;tr&gt;
+    &lt;th class="tg-0lax"&gt;&lt;/th&gt;
+    &lt;th class="tg-0lax"&gt;L&lt;/th&gt;
+    &lt;th class="tg-0lax"&gt;A&lt;/th&gt;
+    &lt;th class="tg-0lax"&gt;Y&lt;/th&gt;
+    &lt;th class="tg-0lax"&gt;&lt;/th&gt;
+    &lt;th class="tg-0lax"&gt;L&lt;/th&gt;
+    &lt;th class="tg-0lax"&gt;A&lt;/th&gt;
+    &lt;th class="tg-0lax"&gt;Y&lt;/th&gt;
+  &lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+    &lt;td class="tg-0lax"&gt;Rheia&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;0&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;0&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;0&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;Hestia&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;0&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;1&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;0&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td class="tg-0lax"&gt;Kronos&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;0&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;0&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;1&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;Poseidon&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;0&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;1&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;0&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td class="tg-0lax"&gt;Demeter&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;0&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;0&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;0&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;Hera&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;0&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;1&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;0&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td class="tg-0lax"&gt;Hades&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;0&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;0&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;0&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;Zeus&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;0&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;1&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;1&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td class="tg-0lax"&gt;Artemis&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;1&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;0&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;1&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;Ares&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;1&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;1&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;1&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td class="tg-0lax"&gt;Apollo&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;1&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;0&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;1&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;Aphrodite&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;1&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;1&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;1&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td class="tg-0lax"&gt;Leto&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;1&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;0&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;0&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;Hermes&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;1&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;1&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;0&lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+]
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="libs/remark-latest.min.js"></script>
