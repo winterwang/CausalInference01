@@ -3142,6 +3142,275 @@ class: middle
 class: middle
 
 ## Why care about effect modification?
+
+.med[
+- To identify those who might benefit from the treatment, who might not, and who might get hurt.
+- To better understand the mechanisms. 
+- To see whether transportability of causal effects from one to another population would be valid.
+]
+
+--
+.pull-left[.small[
+- Causal effect of heart transplant on mortality differs between men and women, Greeks and Romans.
+- Health effect of cholesterol-lowering drugs in Europeans can be transported to Asians.
+]]
+
+--
+.pull-right[.small[
+- Health effect of increasing household income by $100 in Ethiopia cannot be transported to the UK.
+]]
+
+---
+class: middle
+
+## Stratification as a form of adjustment (1)
+
+.med[
+Normally, 
+- standardization or IPW `\(\rightarrow\)` adjust for `\(L\)`
+- stratification `\(\rightarrow\)` identify effect modification by `\(V\)`
+]
+
+--
+.med[
+But, sometimes stratification was (mis-)used as adjustment.
+- stratification can only provide stratum-specific effects 
+- none of them quantifies the average causal effect in the entire population.
+- in the example, **exchangeability holds in `\(L\)` but not in `\(V\)`**&lt;br&gt; `\(L\)` (severity) was adjusted under each strata of `\(V\)` (nationality).
+]
+
+
+---
+class: middle
+
+## Stratification as a form of adjustment (2)
+
+
+&lt;style type="text/css"&gt;
+.tg  {border-collapse:collapse;border-color:#bbb;border-spacing:0;}
+.tg td{background-color:#E0FFEB;border-color:#bbb;border-style:solid;border-width:1px;color:#594F4F;
+  font-family:Arial, sans-serif;font-size:14px;overflow:hidden;padding:10px 5px;word-break:normal;}
+.tg th{background-color:#9DE0AD;border-color:#bbb;border-style:solid;border-width:1px;color:#493F3F;
+  font-family:Arial, sans-serif;font-size:14px;font-weight:normal;overflow:hidden;padding:10px 5px;word-break:normal;}
+.tg .tg-rpp6{background-color:#67fd9a;border-color:inherit;font-size:15px;font-weight:bold;text-align:left;vertical-align:top}
+.tg .tg-dbbi{border-color:inherit;font-size:15px;font-weight:bold;text-align:center;vertical-align:top}
+.tg .tg-h6w4{border-color:inherit;font-size:15px;font-weight:bold;text-align:left;vertical-align:top}
+.tg .tg-679u{background-color:#9698ed;border-color:inherit;font-size:15px;font-weight:bold;text-align:left;vertical-align:top}
+&lt;/style&gt;
+&lt;table class="tg"&gt;
+&lt;thead&gt;
+  &lt;tr&gt;
+    &lt;th class="tg-dbbi" colspan="8"&gt;V = 1 (Greeks)&lt;/th&gt;
+    &lt;th class="tg-dbbi" colspan="8"&gt;V = 0 (Romans)&lt;/th&gt;
+  &lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+    &lt;td class="tg-h6w4"&gt;&lt;/td&gt;
+    &lt;td class="tg-h6w4"&gt;L&lt;/td&gt;
+    &lt;td class="tg-h6w4"&gt;A&lt;/td&gt;
+    &lt;td class="tg-h6w4"&gt;Y&lt;/td&gt;
+    &lt;td class="tg-h6w4"&gt;&lt;/td&gt;
+    &lt;td class="tg-h6w4"&gt;L&lt;/td&gt;
+    &lt;td class="tg-h6w4"&gt;A&lt;/td&gt;
+    &lt;td class="tg-h6w4"&gt;Y&lt;/td&gt;
+    &lt;td class="tg-h6w4"&gt;&lt;/td&gt;
+    &lt;td class="tg-h6w4"&gt;L&lt;/td&gt;
+    &lt;td class="tg-h6w4"&gt;A&lt;/td&gt;
+    &lt;td class="tg-h6w4"&gt;Y&lt;/td&gt;
+    &lt;td class="tg-h6w4"&gt;&lt;/td&gt;
+    &lt;td class="tg-h6w4"&gt;L&lt;/td&gt;
+    &lt;td class="tg-h6w4"&gt;A&lt;/td&gt;
+    &lt;td class="tg-h6w4"&gt;Y&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td class="tg-h6w4"&gt;Rheia&lt;/td&gt;
+    &lt;td class="tg-rpp6"&gt;0&lt;/td&gt;
+    &lt;td class="tg-rpp6"&gt;0&lt;/td&gt;
+    &lt;td class="tg-rpp6"&gt;0&lt;/td&gt;
+    &lt;td class="tg-h6w4"&gt;Leto&lt;/td&gt;
+    &lt;td class="tg-679u"&gt;1&lt;/td&gt;
+    &lt;td class="tg-679u"&gt;0&lt;/td&gt;
+    &lt;td class="tg-679u"&gt;0&lt;/td&gt;
+    &lt;td class="tg-h6w4"&gt;Cybele&lt;/td&gt;
+    &lt;td class="tg-rpp6"&gt;0&lt;/td&gt;
+    &lt;td class="tg-rpp6"&gt;0&lt;/td&gt;
+    &lt;td class="tg-rpp6"&gt;0&lt;/td&gt;
+    &lt;td class="tg-h6w4"&gt;Latona&lt;/td&gt;
+    &lt;td class="tg-679u"&gt;1&lt;/td&gt;
+    &lt;td class="tg-679u"&gt;0&lt;/td&gt;
+    &lt;td class="tg-679u"&gt;0&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td class="tg-h6w4"&gt;Kronos&lt;/td&gt;
+    &lt;td class="tg-rpp6"&gt;0&lt;/td&gt;
+    &lt;td class="tg-rpp6"&gt;0&lt;/td&gt;
+    &lt;td class="tg-rpp6"&gt;1&lt;/td&gt;
+    &lt;td class="tg-h6w4"&gt;Ares&lt;/td&gt;
+    &lt;td class="tg-679u"&gt;1&lt;/td&gt;
+    &lt;td class="tg-679u"&gt;1&lt;/td&gt;
+    &lt;td class="tg-679u"&gt;1&lt;/td&gt;
+    &lt;td class="tg-h6w4"&gt;Saturn&lt;/td&gt;
+    &lt;td class="tg-rpp6"&gt;0&lt;/td&gt;
+    &lt;td class="tg-rpp6"&gt;0&lt;/td&gt;
+    &lt;td class="tg-rpp6"&gt;1&lt;/td&gt;
+    &lt;td class="tg-h6w4"&gt;Mars&lt;/td&gt;
+    &lt;td class="tg-679u"&gt;1&lt;/td&gt;
+    &lt;td class="tg-679u"&gt;1&lt;/td&gt;
+    &lt;td class="tg-679u"&gt;1&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td class="tg-h6w4"&gt;Demeter&lt;/td&gt;
+    &lt;td class="tg-rpp6"&gt;0&lt;/td&gt;
+    &lt;td class="tg-rpp6"&gt;0&lt;/td&gt;
+    &lt;td class="tg-rpp6"&gt;0&lt;/td&gt;
+    &lt;td class="tg-h6w4"&gt;Athena&lt;/td&gt;
+    &lt;td class="tg-679u"&gt;1&lt;/td&gt;
+    &lt;td class="tg-679u"&gt;1&lt;/td&gt;
+    &lt;td class="tg-679u"&gt;1&lt;/td&gt;
+    &lt;td class="tg-h6w4"&gt;Ceres&lt;/td&gt;
+    &lt;td class="tg-rpp6"&gt;0&lt;/td&gt;
+    &lt;td class="tg-rpp6"&gt;0&lt;/td&gt;
+    &lt;td class="tg-rpp6"&gt;0&lt;/td&gt;
+    &lt;td class="tg-h6w4"&gt;Minerva&lt;/td&gt;
+    &lt;td class="tg-679u"&gt;1&lt;/td&gt;
+    &lt;td class="tg-679u"&gt;1&lt;/td&gt;
+    &lt;td class="tg-679u"&gt;1&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td class="tg-h6w4"&gt;Hades&lt;/td&gt;
+    &lt;td class="tg-rpp6"&gt;0&lt;/td&gt;
+    &lt;td class="tg-rpp6"&gt;0&lt;/td&gt;
+    &lt;td class="tg-rpp6"&gt;0&lt;/td&gt;
+    &lt;td class="tg-h6w4"&gt;Hephaestus&lt;/td&gt;
+    &lt;td class="tg-679u"&gt;1&lt;/td&gt;
+    &lt;td class="tg-679u"&gt;1&lt;/td&gt;
+    &lt;td class="tg-679u"&gt;1&lt;/td&gt;
+    &lt;td class="tg-h6w4"&gt;Pluto&lt;/td&gt;
+    &lt;td class="tg-rpp6"&gt;0&lt;/td&gt;
+    &lt;td class="tg-rpp6"&gt;0&lt;/td&gt;
+    &lt;td class="tg-rpp6"&gt;0&lt;/td&gt;
+    &lt;td class="tg-h6w4"&gt;Vulcan&lt;/td&gt;
+    &lt;td class="tg-679u"&gt;1&lt;/td&gt;
+    &lt;td class="tg-679u"&gt;1&lt;/td&gt;
+    &lt;td class="tg-679u"&gt;1&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td class="tg-h6w4"&gt;Hestia&lt;/td&gt;
+    &lt;td class="tg-rpp6"&gt;0&lt;/td&gt;
+    &lt;td class="tg-rpp6"&gt;1&lt;/td&gt;
+    &lt;td class="tg-rpp6"&gt;0&lt;/td&gt;
+    &lt;td class="tg-h6w4"&gt;Aphrodite&lt;/td&gt;
+    &lt;td class="tg-679u"&gt;1&lt;/td&gt;
+    &lt;td class="tg-679u"&gt;1&lt;/td&gt;
+    &lt;td class="tg-679u"&gt;1&lt;/td&gt;
+    &lt;td class="tg-h6w4"&gt;Vesta&lt;/td&gt;
+    &lt;td class="tg-rpp6"&gt;0&lt;/td&gt;
+    &lt;td class="tg-rpp6"&gt;1&lt;/td&gt;
+    &lt;td class="tg-rpp6"&gt;0&lt;/td&gt;
+    &lt;td class="tg-h6w4"&gt;Venus&lt;/td&gt;
+    &lt;td class="tg-679u"&gt;1&lt;/td&gt;
+    &lt;td class="tg-679u"&gt;1&lt;/td&gt;
+    &lt;td class="tg-679u"&gt;1&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td class="tg-h6w4"&gt;Poseidon&lt;/td&gt;
+    &lt;td class="tg-rpp6"&gt;0&lt;/td&gt;
+    &lt;td class="tg-rpp6"&gt;1&lt;/td&gt;
+    &lt;td class="tg-rpp6"&gt;0&lt;/td&gt;
+    &lt;td class="tg-h6w4"&gt;Cyclope&lt;/td&gt;
+    &lt;td class="tg-679u"&gt;1&lt;/td&gt;
+    &lt;td class="tg-679u"&gt;1&lt;/td&gt;
+    &lt;td class="tg-679u"&gt;1&lt;/td&gt;
+    &lt;td class="tg-h6w4"&gt;Neptune&lt;/td&gt;
+    &lt;td class="tg-rpp6"&gt;0&lt;/td&gt;
+    &lt;td class="tg-rpp6"&gt;1&lt;/td&gt;
+    &lt;td class="tg-rpp6"&gt;0&lt;/td&gt;
+    &lt;td class="tg-h6w4"&gt;Seneca&lt;/td&gt;
+    &lt;td class="tg-679u"&gt;1&lt;/td&gt;
+    &lt;td class="tg-679u"&gt;1&lt;/td&gt;
+    &lt;td class="tg-679u"&gt;1&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td class="tg-h6w4"&gt;Hera&lt;/td&gt;
+    &lt;td class="tg-rpp6"&gt;0&lt;/td&gt;
+    &lt;td class="tg-rpp6"&gt;1&lt;/td&gt;
+    &lt;td class="tg-rpp6"&gt;0&lt;/td&gt;
+    &lt;td class="tg-h6w4"&gt;Persephone&lt;/td&gt;
+    &lt;td class="tg-679u"&gt;1&lt;/td&gt;
+    &lt;td class="tg-679u"&gt;1&lt;/td&gt;
+    &lt;td class="tg-679u"&gt;1&lt;/td&gt;
+    &lt;td class="tg-h6w4"&gt;Juno&lt;/td&gt;
+    &lt;td class="tg-rpp6"&gt;0&lt;/td&gt;
+    &lt;td class="tg-rpp6"&gt;1&lt;/td&gt;
+    &lt;td class="tg-rpp6"&gt;1&lt;/td&gt;
+    &lt;td class="tg-h6w4"&gt;Proserpina&lt;/td&gt;
+    &lt;td class="tg-679u"&gt;1&lt;/td&gt;
+    &lt;td class="tg-679u"&gt;1&lt;/td&gt;
+    &lt;td class="tg-679u"&gt;1&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td class="tg-h6w4"&gt;Zeus&lt;/td&gt;
+    &lt;td class="tg-rpp6"&gt;0&lt;/td&gt;
+    &lt;td class="tg-rpp6"&gt;1&lt;/td&gt;
+    &lt;td class="tg-rpp6"&gt;1&lt;/td&gt;
+    &lt;td class="tg-h6w4"&gt;Hermes&lt;/td&gt;
+    &lt;td class="tg-679u"&gt;1&lt;/td&gt;
+    &lt;td class="tg-679u"&gt;1&lt;/td&gt;
+    &lt;td class="tg-679u"&gt;0&lt;/td&gt;
+    &lt;td class="tg-h6w4"&gt;Jupiter&lt;/td&gt;
+    &lt;td class="tg-rpp6"&gt;0&lt;/td&gt;
+    &lt;td class="tg-rpp6"&gt;1&lt;/td&gt;
+    &lt;td class="tg-rpp6"&gt;1&lt;/td&gt;
+    &lt;td class="tg-h6w4"&gt;Mercury&lt;/td&gt;
+    &lt;td class="tg-679u"&gt;1&lt;/td&gt;
+    &lt;td class="tg-679u"&gt;1&lt;/td&gt;
+    &lt;td class="tg-679u"&gt;0&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td class="tg-h6w4"&gt;Artemis&lt;/td&gt;
+    &lt;td class="tg-679u"&gt;1&lt;/td&gt;
+    &lt;td class="tg-679u"&gt;0&lt;/td&gt;
+    &lt;td class="tg-679u"&gt;1&lt;/td&gt;
+    &lt;td class="tg-h6w4"&gt;Hebe&lt;/td&gt;
+    &lt;td class="tg-679u"&gt;1&lt;/td&gt;
+    &lt;td class="tg-679u"&gt;1&lt;/td&gt;
+    &lt;td class="tg-679u"&gt;0&lt;/td&gt;
+    &lt;td class="tg-h6w4"&gt;Diana&lt;/td&gt;
+    &lt;td class="tg-679u"&gt;1&lt;/td&gt;
+    &lt;td class="tg-679u"&gt;0&lt;/td&gt;
+    &lt;td class="tg-679u"&gt;0&lt;/td&gt;
+    &lt;td class="tg-h6w4"&gt;Juventas&lt;/td&gt;
+    &lt;td class="tg-679u"&gt;1&lt;/td&gt;
+    &lt;td class="tg-679u"&gt;1&lt;/td&gt;
+    &lt;td class="tg-679u"&gt;0&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td class="tg-h6w4"&gt;Apollo&lt;/td&gt;
+    &lt;td class="tg-679u"&gt;1&lt;/td&gt;
+    &lt;td class="tg-679u"&gt;0&lt;/td&gt;
+    &lt;td class="tg-679u"&gt;1&lt;/td&gt;
+    &lt;td class="tg-h6w4"&gt;Dionysus&lt;/td&gt;
+    &lt;td class="tg-679u"&gt;1&lt;/td&gt;
+    &lt;td class="tg-679u"&gt;1&lt;/td&gt;
+    &lt;td class="tg-679u"&gt;0&lt;/td&gt;
+    &lt;td class="tg-h6w4"&gt;Phoebus&lt;/td&gt;
+    &lt;td class="tg-679u"&gt;1&lt;/td&gt;
+    &lt;td class="tg-679u"&gt;0&lt;/td&gt;
+    &lt;td class="tg-679u"&gt;1&lt;/td&gt;
+    &lt;td class="tg-h6w4"&gt;Bacchus&lt;/td&gt;
+    &lt;td class="tg-679u"&gt;1&lt;/td&gt;
+    &lt;td class="tg-679u"&gt;1&lt;/td&gt;
+    &lt;td class="tg-679u"&gt;0&lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+
+---
+class: middle
+
+## Matching as another form of adjustment
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="libs/remark-latest.min.js"></script>

@@ -3151,3 +3151,272 @@ class: middle
 class: middle
 
 ## Why care about effect modification?
+
+.med[
+- To identify those who might benefit from the treatment, who might not, and who might get hurt.
+- To better understand the mechanisms. 
+- To see whether transportability of causal effects from one to another population would be valid.
+]
+
+--
+.pull-left[.small[
+- Causal effect of heart transplant on mortality differs between men and women, Greeks and Romans.
+- Health effect of cholesterol-lowering drugs in Europeans can be transported to Asians.
+]]
+
+--
+.pull-right[.small[
+- Health effect of increasing household income by $100 in Ethiopia cannot be transported to the UK.
+]]
+
+---
+class: middle
+
+## Stratification as a form of adjustment (1)
+
+.med[
+Normally, 
+- standardization or IPW $\rightarrow$ adjust for $L$
+- stratification $\rightarrow$ identify effect modification by $V$
+]
+
+--
+.med[
+But, sometimes stratification was (mis-)used as adjustment.
+- stratification can only provide stratum-specific effects 
+- none of them quantifies the average causal effect in the entire population.
+- in the example, **exchangeability holds in $L$ but not in $V$**<br> $L$ (severity) was adjusted under each strata of $V$ (nationality).
+]
+
+
+---
+class: middle
+
+## Stratification as a form of adjustment (2)
+
+
+<style type="text/css">
+.tg  {border-collapse:collapse;border-color:#bbb;border-spacing:0;}
+.tg td{background-color:#E0FFEB;border-color:#bbb;border-style:solid;border-width:1px;color:#594F4F;
+  font-family:Arial, sans-serif;font-size:14px;overflow:hidden;padding:10px 5px;word-break:normal;}
+.tg th{background-color:#9DE0AD;border-color:#bbb;border-style:solid;border-width:1px;color:#493F3F;
+  font-family:Arial, sans-serif;font-size:14px;font-weight:normal;overflow:hidden;padding:10px 5px;word-break:normal;}
+.tg .tg-rpp6{background-color:#67fd9a;border-color:inherit;font-size:15px;font-weight:bold;text-align:left;vertical-align:top}
+.tg .tg-dbbi{border-color:inherit;font-size:15px;font-weight:bold;text-align:center;vertical-align:top}
+.tg .tg-h6w4{border-color:inherit;font-size:15px;font-weight:bold;text-align:left;vertical-align:top}
+.tg .tg-679u{background-color:#9698ed;border-color:inherit;font-size:15px;font-weight:bold;text-align:left;vertical-align:top}
+</style>
+<table class="tg">
+<thead>
+  <tr>
+    <th class="tg-dbbi" colspan="8">V = 1 (Greeks)</th>
+    <th class="tg-dbbi" colspan="8">V = 0 (Romans)</th>
+  </tr>
+</thead>
+<tbody>
+  <tr>
+    <td class="tg-h6w4"></td>
+    <td class="tg-h6w4">L</td>
+    <td class="tg-h6w4">A</td>
+    <td class="tg-h6w4">Y</td>
+    <td class="tg-h6w4"></td>
+    <td class="tg-h6w4">L</td>
+    <td class="tg-h6w4">A</td>
+    <td class="tg-h6w4">Y</td>
+    <td class="tg-h6w4"></td>
+    <td class="tg-h6w4">L</td>
+    <td class="tg-h6w4">A</td>
+    <td class="tg-h6w4">Y</td>
+    <td class="tg-h6w4"></td>
+    <td class="tg-h6w4">L</td>
+    <td class="tg-h6w4">A</td>
+    <td class="tg-h6w4">Y</td>
+  </tr>
+  <tr>
+    <td class="tg-h6w4">Rheia</td>
+    <td class="tg-rpp6">0</td>
+    <td class="tg-rpp6">0</td>
+    <td class="tg-rpp6">0</td>
+    <td class="tg-h6w4">Leto</td>
+    <td class="tg-679u">1</td>
+    <td class="tg-679u">0</td>
+    <td class="tg-679u">0</td>
+    <td class="tg-h6w4">Cybele</td>
+    <td class="tg-rpp6">0</td>
+    <td class="tg-rpp6">0</td>
+    <td class="tg-rpp6">0</td>
+    <td class="tg-h6w4">Latona</td>
+    <td class="tg-679u">1</td>
+    <td class="tg-679u">0</td>
+    <td class="tg-679u">0</td>
+  </tr>
+  <tr>
+    <td class="tg-h6w4">Kronos</td>
+    <td class="tg-rpp6">0</td>
+    <td class="tg-rpp6">0</td>
+    <td class="tg-rpp6">1</td>
+    <td class="tg-h6w4">Ares</td>
+    <td class="tg-679u">1</td>
+    <td class="tg-679u">1</td>
+    <td class="tg-679u">1</td>
+    <td class="tg-h6w4">Saturn</td>
+    <td class="tg-rpp6">0</td>
+    <td class="tg-rpp6">0</td>
+    <td class="tg-rpp6">1</td>
+    <td class="tg-h6w4">Mars</td>
+    <td class="tg-679u">1</td>
+    <td class="tg-679u">1</td>
+    <td class="tg-679u">1</td>
+  </tr>
+  <tr>
+    <td class="tg-h6w4">Demeter</td>
+    <td class="tg-rpp6">0</td>
+    <td class="tg-rpp6">0</td>
+    <td class="tg-rpp6">0</td>
+    <td class="tg-h6w4">Athena</td>
+    <td class="tg-679u">1</td>
+    <td class="tg-679u">1</td>
+    <td class="tg-679u">1</td>
+    <td class="tg-h6w4">Ceres</td>
+    <td class="tg-rpp6">0</td>
+    <td class="tg-rpp6">0</td>
+    <td class="tg-rpp6">0</td>
+    <td class="tg-h6w4">Minerva</td>
+    <td class="tg-679u">1</td>
+    <td class="tg-679u">1</td>
+    <td class="tg-679u">1</td>
+  </tr>
+  <tr>
+    <td class="tg-h6w4">Hades</td>
+    <td class="tg-rpp6">0</td>
+    <td class="tg-rpp6">0</td>
+    <td class="tg-rpp6">0</td>
+    <td class="tg-h6w4">Hephaestus</td>
+    <td class="tg-679u">1</td>
+    <td class="tg-679u">1</td>
+    <td class="tg-679u">1</td>
+    <td class="tg-h6w4">Pluto</td>
+    <td class="tg-rpp6">0</td>
+    <td class="tg-rpp6">0</td>
+    <td class="tg-rpp6">0</td>
+    <td class="tg-h6w4">Vulcan</td>
+    <td class="tg-679u">1</td>
+    <td class="tg-679u">1</td>
+    <td class="tg-679u">1</td>
+  </tr>
+  <tr>
+    <td class="tg-h6w4">Hestia</td>
+    <td class="tg-rpp6">0</td>
+    <td class="tg-rpp6">1</td>
+    <td class="tg-rpp6">0</td>
+    <td class="tg-h6w4">Aphrodite</td>
+    <td class="tg-679u">1</td>
+    <td class="tg-679u">1</td>
+    <td class="tg-679u">1</td>
+    <td class="tg-h6w4">Vesta</td>
+    <td class="tg-rpp6">0</td>
+    <td class="tg-rpp6">1</td>
+    <td class="tg-rpp6">0</td>
+    <td class="tg-h6w4">Venus</td>
+    <td class="tg-679u">1</td>
+    <td class="tg-679u">1</td>
+    <td class="tg-679u">1</td>
+  </tr>
+  <tr>
+    <td class="tg-h6w4">Poseidon</td>
+    <td class="tg-rpp6">0</td>
+    <td class="tg-rpp6">1</td>
+    <td class="tg-rpp6">0</td>
+    <td class="tg-h6w4">Cyclope</td>
+    <td class="tg-679u">1</td>
+    <td class="tg-679u">1</td>
+    <td class="tg-679u">1</td>
+    <td class="tg-h6w4">Neptune</td>
+    <td class="tg-rpp6">0</td>
+    <td class="tg-rpp6">1</td>
+    <td class="tg-rpp6">0</td>
+    <td class="tg-h6w4">Seneca</td>
+    <td class="tg-679u">1</td>
+    <td class="tg-679u">1</td>
+    <td class="tg-679u">1</td>
+  </tr>
+  <tr>
+    <td class="tg-h6w4">Hera</td>
+    <td class="tg-rpp6">0</td>
+    <td class="tg-rpp6">1</td>
+    <td class="tg-rpp6">0</td>
+    <td class="tg-h6w4">Persephone</td>
+    <td class="tg-679u">1</td>
+    <td class="tg-679u">1</td>
+    <td class="tg-679u">1</td>
+    <td class="tg-h6w4">Juno</td>
+    <td class="tg-rpp6">0</td>
+    <td class="tg-rpp6">1</td>
+    <td class="tg-rpp6">1</td>
+    <td class="tg-h6w4">Proserpina</td>
+    <td class="tg-679u">1</td>
+    <td class="tg-679u">1</td>
+    <td class="tg-679u">1</td>
+  </tr>
+  <tr>
+    <td class="tg-h6w4">Zeus</td>
+    <td class="tg-rpp6">0</td>
+    <td class="tg-rpp6">1</td>
+    <td class="tg-rpp6">1</td>
+    <td class="tg-h6w4">Hermes</td>
+    <td class="tg-679u">1</td>
+    <td class="tg-679u">1</td>
+    <td class="tg-679u">0</td>
+    <td class="tg-h6w4">Jupiter</td>
+    <td class="tg-rpp6">0</td>
+    <td class="tg-rpp6">1</td>
+    <td class="tg-rpp6">1</td>
+    <td class="tg-h6w4">Mercury</td>
+    <td class="tg-679u">1</td>
+    <td class="tg-679u">1</td>
+    <td class="tg-679u">0</td>
+  </tr>
+  <tr>
+    <td class="tg-h6w4">Artemis</td>
+    <td class="tg-679u">1</td>
+    <td class="tg-679u">0</td>
+    <td class="tg-679u">1</td>
+    <td class="tg-h6w4">Hebe</td>
+    <td class="tg-679u">1</td>
+    <td class="tg-679u">1</td>
+    <td class="tg-679u">0</td>
+    <td class="tg-h6w4">Diana</td>
+    <td class="tg-679u">1</td>
+    <td class="tg-679u">0</td>
+    <td class="tg-679u">0</td>
+    <td class="tg-h6w4">Juventas</td>
+    <td class="tg-679u">1</td>
+    <td class="tg-679u">1</td>
+    <td class="tg-679u">0</td>
+  </tr>
+  <tr>
+    <td class="tg-h6w4">Apollo</td>
+    <td class="tg-679u">1</td>
+    <td class="tg-679u">0</td>
+    <td class="tg-679u">1</td>
+    <td class="tg-h6w4">Dionysus</td>
+    <td class="tg-679u">1</td>
+    <td class="tg-679u">1</td>
+    <td class="tg-679u">0</td>
+    <td class="tg-h6w4">Phoebus</td>
+    <td class="tg-679u">1</td>
+    <td class="tg-679u">0</td>
+    <td class="tg-679u">1</td>
+    <td class="tg-h6w4">Bacchus</td>
+    <td class="tg-679u">1</td>
+    <td class="tg-679u">1</td>
+    <td class="tg-679u">0</td>
+  </tr>
+</tbody>
+</table>
+
+
+---
+class: middle
+
+## Matching as another form of adjustment
