@@ -3096,4 +3096,53 @@ class: middle
 .smaller[
 - The average causal risk difference is $0.55 - 0.4 = 0.15$
 - The average causal risk ratio is $0.55 / 0.4 = 1.375$
+- In this Greeks + Romans population, heart transplant increases the mortality risk.
 ]
+
+---
+class: middle
+
+## Whether nationality $V$ modifies the effect of $A$ on $Y$
+
+.med[
+- The goal is to compute the following two causal effects:
+    - In Greeks: $\text{Pr}[Y^{a = 1} = 1 | V = 1] - \text{Pr}[Y^{a = 0} = 1 | V = 1]$
+    - In Romans: $\text{Pr}[Y^{a = 1} = 1 | V = 0] - \text{Pr}[Y^{a = 0} = 1 | V = 0]$
+- If these two causal risk difference differ, we say that there is **additive effect modification** by $V$. 
+- Similarly for causal risk ratios if interested in multiplicative effect modification.
+]
+
+---
+class: middle
+
+### Two causal effects computed for $V$
+
+.med[
+- In Greeks, $V = 1$ 
+    - causal risk difference was $0$
+    - causal risk ratio was $1$ 
+- In Romans, $V = 0$ similarly (by standardization or IPW):
+    - causal risk difference was $0.3$
+    - causal risk ratio was $2.0$
+]
+
+--
+.med[
+- There is evidence that both additive and multiplicative effect modification by nationality $V$ of the effect of $A$ on $Y$.
+- However, this effect modification is **not qualitative**, because the effect was null or harmful in both strata.
+]
+
+---
+class: middle
+
+### However, we don't know the true mechanism of this effect modification
+
+- It is possible that nationality is simply a marker for the effect modification.
+
+--
+- For example, maybe the surgery technique is better in Greece than in Rome. 
+
+--
+- Nationality is called: **surrogate effect modifier** 
+- Quality of surgery is the real: **causal effect modifier**
+
