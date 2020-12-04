@@ -3144,5 +3144,10 @@ class: middle
 
 --
 - Nationality is called: **surrogate effect modifier** 
-- Quality of surgery is the real: **causal effect modifier**
+- Sometimes we may just say: "effect heterogeneity across strata of $V$".
+- Quality of surgery is the real **causal effect modifier**
 
+---
+class: middle
+
+## Why care about effect modification?
