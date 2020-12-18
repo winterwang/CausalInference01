@@ -3073,7 +3073,7 @@ class: middle
 ---
 class: middle
 
-### Population risk under treatment or not <br> by stratification
+### Population risk under treatment or not <br> by stratification on $L$ critical condition
 
 .smaller[
 - $\text{Pr}[Y = 1 | L = 0, A = 0] = 2/8$
@@ -3108,7 +3108,7 @@ class: middle
 - The goal is to compute the following two causal effects:
     - In Greeks: $\text{Pr}[Y^{a = 1} = 1 | V = 1] - \text{Pr}[Y^{a = 0} = 1 | V = 1]$
     - In Romans: $\text{Pr}[Y^{a = 1} = 1 | V = 0] - \text{Pr}[Y^{a = 0} = 1 | V = 0]$
-- If these two causal risk difference differ, we say that there is **additive effect modification** by $V$. 
+- If these two causal risk difference differ, we say that there is an **additive effect modification** by $V$. 
 - Similarly for causal risk ratios if interested in multiplicative effect modification.
 ]
 
@@ -3128,7 +3128,7 @@ class: middle
 
 --
 .med[
-- There is evidence that both additive and multiplicative effect modification by nationality $V$ of the effect of $A$ on $Y$.
+- There is evidence that both additive and multiplicative effect modification by nationality $V$ on the effect of $A$ on $Y$.
 - However, this effect modification is **not qualitative**, because the effect was null or harmful in both strata.
 ]
 
@@ -3415,6 +3415,38 @@ class: middle
 </tbody>
 </table>
 
+???
+
+- In this data example, we used nationality variable V as stratification, but critical condition L as adjustment. 
+- The difference is that L is guaranteed with exchangeability but V is not. 
+
+---
+class: middle
+
+## What does this mean?
+
+.med[
+- It means that when we are doing stratification to estimate the effect of heart transplant in the previous table,
+
+- We must compute the effect <br> in Romans with $L = 1$, in Greeks with $L = 1$ <br> in Romans with $L = 0$, in Greeks with $L = 0$.
+- We cannot calculate the effect simply in Romans and Greeks. 
+- Because nationality $V$ itself is not sufficient to guarantee conditional exchangeability.
+]
+
+---
+class: middle
+
+## Additional problems
+
+
+- The use of stratification are non-collapsible for certain effect measures such as the odds ratio.
+
+- Sometimes investigators can only compute causal effect in only some of the strata and call this restriction. For causal inference, stratification requires positivity in addition to exchangeability.
+
+???
+
+The causal effect cannot but commputed in subsets in which there are only treated or untreated individuals.
+
 
 ---
 class: middle
@@ -3523,3 +3555,245 @@ class: middle
 </tbody>
 </table>
 ]
+
+
+---
+class: middle
+
+## Matching to adjust (1) 
+
+.pull-left[.med[
+- We refer to each untreated and corresponding treated individual as a **matched pair**, and to the variable $L$ as the **matching factor(s)**.
+- In this dataset, the proportion (distribution) of individuals in critical condition $L = 1$ is the same in the treated and untreated.
+]]
+
+.pull-right[
+<style type="text/css">
+.tg  {border-collapse:collapse;border-color:#bbb;border-spacing:0;}
+.tg td{background-color:#E0FFEB;border-color:#bbb;border-style:solid;border-width:1px;color:#594F4F;
+  font-family:Arial, sans-serif;font-size:14px;overflow:hidden;padding:10px 5px;word-break:normal;}
+.tg th{background-color:#9DE0AD;border-color:#bbb;border-style:solid;border-width:1px;color:#493F3F;
+  font-family:Arial, sans-serif;font-size:14px;font-weight:normal;overflow:hidden;padding:10px 5px;word-break:normal;}
+.tg .tg-0lax{text-align:left;vertical-align:top}
+</style>
+<table class="tg">
+<thead>
+  <tr>
+    <th class="tg-0lax"></th>
+    <th class="tg-0lax">L</th>
+    <th class="tg-0lax">A</th>
+    <th class="tg-0lax">Y</th>
+    <th class="tg-0lax"></th>
+    <th class="tg-0lax">L</th>
+    <th class="tg-0lax">A</th>
+    <th class="tg-0lax">Y</th>
+  </tr>
+</thead>
+<tbody>
+  <tr>
+    <td class="tg-0lax">Rheia</td>
+    <td class="tg-0lax">0</td>
+    <td class="tg-0lax">0</td>
+    <td class="tg-0lax">0</td>
+    <td class="tg-0lax">Hestia</td>
+    <td class="tg-0lax">0</td>
+    <td class="tg-0lax">1</td>
+    <td class="tg-0lax">0</td>
+  </tr>
+  <tr>
+    <td class="tg-0lax">Kronos</td>
+    <td class="tg-0lax">0</td>
+    <td class="tg-0lax">0</td>
+    <td class="tg-0lax">1</td>
+    <td class="tg-0lax">Poseidon</td>
+    <td class="tg-0lax">0</td>
+    <td class="tg-0lax">1</td>
+    <td class="tg-0lax">0</td>
+  </tr>
+  <tr>
+    <td class="tg-0lax">Demeter</td>
+    <td class="tg-0lax">0</td>
+    <td class="tg-0lax">0</td>
+    <td class="tg-0lax">0</td>
+    <td class="tg-0lax">Hera</td>
+    <td class="tg-0lax">0</td>
+    <td class="tg-0lax">1</td>
+    <td class="tg-0lax">0</td>
+  </tr>
+  <tr>
+    <td class="tg-0lax">Hades</td>
+    <td class="tg-0lax">0</td>
+    <td class="tg-0lax">0</td>
+    <td class="tg-0lax">0</td>
+    <td class="tg-0lax">Zeus</td>
+    <td class="tg-0lax">0</td>
+    <td class="tg-0lax">1</td>
+    <td class="tg-0lax">1</td>
+  </tr>
+  <tr>
+    <td class="tg-0lax">Artemis</td>
+    <td class="tg-0lax">1</td>
+    <td class="tg-0lax">0</td>
+    <td class="tg-0lax">1</td>
+    <td class="tg-0lax">Ares</td>
+    <td class="tg-0lax">1</td>
+    <td class="tg-0lax">1</td>
+    <td class="tg-0lax">1</td>
+  </tr>
+  <tr>
+    <td class="tg-0lax">Apollo</td>
+    <td class="tg-0lax">1</td>
+    <td class="tg-0lax">0</td>
+    <td class="tg-0lax">1</td>
+    <td class="tg-0lax">Aphrodite</td>
+    <td class="tg-0lax">1</td>
+    <td class="tg-0lax">1</td>
+    <td class="tg-0lax">1</td>
+  </tr>
+  <tr>
+    <td class="tg-0lax">Leto</td>
+    <td class="tg-0lax">1</td>
+    <td class="tg-0lax">0</td>
+    <td class="tg-0lax">0</td>
+    <td class="tg-0lax">Hermes</td>
+    <td class="tg-0lax">1</td>
+    <td class="tg-0lax">1</td>
+    <td class="tg-0lax">0</td>
+  </tr>
+</tbody>
+</table>
+]
+
+
+
+---
+class: middle
+
+## Matching to adjust (2)
+
+.pull-left[.med[
+- After matching on $L$, now the treated and untreated are exchangeable. 
+- Now we can calculate the average outcomes and compare directly:
+  - risk in the treated: 3/7
+  - risk in the untreated: 3/7
+- Causal risk difference is 0, causal risk ratio is 1.
+]]
+
+
+
+
+.pull-right[
+<style type="text/css">
+.tg  {border-collapse:collapse;border-color:#bbb;border-spacing:0;}
+.tg td{background-color:#E0FFEB;border-color:#bbb;border-style:solid;border-width:1px;color:#594F4F;
+  font-family:Arial, sans-serif;font-size:14px;overflow:hidden;padding:10px 5px;word-break:normal;}
+.tg th{background-color:#9DE0AD;border-color:#bbb;border-style:solid;border-width:1px;color:#493F3F;
+  font-family:Arial, sans-serif;font-size:14px;font-weight:normal;overflow:hidden;padding:10px 5px;word-break:normal;}
+.tg .tg-0lax{text-align:left;vertical-align:top}
+</style>
+<table class="tg">
+<thead>
+  <tr>
+    <th class="tg-0lax"></th>
+    <th class="tg-0lax">L</th>
+    <th class="tg-0lax">A</th>
+    <th class="tg-0lax">Y</th>
+    <th class="tg-0lax"></th>
+    <th class="tg-0lax">L</th>
+    <th class="tg-0lax">A</th>
+    <th class="tg-0lax">Y</th>
+  </tr>
+</thead>
+<tbody>
+  <tr>
+    <td class="tg-0lax">Rheia</td>
+    <td class="tg-0lax">0</td>
+    <td class="tg-0lax">0</td>
+    <td class="tg-0lax">0</td>
+    <td class="tg-0lax">Hestia</td>
+    <td class="tg-0lax">0</td>
+    <td class="tg-0lax">1</td>
+    <td class="tg-0lax">0</td>
+  </tr>
+  <tr>
+    <td class="tg-0lax">Kronos</td>
+    <td class="tg-0lax">0</td>
+    <td class="tg-0lax">0</td>
+    <td class="tg-0lax">1</td>
+    <td class="tg-0lax">Poseidon</td>
+    <td class="tg-0lax">0</td>
+    <td class="tg-0lax">1</td>
+    <td class="tg-0lax">0</td>
+  </tr>
+  <tr>
+    <td class="tg-0lax">Demeter</td>
+    <td class="tg-0lax">0</td>
+    <td class="tg-0lax">0</td>
+    <td class="tg-0lax">0</td>
+    <td class="tg-0lax">Hera</td>
+    <td class="tg-0lax">0</td>
+    <td class="tg-0lax">1</td>
+    <td class="tg-0lax">0</td>
+  </tr>
+  <tr>
+    <td class="tg-0lax">Hades</td>
+    <td class="tg-0lax">0</td>
+    <td class="tg-0lax">0</td>
+    <td class="tg-0lax">0</td>
+    <td class="tg-0lax">Zeus</td>
+    <td class="tg-0lax">0</td>
+    <td class="tg-0lax">1</td>
+    <td class="tg-0lax">1</td>
+  </tr>
+  <tr>
+    <td class="tg-0lax">Artemis</td>
+    <td class="tg-0lax">1</td>
+    <td class="tg-0lax">0</td>
+    <td class="tg-0lax">1</td>
+    <td class="tg-0lax">Ares</td>
+    <td class="tg-0lax">1</td>
+    <td class="tg-0lax">1</td>
+    <td class="tg-0lax">1</td>
+  </tr>
+  <tr>
+    <td class="tg-0lax">Apollo</td>
+    <td class="tg-0lax">1</td>
+    <td class="tg-0lax">0</td>
+    <td class="tg-0lax">1</td>
+    <td class="tg-0lax">Aphrodite</td>
+    <td class="tg-0lax">1</td>
+    <td class="tg-0lax">1</td>
+    <td class="tg-0lax">1</td>
+  </tr>
+  <tr>
+    <td class="tg-0lax">Leto</td>
+    <td class="tg-0lax">1</td>
+    <td class="tg-0lax">0</td>
+    <td class="tg-0lax">0</td>
+    <td class="tg-0lax">Hermes</td>
+    <td class="tg-0lax">1</td>
+    <td class="tg-0lax">1</td>
+    <td class="tg-0lax">0</td>
+  </tr>
+</tbody>
+</table>
+]
+
+---
+class: middle
+
+## Summary
+
+- Standardization, IPW, stratification/restriction, and matching are different approaches to estimate average causal effect but they estimate different types of causal effects. 
+
+--
+  - standardization and IPW can be used to compute either marginal or conditional effects
+  - stratification/restriction and matching can be used only to compute conditional effects.
+  - if there is no effect modification, four approaches will be equal
+
+
+
+---
+class: middle, inverse, center
+
+# Chapter 5 <br> Interaction

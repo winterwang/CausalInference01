@@ -4,7 +4,7 @@
     <title>Causal Inference</title>
     <meta charset="utf-8" />
     <meta name="author" content="CWAN| 王　超辰" />
-    <script src="libs/header-attrs-2.5/header-attrs.js"></script>
+    <script src="libs/header-attrs-2.6/header-attrs.js"></script>
     <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
   </head>
   <body>
@@ -3064,7 +3064,7 @@ class: middle
 ---
 class: middle
 
-### Population risk under treatment or not &lt;br&gt; by stratification
+### Population risk under treatment or not &lt;br&gt; by stratification on `\(L\)` critical condition
 
 .smaller[
 - `\(\text{Pr}[Y = 1 | L = 0, A = 0] = 2/8\)`
@@ -3099,7 +3099,7 @@ class: middle
 - The goal is to compute the following two causal effects:
     - In Greeks: `\(\text{Pr}[Y^{a = 1} = 1 | V = 1] - \text{Pr}[Y^{a = 0} = 1 | V = 1]\)`
     - In Romans: `\(\text{Pr}[Y^{a = 1} = 1 | V = 0] - \text{Pr}[Y^{a = 0} = 1 | V = 0]\)`
-- If these two causal risk difference differ, we say that there is **additive effect modification** by `\(V\)`. 
+- If these two causal risk difference differ, we say that there is an **additive effect modification** by `\(V\)`. 
 - Similarly for causal risk ratios if interested in multiplicative effect modification.
 ]
 
@@ -3119,7 +3119,7 @@ class: middle
 
 --
 .med[
-- There is evidence that both additive and multiplicative effect modification by nationality `\(V\)` of the effect of `\(A\)` on `\(Y\)`.
+- There is evidence that both additive and multiplicative effect modification by nationality `\(V\)` on the effect of `\(A\)` on `\(Y\)`.
 - However, this effect modification is **not qualitative**, because the effect was null or harmful in both strata.
 ]
 
@@ -3406,6 +3406,38 @@ class: middle
 &lt;/tbody&gt;
 &lt;/table&gt;
 
+???
+
+- In this data example, we used nationality variable V as stratification, but critical condition L as adjustment. 
+- The difference is that L is guaranteed with exchangeability but V is not. 
+
+---
+class: middle
+
+## What does this mean?
+
+.med[
+- It means that when we are doing stratification to estimate the effect of heart transplant in the previous table,
+
+- We must compute the effect &lt;br&gt; in Romans with `\(L = 1\)`, in Greeks with `\(L = 1\)` &lt;br&gt; in Romans with `\(L = 0\)`, in Greeks with `\(L = 0\)`.
+- We cannot calculate the effect simply in Romans and Greeks. 
+- Because nationality `\(V\)` itself is not sufficient to guarantee conditional exchangeability.
+]
+
+---
+class: middle
+
+## Additional problems
+
+
+- The use of stratification are non-collapsible for certain effect measures such as the odds ratio.
+
+- Sometimes investigators can only compute causal effect in only some of the strata and call this restriction. For causal inference, stratification requires positivity in addition to exchangeability.
+
+???
+
+The causal effect cannot but commputed in subsets in which there are only treated or untreated individuals.
+
 
 ---
 class: middle
@@ -3514,6 +3546,248 @@ class: middle
 &lt;/tbody&gt;
 &lt;/table&gt;
 ]
+
+
+---
+class: middle
+
+## Matching to adjust (1) 
+
+.pull-left[.med[
+- We refer to each untreated and corresponding treated individual as a **matched pair**, and to the variable `\(L\)` as the **matching factor(s)**.
+- In this dataset, the proportion (distribution) of individuals in critical condition `\(L = 1\)` is the same in the treated and untreated.
+]]
+
+.pull-right[
+&lt;style type="text/css"&gt;
+.tg  {border-collapse:collapse;border-color:#bbb;border-spacing:0;}
+.tg td{background-color:#E0FFEB;border-color:#bbb;border-style:solid;border-width:1px;color:#594F4F;
+  font-family:Arial, sans-serif;font-size:14px;overflow:hidden;padding:10px 5px;word-break:normal;}
+.tg th{background-color:#9DE0AD;border-color:#bbb;border-style:solid;border-width:1px;color:#493F3F;
+  font-family:Arial, sans-serif;font-size:14px;font-weight:normal;overflow:hidden;padding:10px 5px;word-break:normal;}
+.tg .tg-0lax{text-align:left;vertical-align:top}
+&lt;/style&gt;
+&lt;table class="tg"&gt;
+&lt;thead&gt;
+  &lt;tr&gt;
+    &lt;th class="tg-0lax"&gt;&lt;/th&gt;
+    &lt;th class="tg-0lax"&gt;L&lt;/th&gt;
+    &lt;th class="tg-0lax"&gt;A&lt;/th&gt;
+    &lt;th class="tg-0lax"&gt;Y&lt;/th&gt;
+    &lt;th class="tg-0lax"&gt;&lt;/th&gt;
+    &lt;th class="tg-0lax"&gt;L&lt;/th&gt;
+    &lt;th class="tg-0lax"&gt;A&lt;/th&gt;
+    &lt;th class="tg-0lax"&gt;Y&lt;/th&gt;
+  &lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+    &lt;td class="tg-0lax"&gt;Rheia&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;0&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;0&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;0&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;Hestia&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;0&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;1&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;0&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td class="tg-0lax"&gt;Kronos&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;0&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;0&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;1&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;Poseidon&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;0&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;1&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;0&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td class="tg-0lax"&gt;Demeter&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;0&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;0&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;0&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;Hera&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;0&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;1&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;0&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td class="tg-0lax"&gt;Hades&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;0&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;0&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;0&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;Zeus&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;0&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;1&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;1&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td class="tg-0lax"&gt;Artemis&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;1&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;0&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;1&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;Ares&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;1&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;1&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;1&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td class="tg-0lax"&gt;Apollo&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;1&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;0&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;1&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;Aphrodite&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;1&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;1&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;1&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td class="tg-0lax"&gt;Leto&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;1&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;0&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;0&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;Hermes&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;1&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;1&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;0&lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+]
+
+
+
+---
+class: middle
+
+## Matching to adjust (2)
+
+.pull-left[.med[
+- After matching on `\(L\)`, now the treated and untreated are exchangeable. 
+- Now we can calculate the average outcomes and compare directly:
+  - risk in the treated: 3/7
+  - risk in the untreated: 3/7
+- Causal risk difference is 0, causal risk ratio is 1.
+]]
+
+
+
+
+.pull-right[
+&lt;style type="text/css"&gt;
+.tg  {border-collapse:collapse;border-color:#bbb;border-spacing:0;}
+.tg td{background-color:#E0FFEB;border-color:#bbb;border-style:solid;border-width:1px;color:#594F4F;
+  font-family:Arial, sans-serif;font-size:14px;overflow:hidden;padding:10px 5px;word-break:normal;}
+.tg th{background-color:#9DE0AD;border-color:#bbb;border-style:solid;border-width:1px;color:#493F3F;
+  font-family:Arial, sans-serif;font-size:14px;font-weight:normal;overflow:hidden;padding:10px 5px;word-break:normal;}
+.tg .tg-0lax{text-align:left;vertical-align:top}
+&lt;/style&gt;
+&lt;table class="tg"&gt;
+&lt;thead&gt;
+  &lt;tr&gt;
+    &lt;th class="tg-0lax"&gt;&lt;/th&gt;
+    &lt;th class="tg-0lax"&gt;L&lt;/th&gt;
+    &lt;th class="tg-0lax"&gt;A&lt;/th&gt;
+    &lt;th class="tg-0lax"&gt;Y&lt;/th&gt;
+    &lt;th class="tg-0lax"&gt;&lt;/th&gt;
+    &lt;th class="tg-0lax"&gt;L&lt;/th&gt;
+    &lt;th class="tg-0lax"&gt;A&lt;/th&gt;
+    &lt;th class="tg-0lax"&gt;Y&lt;/th&gt;
+  &lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+    &lt;td class="tg-0lax"&gt;Rheia&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;0&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;0&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;0&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;Hestia&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;0&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;1&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;0&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td class="tg-0lax"&gt;Kronos&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;0&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;0&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;1&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;Poseidon&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;0&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;1&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;0&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td class="tg-0lax"&gt;Demeter&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;0&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;0&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;0&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;Hera&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;0&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;1&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;0&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td class="tg-0lax"&gt;Hades&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;0&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;0&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;0&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;Zeus&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;0&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;1&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;1&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td class="tg-0lax"&gt;Artemis&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;1&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;0&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;1&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;Ares&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;1&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;1&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;1&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td class="tg-0lax"&gt;Apollo&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;1&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;0&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;1&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;Aphrodite&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;1&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;1&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;1&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td class="tg-0lax"&gt;Leto&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;1&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;0&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;0&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;Hermes&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;1&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;1&lt;/td&gt;
+    &lt;td class="tg-0lax"&gt;0&lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+]
+
+---
+class: middle
+
+## Summary
+
+- Standardization, IPW, stratification/restriction, and matching are different approaches to estimate average causal effect but they estimate different types of causal effects. 
+
+--
+  - standardization and IPW can be used to compute either marginal or conditional effects
+  - stratification/restriction and matching can be used only to compute conditional effects.
+  - if there is no effect modification, four approaches will be equal
+
+
+
+---
+class: middle, inverse, center
+
+# Chapter 5 &lt;br&gt; Interaction
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="libs/remark-latest.min.js"></script>
