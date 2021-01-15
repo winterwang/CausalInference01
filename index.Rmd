@@ -2673,7 +2673,7 @@ class: middle
   <tr>
     <td class="tg-0lax">Hebe</td>
     <td class="tg-0lax">1</td>
-    <td class="tg-0lax">1</td>
+    <td class="tg-e76x">1</td>
     <td class="tg-0lax">0</td>
   </tr>
 </tbody>
