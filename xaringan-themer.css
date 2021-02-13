@@ -18,7 +18,7 @@
  * ------------------------------------------------------- */
 @import url(https://fonts.googleapis.com/css?family=Noto+Sans+JP:300,300i);
 @import url(https://fonts.googleapis.com/css?family=Josefin+Sans);
-@import url(https://fonts.googleapis.com/css?family=Droid+Mono);
+/*@import url(https://fonts.googleapis.com/css?family=Droid+Mono);*/
 
 
 body {
@@ -93,7 +93,7 @@ a, a > code {
 }
 .title-slide {
   background-color: #1c5253;
-  background-image: url(pic/);
+  /*background-image: url(pic/);*/
   background-size: cover;
   
 }
