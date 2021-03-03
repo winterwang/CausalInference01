@@ -3793,6 +3793,7 @@ class: middle
 
 
 
+
 ---
 class: middle, inverse, center
 
@@ -3803,8 +3804,720 @@ class: middle
 
 ## Outline
 
-- Interaction requires a **joint intervention**
+1. Interaction requires a **joint intervention**
+
+2. Identifying interaction
+
+3. Counterfactual response types and interactions
+
+---
+class: middle
+
+### Interaction requires a **joint intervention**
+
+.small[
+- **Joint intervention**, for example:
+  - $A = 1$: heart transplant; <br> $A = 0$: no heart transplant
+  - $E = 1$: multivitamin supplement provided; <br> $E = 0$: no vitamin provided
+
+- 4 types of treatments:
+  $$(A = 1, E = 1), (A = 0, E = 1)  \\(A = 1, E = 0), (A = 0, E = 0)$$
+  
+- 4 types of potential outcomes: 
+  $$Y^{a = 1, e = 1}, Y^{a = 0, e = 1} \\Y^{a = 1, e = 0}, Y^{a = 0, e = 0}$$
+]
+
+---
+class: middle 
+### Interaction requires a **joint intervention**
+
+
+.full-width[.content-box-red[.bold[.small[
+Definition under **counterfactual framework**: <br>
+There is **interaction** between two treatments $A, E$ if: 
+<br> the causal effect of $A$ on $Y$ when set $E = 1$ differs 
+<br> the causal effect of $A$ on $Y$ when set $E = 0$
+]]]] 
+
+.small[
+- On the risk difference (additive) scale, there is interaction between A and E if 
+
+$$\text{Pr}[Y^{a = 1, \color{red}{e = 1}} = 1] - \text{Pr}[Y^{a = 0, \color{red}{e = 1}} = 1] \neq\\\text{Pr}[Y^{a = 1, \color{red}{e = 0}} =1] - \text{Pr}[Y^{a = 0, \color{red}{e=0}} = 1]$$
+
+$$\text{Or,}$$ 
+$$\text{Pr}[Y^{\color{red}{a = 1}, {e = 1}} = 1] - \text{Pr}[Y^{\color{red}{a = 1}, {e = 0}} =1] \neq\\\text{Pr}[Y^{\color{red}{a = 0}, {e = 1}} = 1] - \text{Pr}[Y^{\color{red}{a = 0}, {e=0}} = 1]$$
+]
+
+
+???
+
+There would an interaction between transplant A and vitamins E of the causal effect of transplant on survival had everybody taken vitamins were different from the causal effect of transplant on survival had nobody taken vitamins. 
 
 
 ---
-class: 
+class: middle
+
+### Interaction requires a **joint intervention**
+
+.full-width[.content-box-red[.bold[.small[
+Difference between **interaction** and **effect modification**: <br>
+- Variable $V$ is a modifier of the effect of $A$ on $Y$ <br>when the effect of $A$ on $Y$ differs across different levels of $V$ <br>
+$\rightarrow$ sex was an modifier of the effect of heart transplant on survival, but we **never discuss effect of sex on survival** 
+
+- Interaction between $A$ and $E$, means that we consider $E$ and $A$ equally, they are both interventions with potential outcomes <br>
+$\rightarrow$ refers to the joint causal effect of two (or more) treatments
+]]]]  
+
+---
+class: middle
+
+### Technical Point 5.1 (P57)
+
+
+
+.small[
+Interaction on the **additive scale**:
+$$\text{Pr}[Y^{a = 1, {e = 1}} = 1] - \text{Pr}[Y^{a = 0, {e = 1}} = 1] \neq \text{Pr}[Y^{a = 1, {e = 0}} =1] - \text{Pr}[Y^{a = 0, {e=0}} = 1]$$
+]
+
+--
+.small[Can be re-written as:
+
+$$\text{Pr}[Y^{a = 1, e= 1} = 1] \neq \{ \text{Pr}[Y^{a = 1, {e = 0}} =1] - \text{Pr}[Y^{a = 0, {e=0}} = 1] \} + \text{Pr}[Y^{a = 0, {e = 1}} = 1]$$
+]
+
+--
+.small[Subtracting $\text{Pr}[Y^{a = 0, {e=0}} = 1]$ from both sides we can get:
+
+$$\color{blue}{\text{causal risk difference }\text{Pr}[Y^{a = 1, e= 1} = 1] - \text{Pr}[Y^{a = 0, {e=0}} = 1]} \neq \\ \{ \text{Pr}[Y^{a = 1, {e = 0}} =1] - \text{Pr}[Y^{a = 0, {e=0}} = 1] \} + \{\text{Pr}[Y^{a = 0, {e = 1}} = 1] - \text{Pr}[Y^{a = 0, {e=0}} = 1]\}$$
+
+
+- if $\neq$ can be replaced with $>$: **superadditive**
+- if $\neq$ can be replaced with $<$: **subadditive**
+]
+
+???
+- is additive because it can be written as the sum of the causal risk difference that measures the effect of A in the absence of E, and the effect of E in the absence of A. 
+
+---
+class: middle
+
+### Identifying interaction
+
+.med[
+- **Exchangeability, positivity, and consistency** are required for both $A, E$
+
+- When $E$ was assigned randomly, $E$ are considered to be exchangeable. <br>Then, **definition of interaction conincides effect modification**: ]
+
+.med[
+$$\text{Pr}[Y^{a = 1, {e = 1}} = 1] - \text{Pr}[Y^{a = 0, {e = 1}} = 1] \neq\\ \text{Pr}[Y^{a = 1, {e = 0}} =1] - \text{Pr}[Y^{a = 0, {e=0}} = 1]$$
+$$\Leftrightarrow \text{Pr}[Y^{a = 1} = 1 | E =1] - \text{Pr}[Y^{a = 0} = 1| E =1] \neq\\ \text{Pr}[Y^{a = 1} =1| E =0] - \text{Pr}[Y^{a = 0} = 1| E =0]$$
+
+]
+
+
+---
+class: middle
+
+### Identifying interaction
+
+.med[
+- When $E$ was not randomly assigned
+    - Rather than viewing $A$ and $E$ separately, we can view $AE$ as one treatment with four levels: $(11, 01, 10, 00)$
+    - Then we can use standardization, IPW, as usual but longer lists to compute
+]
+
+--
+.med[
+- When conditional exchangeability is assumed for $A$ but not $E$
+    - We cannot assess interaction between $A$ and $E$; 
+    - But we can still assess effect modification by $E$ 
+    - Because we don't need exchangeability, positivity, consistency to assess effect modification
+    - So it is possible that there is effect modification but without interaction
+]
+
+
+---
+class: middle
+
+### Counterfactual response types 
+
+.med[
+- There are four types of people by their response: 
+    - **Doomed:** $Y^a = 1$ regardless of which treatment; 
+    - **Helped:** $Y^a = 1$ only if untreated;
+    - **Hurt:** $Y^a = 1$ only if treated;
+    - **Immune:** $Y^a = 0$ regardless of which treatment
+]
+
+
+<style type="text/css">
+.tg  {border:none;border-collapse:collapse;border-color:#bbb;border-spacing:0;}
+.tg td{background-color:#E0FFEB;border-color:#bbb;border-style:solid;border-width:0px;color:#594F4F;
+  font-family:Arial, sans-serif;font-size:14px;overflow:hidden;padding:10px 5px;word-break:normal;}
+.tg th{background-color:#9DE0AD;border-color:#bbb;border-style:solid;border-width:0px;color:#493F3F;
+  font-family:Arial, sans-serif;font-size:14px;font-weight:normal;overflow:hidden;padding:10px 5px;word-break:normal;}
+.tg .tg-baqh{text-align:center;vertical-align:top}
+.tg .tg-c3ow{border-color:inherit;text-align:center;vertical-align:top}
+.tg .tg-0pky{border-color:inherit;text-align:left;vertical-align:top}
+.tg .tg-0lax{text-align:left;vertical-align:top}
+</style>
+<table class="tg">
+<thead>
+  <tr>
+    <th class="tg-0pky"></th>
+    <th class="tg-c3ow">\[Y^{a = 0}\]</th>
+    <th class="tg-c3ow">\[Y^{a = 1}\]</th>
+  </tr>
+</thead>
+<tbody>
+  <tr>
+    <td class="tg-0pky">Doomed</td>
+    <td class="tg-c3ow">1</td>
+    <td class="tg-c3ow">1</td>
+  </tr>
+  <tr>
+    <td class="tg-0pky">Helped</td>
+    <td class="tg-c3ow">1</td>
+    <td class="tg-c3ow">0</td>
+  </tr>
+  <tr>
+    <td class="tg-0pky">Hurt</td>
+    <td class="tg-c3ow">0</td>
+    <td class="tg-c3ow">1</td>
+  </tr>
+  <tr>
+    <td class="tg-0lax">Immune</td>
+    <td class="tg-baqh">0</td>
+    <td class="tg-baqh">0</td>
+  </tr>
+</tbody>
+</table>
+
+---
+class: middle
+
+### Counterfactual response types 
+
+
+.pull-Halfleft[
+.small[
+- When there are two dichotomous treatments, there are 16 possible response types:
+
+    - Type 1 are **doomed**;
+    
+    - Type 16 are **immune**; 
+    
+    - If everyone are either type 1 or 16 <br> neither $A$ or $E$ has any causal effect on $Y$
+
+]
+
+
+]
+
+.pull-halfhalfright[
+.tiny[<style type="text/css">
+.tg  {border:none;border-collapse:collapse;border-color:#bbb;border-spacing:0;}
+.tg td{background-color:#E0FFEB;border-color:#bbb;border-style:solid;border-width:0px;color:#594F4F;
+  font-family:Arial, sans-serif;font-size:14px;overflow:hidden;padding:10px 5px;word-break:normal;}
+.tg th{background-color:#9DE0AD;border-color:#bbb;border-style:solid;border-width:0px;color:#493F3F;
+  font-family:Arial, sans-serif;font-size:14px;font-weight:normal;overflow:hidden;padding:10px 5px;word-break:normal;}
+.tg .tg-r74k{border-color:inherit;color:#cb0000;text-align:right;vertical-align:top}
+.tg .tg-l5kv{background-color:#9de0ad;border-color:inherit;font-size:13px;text-align:left;vertical-align:top}
+.tg .tg-idhl{border-color:inherit;color:#cb0000;font-size:13px;text-align:right;vertical-align:top}
+.tg .tg-56tm{background-color:#9de0ad;border-color:inherit;text-align:left;vertical-align:top}
+.tg .tg-lca9{background-color:#9de0ad;border-color:inherit;font-size:13px;text-align:center;vertical-align:top}
+.tg .tg-znh0{border-color:inherit;font-size:13px;text-align:right;vertical-align:top}
+.tg .tg-76qt{border-color:inherit;font-size:13px;text-align:center;vertical-align:top}
+.tg .tg-4td6{background-color:#9de0ad;border-color:inherit;font-size:13px;text-align:right;vertical-align:top}
+.tg .tg-h8ki{border-color:inherit;color:#cb0000;font-size:13px;text-align:center;vertical-align:top}
+.tg .tg-dvpl{border-color:inherit;text-align:right;vertical-align:top}
+</style>
+<table class="tg">
+<thead>
+  <tr>
+    <th class="tg-znh0"></th>
+    <th class="tg-76qt" colspan="9">\[Y^{a,e} \text{ for each } a, e \text{ value}\]</th>
+  </tr>
+</thead>
+<tbody>
+  <tr>
+    <td class="tg-4td6">Type</td>
+    <td class="tg-lca9">(1, 1)</td>
+    <td class="tg-lca9">(0, 1)</td>
+    <td class="tg-lca9">(1, 0)</td>
+    <td class="tg-lca9">(0, 0)</td>
+    <td class="tg-56tm">Type</td>
+    <td class="tg-l5kv">(1, 1)</td>
+    <td class="tg-l5kv">(0, 1)</td>
+    <td class="tg-l5kv">(1, 0)</td>
+    <td class="tg-l5kv">(0, 0)</td>
+  </tr>
+  <tr>
+    <td class="tg-idhl">1</td>
+    <td class="tg-h8ki">1</td>
+    <td class="tg-h8ki">1</td>
+    <td class="tg-h8ki">1</td>
+    <td class="tg-h8ki">1</td>
+    <td class="tg-dvpl">9</td>
+    <td class="tg-76qt">0</td>
+    <td class="tg-76qt">1</td>
+    <td class="tg-76qt">1</td>
+    <td class="tg-76qt">1</td>
+  </tr>
+  <tr>
+    <td class="tg-znh0">2</td>
+    <td class="tg-76qt">1</td>
+    <td class="tg-76qt">1</td>
+    <td class="tg-76qt">1</td>
+    <td class="tg-76qt">0</td>
+    <td class="tg-dvpl">10</td>
+    <td class="tg-76qt">0</td>
+    <td class="tg-76qt">1</td>
+    <td class="tg-76qt">1</td>
+    <td class="tg-76qt">0</td>
+  </tr>
+  <tr>
+    <td class="tg-znh0">3</td>
+    <td class="tg-76qt">1</td>
+    <td class="tg-76qt">1</td>
+    <td class="tg-76qt">0</td>
+    <td class="tg-76qt">1</td>
+    <td class="tg-dvpl">11</td>
+    <td class="tg-76qt">0</td>
+    <td class="tg-76qt">1</td>
+    <td class="tg-76qt">0</td>
+    <td class="tg-76qt">1</td>
+  </tr>
+  <tr>
+    <td class="tg-znh0">4</td>
+    <td class="tg-76qt">1</td>
+    <td class="tg-76qt">1</td>
+    <td class="tg-76qt">0</td>
+    <td class="tg-76qt">0</td>
+    <td class="tg-dvpl">12</td>
+    <td class="tg-76qt">0</td>
+    <td class="tg-76qt">1</td>
+    <td class="tg-76qt">0</td>
+    <td class="tg-76qt">0</td>
+  </tr>
+  <tr>
+    <td class="tg-znh0">5</td>
+    <td class="tg-76qt">1</td>
+    <td class="tg-76qt">0</td>
+    <td class="tg-76qt">1</td>
+    <td class="tg-76qt">1</td>
+    <td class="tg-dvpl">13</td>
+    <td class="tg-76qt">0</td>
+    <td class="tg-76qt">0</td>
+    <td class="tg-76qt">1</td>
+    <td class="tg-76qt">1</td>
+  </tr>
+  <tr>
+    <td class="tg-znh0">6</td>
+    <td class="tg-76qt">1</td>
+    <td class="tg-76qt">0</td>
+    <td class="tg-76qt">1</td>
+    <td class="tg-76qt">0</td>
+    <td class="tg-dvpl">14</td>
+    <td class="tg-76qt">0</td>
+    <td class="tg-76qt">0</td>
+    <td class="tg-76qt">1</td>
+    <td class="tg-76qt">0</td>
+  </tr>
+  <tr>
+    <td class="tg-znh0">7</td>
+    <td class="tg-76qt">1</td>
+    <td class="tg-76qt">0</td>
+    <td class="tg-76qt">0</td>
+    <td class="tg-76qt">1</td>
+    <td class="tg-dvpl">15</td>
+    <td class="tg-76qt">0</td>
+    <td class="tg-76qt">0</td>
+    <td class="tg-76qt">0</td>
+    <td class="tg-76qt">1</td>
+  </tr>
+  <tr>
+    <td class="tg-znh0">8</td>
+    <td class="tg-76qt">1</td>
+    <td class="tg-76qt">0</td>
+    <td class="tg-76qt">0</td>
+    <td class="tg-76qt">0</td>
+    <td class="tg-r74k">16</td>
+    <td class="tg-h8ki">0</td>
+    <td class="tg-h8ki">0</td>
+    <td class="tg-h8ki">0</td>
+    <td class="tg-h8ki">0</td>
+  </tr>
+</tbody>
+</table>
+
+]
+
+
+]
+
+
+---
+class: middle
+
+### Counterfactual response types 
+
+
+.pull-Halfleft[
+.small[
+- When there are two dichotomous treatments, there are 16 possible response types:
+
+    - Type 4 would only die if treated with $E$ (vitamins), regardless of $A$
+    
+    - Type 13 would only die if un-treated with $E$ (vitamins), regardless of $A$
+    
+    - Type 6 would only die if treated with $A$ (heart transplant), regardless of $E$
+    
+    - Type 11 would only die if untreated with $A$ (heart transplant), regardless of $E$
+]
+
+
+]
+
+.pull-halfhalfright[
+.tiny[
+<style type="text/css">
+.tg  {border:none;border-collapse:collapse;border-color:#bbb;border-spacing:0;}
+.tg td{background-color:#E0FFEB;border-color:#bbb;border-style:solid;border-width:0px;color:#594F4F;
+  font-family:Arial, sans-serif;font-size:14px;overflow:hidden;padding:10px 5px;word-break:normal;}
+.tg th{background-color:#9DE0AD;border-color:#bbb;border-style:solid;border-width:0px;color:#493F3F;
+  font-family:Arial, sans-serif;font-size:14px;font-weight:normal;overflow:hidden;padding:10px 5px;word-break:normal;}
+.tg .tg-b7v7{border-color:inherit;color:#000000;text-align:right;vertical-align:top}
+.tg .tg-2e88{border-color:inherit;color:#000000;font-size:13px;text-align:right;vertical-align:top}
+.tg .tg-qbv6{background-color:#f8ff00;border-color:inherit;text-align:right;vertical-align:top}
+.tg .tg-l5kv{background-color:#9de0ad;border-color:inherit;font-size:13px;text-align:left;vertical-align:top}
+.tg .tg-3d4a{background-color:#f8ff00;border-color:inherit;font-size:13px;text-align:center;vertical-align:top}
+.tg .tg-56tm{background-color:#9de0ad;border-color:inherit;text-align:left;vertical-align:top}
+.tg .tg-67fy{background-color:#ffccc9;border-color:inherit;font-size:13px;text-align:center;vertical-align:top}
+.tg .tg-lca9{background-color:#9de0ad;border-color:inherit;font-size:13px;text-align:center;vertical-align:top}
+.tg .tg-znh0{border-color:inherit;font-size:13px;text-align:right;vertical-align:top}
+.tg .tg-76qt{border-color:inherit;font-size:13px;text-align:center;vertical-align:top}
+.tg .tg-4td6{background-color:#9de0ad;border-color:inherit;font-size:13px;text-align:right;vertical-align:top}
+.tg .tg-0hoh{border-color:inherit;color:#000000;font-size:13px;text-align:center;vertical-align:top}
+.tg .tg-dvpl{border-color:inherit;text-align:right;vertical-align:top}
+.tg .tg-ywvm{background-color:#ffccc9;border-color:inherit;text-align:right;vertical-align:top}
+.tg .tg-eooz{background-color:#f8ff00;border-color:inherit;font-size:13px;text-align:right;vertical-align:top}
+.tg .tg-zvgn{background-color:#ffccc9;border-color:inherit;font-size:13px;text-align:right;vertical-align:top}
+</style>
+<table class="tg">
+<thead>
+  <tr>
+    <th class="tg-znh0"></th>
+    <th class="tg-76qt" colspan="9">\[Y^{a,e} \text{ for each } a, e \text{ value}\]</th>
+  </tr>
+</thead>
+<tbody>
+  <tr>
+    <td class="tg-4td6">Type</td>
+    <td class="tg-lca9">(1, 1)</td>
+    <td class="tg-lca9">(0, 1)</td>
+    <td class="tg-lca9">(1, 0)</td>
+    <td class="tg-lca9">(0, 0)</td>
+    <td class="tg-56tm">Type</td>
+    <td class="tg-l5kv">(1, 1)</td>
+    <td class="tg-l5kv">(0, 1)</td>
+    <td class="tg-l5kv">(1, 0)</td>
+    <td class="tg-l5kv">(0, 0)</td>
+  </tr>
+  <tr>
+    <td class="tg-2e88">1</td>
+    <td class="tg-0hoh">1</td>
+    <td class="tg-0hoh">1</td>
+    <td class="tg-0hoh">1</td>
+    <td class="tg-0hoh">1</td>
+    <td class="tg-b7v7">9</td>
+    <td class="tg-0hoh">0</td>
+    <td class="tg-0hoh">1</td>
+    <td class="tg-0hoh">1</td>
+    <td class="tg-0hoh">1</td>
+  </tr>
+  <tr>
+    <td class="tg-znh0">2</td>
+    <td class="tg-76qt">1</td>
+    <td class="tg-76qt">1</td>
+    <td class="tg-76qt">1</td>
+    <td class="tg-76qt">0</td>
+    <td class="tg-dvpl">10</td>
+    <td class="tg-76qt">0</td>
+    <td class="tg-76qt">1</td>
+    <td class="tg-76qt">1</td>
+    <td class="tg-76qt">0</td>
+  </tr>
+  <tr>
+    <td class="tg-znh0">3</td>
+    <td class="tg-76qt">1</td>
+    <td class="tg-76qt">1</td>
+    <td class="tg-76qt">0</td>
+    <td class="tg-76qt">1</td>
+    <td class="tg-ywvm">11</td>
+    <td class="tg-67fy">0</td>
+    <td class="tg-67fy">1</td>
+    <td class="tg-67fy">0</td>
+    <td class="tg-67fy">1</td>
+  </tr>
+  <tr>
+    <td class="tg-eooz">4</td>
+    <td class="tg-3d4a">1</td>
+    <td class="tg-3d4a">1</td>
+    <td class="tg-3d4a">0</td>
+    <td class="tg-3d4a">0</td>
+    <td class="tg-dvpl">12</td>
+    <td class="tg-76qt">0</td>
+    <td class="tg-76qt">1</td>
+    <td class="tg-76qt">0</td>
+    <td class="tg-76qt">0</td>
+  </tr>
+  <tr>
+    <td class="tg-znh0">5</td>
+    <td class="tg-76qt">1</td>
+    <td class="tg-76qt">0</td>
+    <td class="tg-76qt">1</td>
+    <td class="tg-76qt">1</td>
+    <td class="tg-qbv6">13</td>
+    <td class="tg-3d4a">0</td>
+    <td class="tg-3d4a">0</td>
+    <td class="tg-3d4a">1</td>
+    <td class="tg-3d4a">1</td>
+  </tr>
+  <tr>
+    <td class="tg-zvgn">6</td>
+    <td class="tg-67fy">1</td>
+    <td class="tg-67fy">0</td>
+    <td class="tg-67fy">1</td>
+    <td class="tg-67fy">0</td>
+    <td class="tg-dvpl">14</td>
+    <td class="tg-76qt">0</td>
+    <td class="tg-76qt">0</td>
+    <td class="tg-76qt">1</td>
+    <td class="tg-76qt">0</td>
+  </tr>
+  <tr>
+    <td class="tg-znh0">7</td>
+    <td class="tg-76qt">1</td>
+    <td class="tg-76qt">0</td>
+    <td class="tg-76qt">0</td>
+    <td class="tg-76qt">1</td>
+    <td class="tg-dvpl">15</td>
+    <td class="tg-76qt">0</td>
+    <td class="tg-76qt">0</td>
+    <td class="tg-76qt">0</td>
+    <td class="tg-76qt">1</td>
+  </tr>
+  <tr>
+    <td class="tg-znh0">8</td>
+    <td class="tg-76qt">1</td>
+    <td class="tg-76qt">0</td>
+    <td class="tg-76qt">0</td>
+    <td class="tg-76qt">0</td>
+    <td class="tg-b7v7">16</td>
+    <td class="tg-0hoh">0</td>
+    <td class="tg-0hoh">0</td>
+    <td class="tg-0hoh">0</td>
+    <td class="tg-0hoh">0</td>
+  </tr>
+</tbody>
+</table>
+]
+
+
+]
+
+
+---
+class: middle
+
+### Counterfactual response type and interaction
+
+.med[
+- Type 1, 4, 6, 11, 13, 16 are considered as **no additive interaction** between $A$ and $E$ because they are either:
+
+    - causal effect of $A$ on $Y$ is the same regardless of $E$, or 
+    - causal effect of $E$ on $Y$ is the same regardless of $A$
+
+]
+
+
+
+---
+class: middle
+
+### Counterfactual response type and interaction
+
+
+
+.pull-Halfleft[
+.small[
+- There are three kinds of conditions that implies additive interactions between $A$ and $E$: 
+  
+    - $Y = 1$ under only 1 of the 4 combinations <br> Type 8, 12, 14, 15
+    - $Y = 1$ under 2 of the 4 combinations, with effect of $A$ and $E$ completely opposite <br> Type 7 and 10
+    - $Y = 1$ under 3 of the 4 combinations <br> Type 2, 3, 5, 9
+    
+
+
+]
+
+
+]
+
+.pull-halfhalfright[
+.tiny[
+<style type="text/css">
+.tg  {border:none;border-collapse:collapse;border-color:#bbb;border-spacing:0;}
+.tg td{background-color:#E0FFEB;border-color:#bbb;border-style:solid;border-width:0px;color:#594F4F;
+  font-family:Arial, sans-serif;font-size:14px;overflow:hidden;padding:10px 5px;word-break:normal;}
+.tg th{background-color:#9DE0AD;border-color:#bbb;border-style:solid;border-width:0px;color:#493F3F;
+  font-family:Arial, sans-serif;font-size:14px;font-weight:normal;overflow:hidden;padding:10px 5px;word-break:normal;}
+.tg .tg-b7v7{border-color:inherit;color:#000000;text-align:right;vertical-align:top}
+.tg .tg-00du{background-color:#cbcefb;border-color:inherit;font-size:13px;text-align:right;vertical-align:top}
+.tg .tg-3x7e{background-color:#34cdf9;border-color:inherit;font-size:13px;text-align:right;vertical-align:top}
+.tg .tg-4yx3{background-color:#e0ffeb;border-color:inherit;font-size:13px;text-align:right;vertical-align:top}
+.tg .tg-2e88{border-color:inherit;color:#000000;font-size:13px;text-align:right;vertical-align:top}
+.tg .tg-n1r3{background-color:#67fd9a;border-color:inherit;font-size:13px;text-align:center;vertical-align:top}
+.tg .tg-l5kv{background-color:#9de0ad;border-color:inherit;font-size:13px;text-align:left;vertical-align:top}
+.tg .tg-56tm{background-color:#9de0ad;border-color:inherit;text-align:left;vertical-align:top}
+.tg .tg-lca9{background-color:#9de0ad;border-color:inherit;font-size:13px;text-align:center;vertical-align:top}
+.tg .tg-znh0{border-color:inherit;font-size:13px;text-align:right;vertical-align:top}
+.tg .tg-76qt{border-color:inherit;font-size:13px;text-align:center;vertical-align:top}
+.tg .tg-4td6{background-color:#9de0ad;border-color:inherit;font-size:13px;text-align:right;vertical-align:top}
+.tg .tg-0hoh{border-color:inherit;color:#000000;font-size:13px;text-align:center;vertical-align:top}
+.tg .tg-u2ef{background-color:#67fd9a;border-color:inherit;color:#000000;text-align:right;vertical-align:top}
+.tg .tg-hssd{background-color:#67fd9a;border-color:inherit;color:#000000;font-size:13px;text-align:center;vertical-align:top}
+.tg .tg-2ahk{background-color:#67fd9a;border-color:inherit;font-size:13px;text-align:right;vertical-align:top}
+.tg .tg-z115{background-color:#cbcefb;border-color:inherit;text-align:right;vertical-align:top}
+.tg .tg-a10r{background-color:#cbcefb;border-color:inherit;font-size:13px;text-align:center;vertical-align:top}
+.tg .tg-u2hw{background-color:#e0ffeb;border-color:inherit;text-align:right;vertical-align:top}
+.tg .tg-4cf4{background-color:#e0ffeb;border-color:inherit;font-size:13px;text-align:center;vertical-align:top}
+.tg .tg-v47l{background-color:#34cdf9;border-color:inherit;text-align:right;vertical-align:top}
+.tg .tg-wrkj{background-color:#34cdf9;border-color:inherit;font-size:13px;text-align:center;vertical-align:top}
+</style>
+<table class="tg">
+<thead>
+  <tr>
+    <th class="tg-znh0"></th>
+    <th class="tg-76qt" colspan="9">\[Y^{a,e} \text{ for each } a, e \text{ value}\]</th>
+  </tr>
+</thead>
+<tbody>
+  <tr>
+    <td class="tg-4td6">Type</td>
+    <td class="tg-lca9">(1, 1)</td>
+    <td class="tg-lca9">(0, 1)</td>
+    <td class="tg-lca9">(1, 0)</td>
+    <td class="tg-lca9">(0, 0)</td>
+    <td class="tg-56tm">Type</td>
+    <td class="tg-l5kv">(1, 1)</td>
+    <td class="tg-l5kv">(0, 1)</td>
+    <td class="tg-l5kv">(1, 0)</td>
+    <td class="tg-l5kv">(0, 0)</td>
+  </tr>
+  <tr>
+    <td class="tg-2e88">1</td>
+    <td class="tg-0hoh">1</td>
+    <td class="tg-0hoh">1</td>
+    <td class="tg-0hoh">1</td>
+    <td class="tg-0hoh">1</td>
+    <td class="tg-u2ef">9</td>
+    <td class="tg-hssd">0</td>
+    <td class="tg-hssd">1</td>
+    <td class="tg-hssd">1</td>
+    <td class="tg-hssd">1</td>
+  </tr>
+  <tr>
+    <td class="tg-2ahk">2</td>
+    <td class="tg-n1r3">1</td>
+    <td class="tg-n1r3">1</td>
+    <td class="tg-n1r3">1</td>
+    <td class="tg-n1r3">0</td>
+    <td class="tg-z115">10</td>
+    <td class="tg-a10r">0</td>
+    <td class="tg-a10r">1</td>
+    <td class="tg-a10r">1</td>
+    <td class="tg-a10r">0</td>
+  </tr>
+  <tr>
+    <td class="tg-2ahk">3</td>
+    <td class="tg-n1r3">1</td>
+    <td class="tg-n1r3">1</td>
+    <td class="tg-n1r3">0</td>
+    <td class="tg-n1r3">1</td>
+    <td class="tg-u2hw">11</td>
+    <td class="tg-4cf4">0</td>
+    <td class="tg-4cf4">1</td>
+    <td class="tg-4cf4">0</td>
+    <td class="tg-4cf4">1</td>
+  </tr>
+  <tr>
+    <td class="tg-4yx3">4</td>
+    <td class="tg-4cf4">1</td>
+    <td class="tg-4cf4">1</td>
+    <td class="tg-4cf4">0</td>
+    <td class="tg-4cf4">0</td>
+    <td class="tg-v47l">12</td>
+    <td class="tg-wrkj">0</td>
+    <td class="tg-wrkj">1</td>
+    <td class="tg-wrkj">0</td>
+    <td class="tg-wrkj">0</td>
+  </tr>
+  <tr>
+    <td class="tg-2ahk">5</td>
+    <td class="tg-n1r3">1</td>
+    <td class="tg-n1r3">0</td>
+    <td class="tg-n1r3">1</td>
+    <td class="tg-n1r3">1</td>
+    <td class="tg-u2hw">13</td>
+    <td class="tg-4cf4">0</td>
+    <td class="tg-4cf4">0</td>
+    <td class="tg-4cf4">1</td>
+    <td class="tg-4cf4">1</td>
+  </tr>
+  <tr>
+    <td class="tg-4yx3">6</td>
+    <td class="tg-4cf4">1</td>
+    <td class="tg-4cf4">0</td>
+    <td class="tg-4cf4">1</td>
+    <td class="tg-4cf4">0</td>
+    <td class="tg-v47l">14</td>
+    <td class="tg-wrkj">0</td>
+    <td class="tg-wrkj">0</td>
+    <td class="tg-wrkj">1</td>
+    <td class="tg-wrkj">0</td>
+  </tr>
+  <tr>
+    <td class="tg-00du">7</td>
+    <td class="tg-a10r">1</td>
+    <td class="tg-a10r">0</td>
+    <td class="tg-a10r">0</td>
+    <td class="tg-a10r">1</td>
+    <td class="tg-v47l">15</td>
+    <td class="tg-wrkj">0</td>
+    <td class="tg-wrkj">0</td>
+    <td class="tg-wrkj">0</td>
+    <td class="tg-wrkj">1</td>
+  </tr>
+  <tr>
+    <td class="tg-3x7e">8</td>
+    <td class="tg-wrkj">1</td>
+    <td class="tg-wrkj">0</td>
+    <td class="tg-wrkj">0</td>
+    <td class="tg-wrkj">0</td>
+    <td class="tg-b7v7">16</td>
+    <td class="tg-0hoh">0</td>
+    <td class="tg-0hoh">0</td>
+    <td class="tg-0hoh">0</td>
+    <td class="tg-0hoh">0</td>
+  </tr>
+</tbody>
+</table>
+]
+
+
+]
+
+

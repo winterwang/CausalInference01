@@ -4,7 +4,6 @@
     <title>Causal Inference</title>
     <meta charset="utf-8" />
     <meta name="author" content="CWAN| 王　超辰" />
-    <script src="libs/header-attrs-2.6/header-attrs.js"></script>
     <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
   </head>
   <body>
@@ -3784,6 +3783,7 @@ class: middle
 
 
 
+
 ---
 class: middle, inverse, center
 
@@ -3794,11 +3794,721 @@ class: middle
 
 ## Outline
 
-- Interaction requires a **joint intervention**
+1. Interaction requires a **joint intervention**
+
+2. Identifying interaction
+
+3. Counterfactual response types and interactions
+
+---
+class: middle
+
+### Interaction requires a **joint intervention**
+
+.small[
+- **Joint intervention**, for example:
+  - `\(A = 1\)`: heart transplant; &lt;br&gt; `\(A = 0\)`: no heart transplant
+  - `\(E = 1\)`: multivitamin supplement provided; &lt;br&gt; `\(E = 0\)`: no vitamin provided
+
+- 4 types of treatments:
+  `$$(A = 1, E = 1), (A = 0, E = 1)  \\(A = 1, E = 0), (A = 0, E = 0)$$`
+  
+- 4 types of potential outcomes: 
+  `$$Y^{a = 1, e = 1}, Y^{a = 0, e = 1} \\Y^{a = 1, e = 0}, Y^{a = 0, e = 0}$$`
+]
+
+---
+class: middle 
+### Interaction requires a **joint intervention**
+
+
+.full-width[.content-box-red[.bold[.small[
+Definition under **counterfactual framework**: &lt;br&gt;
+There is **interaction** between two treatments `\(A, E\)` if: 
+&lt;br&gt; the causal effect of `\(A\)` on `\(Y\)` when set `\(E = 1\)` differs 
+&lt;br&gt; the causal effect of `\(A\)` on `\(Y\)` when set `\(E = 0\)`
+]]]] 
+
+.small[
+- On the risk difference (additive) scale, there is interaction between A and E if 
+
+`$$\text{Pr}[Y^{a = 1, \color{red}{e = 1}} = 1] - \text{Pr}[Y^{a = 0, \color{red}{e = 1}} = 1] \neq\\\text{Pr}[Y^{a = 1, \color{red}{e = 0}} =1] - \text{Pr}[Y^{a = 0, \color{red}{e=0}} = 1]$$`
+
+`$$\text{Or,}$$` 
+`$$\text{Pr}[Y^{\color{red}{a = 1}, {e = 1}} = 1] - \text{Pr}[Y^{\color{red}{a = 1}, {e = 0}} =1] \neq\\\text{Pr}[Y^{\color{red}{a = 0}, {e = 1}} = 1] - \text{Pr}[Y^{\color{red}{a = 0}, {e=0}} = 1]$$`
+]
+
+
+???
+
+There would an interaction between transplant A and vitamins E of the causal effect of transplant on survival had everybody taken vitamins were different from the causal effect of transplant on survival had nobody taken vitamins. 
 
 
 ---
-class: 
+class: middle
+
+### Interaction requires a **joint intervention**
+
+.full-width[.content-box-red[.bold[.small[
+Difference between **interaction** and **effect modification**: &lt;br&gt;
+- Variable `\(V\)` is a modifier of the effect of `\(A\)` on `\(Y\)` &lt;br&gt;when the effect of `\(A\)` on `\(Y\)` differs across different levels of `\(V\)` &lt;br&gt;
+`\(\rightarrow\)` sex was an modifier of the effect of heart transplant on survival, but we **never discuss effect of sex on survival** 
+
+- Interaction between `\(A\)` and `\(E\)`, means that we consider `\(E\)` and `\(A\)` equally, they are both interventions with potential outcomes &lt;br&gt;
+`\(\rightarrow\)` refers to the joint causal effect of two (or more) treatments
+]]]]  
+
+---
+class: middle
+
+### Technical Point 5.1 (P57)
+
+
+
+.small[
+Interaction on the **additive scale**:
+`$$\text{Pr}[Y^{a = 1, {e = 1}} = 1] - \text{Pr}[Y^{a = 0, {e = 1}} = 1] \neq \text{Pr}[Y^{a = 1, {e = 0}} =1] - \text{Pr}[Y^{a = 0, {e=0}} = 1]$$`
+]
+
+--
+.small[Can be re-written as:
+
+`$$\text{Pr}[Y^{a = 1, e= 1} = 1] \neq \{ \text{Pr}[Y^{a = 1, {e = 0}} =1] - \text{Pr}[Y^{a = 0, {e=0}} = 1] \} + \text{Pr}[Y^{a = 0, {e = 1}} = 1]$$`
+]
+
+--
+.small[Subtracting `\(\text{Pr}[Y^{a = 0, {e=0}} = 1]\)` from both sides we can get:
+
+`$$\color{blue}{\text{causal risk difference }\text{Pr}[Y^{a = 1, e= 1} = 1] - \text{Pr}[Y^{a = 0, {e=0}} = 1]} \neq \\ \{ \text{Pr}[Y^{a = 1, {e = 0}} =1] - \text{Pr}[Y^{a = 0, {e=0}} = 1] \} + \{\text{Pr}[Y^{a = 0, {e = 1}} = 1] - \text{Pr}[Y^{a = 0, {e=0}} = 1]\}$$`
+
+
+- if `\(\neq\)` can be replaced with `\(&gt;\)`: **superadditive**
+- if `\(\neq\)` can be replaced with `\(&lt;\)`: **subadditive**
+]
+
+???
+- is additive because it can be written as the sum of the causal risk difference that measures the effect of A in the absence of E, and the effect of E in the absence of A. 
+
+---
+class: middle
+
+### Identifying interaction
+
+.med[
+- **Exchangeability, positivity, and consistency** are required for both `\(A, E\)`
+
+- When `\(E\)` was assigned randomly, `\(E\)` are considered to be exchangeable. &lt;br&gt;Then, **definition of interaction conincides effect modification**: ]
+
+.med[
+`$$\text{Pr}[Y^{a = 1, {e = 1}} = 1] - \text{Pr}[Y^{a = 0, {e = 1}} = 1] \neq\\ \text{Pr}[Y^{a = 1, {e = 0}} =1] - \text{Pr}[Y^{a = 0, {e=0}} = 1]$$`
+`$$\Leftrightarrow \text{Pr}[Y^{a = 1} = 1 | E =1] - \text{Pr}[Y^{a = 0} = 1| E =1] \neq\\ \text{Pr}[Y^{a = 1} =1| E =0] - \text{Pr}[Y^{a = 0} = 1| E =0]$$`
+
+]
+
+
+---
+class: middle
+
+### Identifying interaction
+
+.med[
+- When `\(E\)` was not randomly assigned
+    - Rather than viewing `\(A\)` and `\(E\)` separately, we can view `\(AE\)` as one treatment with four levels: `\((11, 01, 10, 00)\)`
+    - Then we can use standardization, IPW, as usual but longer lists to compute
+]
+
+--
+.med[
+- When conditional exchangeability is assumed for `\(A\)` but not `\(E\)`
+    - We cannot assess interaction between `\(A\)` and `\(E\)`; 
+    - But we can still assess effect modification by `\(E\)` 
+    - Because we don't need exchangeability, positivity, consistency to assess effect modification
+    - So it is possible that there is effect modification but without interaction
+]
+
+
+---
+class: middle
+
+### Counterfactual response types 
+
+.med[
+- There are four types of people by their response: 
+    - **Doomed:** `\(Y^a = 1\)` regardless of which treatment; 
+    - **Helped:** `\(Y^a = 1\)` only if untreated;
+    - **Hurt:** `\(Y^a = 1\)` only if treated;
+    - **Immune:** `\(Y^a = 0\)` regardless of which treatment
+]
+
+
+&lt;style type="text/css"&gt;
+.tg  {border:none;border-collapse:collapse;border-color:#bbb;border-spacing:0;}
+.tg td{background-color:#E0FFEB;border-color:#bbb;border-style:solid;border-width:0px;color:#594F4F;
+  font-family:Arial, sans-serif;font-size:14px;overflow:hidden;padding:10px 5px;word-break:normal;}
+.tg th{background-color:#9DE0AD;border-color:#bbb;border-style:solid;border-width:0px;color:#493F3F;
+  font-family:Arial, sans-serif;font-size:14px;font-weight:normal;overflow:hidden;padding:10px 5px;word-break:normal;}
+.tg .tg-baqh{text-align:center;vertical-align:top}
+.tg .tg-c3ow{border-color:inherit;text-align:center;vertical-align:top}
+.tg .tg-0pky{border-color:inherit;text-align:left;vertical-align:top}
+.tg .tg-0lax{text-align:left;vertical-align:top}
+&lt;/style&gt;
+&lt;table class="tg"&gt;
+&lt;thead&gt;
+  &lt;tr&gt;
+    &lt;th class="tg-0pky"&gt;&lt;/th&gt;
+    &lt;th class="tg-c3ow"&gt;\[Y^{a = 0}\]&lt;/th&gt;
+    &lt;th class="tg-c3ow"&gt;\[Y^{a = 1}\]&lt;/th&gt;
+  &lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+    &lt;td class="tg-0pky"&gt;Doomed&lt;/td&gt;
+    &lt;td class="tg-c3ow"&gt;1&lt;/td&gt;
+    &lt;td class="tg-c3ow"&gt;1&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td class="tg-0pky"&gt;Helped&lt;/td&gt;
+    &lt;td class="tg-c3ow"&gt;1&lt;/td&gt;
+    &lt;td class="tg-c3ow"&gt;0&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td class="tg-0pky"&gt;Hurt&lt;/td&gt;
+    &lt;td class="tg-c3ow"&gt;0&lt;/td&gt;
+    &lt;td class="tg-c3ow"&gt;1&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td class="tg-0lax"&gt;Immune&lt;/td&gt;
+    &lt;td class="tg-baqh"&gt;0&lt;/td&gt;
+    &lt;td class="tg-baqh"&gt;0&lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+---
+class: middle
+
+### Counterfactual response types 
+
+
+.pull-Halfleft[
+.small[
+- When there are two dichotomous treatments, there are 16 possible response types:
+
+    - Type 1 are **doomed**;
+    
+    - Type 16 are **immune**; 
+    
+    - If everyone are either type 1 or 16 &lt;br&gt; neither `\(A\)` or `\(E\)` has any causal effect on `\(Y\)`
+
+]
+
+
+]
+
+.pull-halfhalfright[
+.tiny[&lt;style type="text/css"&gt;
+.tg  {border:none;border-collapse:collapse;border-color:#bbb;border-spacing:0;}
+.tg td{background-color:#E0FFEB;border-color:#bbb;border-style:solid;border-width:0px;color:#594F4F;
+  font-family:Arial, sans-serif;font-size:14px;overflow:hidden;padding:10px 5px;word-break:normal;}
+.tg th{background-color:#9DE0AD;border-color:#bbb;border-style:solid;border-width:0px;color:#493F3F;
+  font-family:Arial, sans-serif;font-size:14px;font-weight:normal;overflow:hidden;padding:10px 5px;word-break:normal;}
+.tg .tg-r74k{border-color:inherit;color:#cb0000;text-align:right;vertical-align:top}
+.tg .tg-l5kv{background-color:#9de0ad;border-color:inherit;font-size:13px;text-align:left;vertical-align:top}
+.tg .tg-idhl{border-color:inherit;color:#cb0000;font-size:13px;text-align:right;vertical-align:top}
+.tg .tg-56tm{background-color:#9de0ad;border-color:inherit;text-align:left;vertical-align:top}
+.tg .tg-lca9{background-color:#9de0ad;border-color:inherit;font-size:13px;text-align:center;vertical-align:top}
+.tg .tg-znh0{border-color:inherit;font-size:13px;text-align:right;vertical-align:top}
+.tg .tg-76qt{border-color:inherit;font-size:13px;text-align:center;vertical-align:top}
+.tg .tg-4td6{background-color:#9de0ad;border-color:inherit;font-size:13px;text-align:right;vertical-align:top}
+.tg .tg-h8ki{border-color:inherit;color:#cb0000;font-size:13px;text-align:center;vertical-align:top}
+.tg .tg-dvpl{border-color:inherit;text-align:right;vertical-align:top}
+&lt;/style&gt;
+&lt;table class="tg"&gt;
+&lt;thead&gt;
+  &lt;tr&gt;
+    &lt;th class="tg-znh0"&gt;&lt;/th&gt;
+    &lt;th class="tg-76qt" colspan="9"&gt;\[Y^{a,e} \text{ for each } a, e \text{ value}\]&lt;/th&gt;
+  &lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+    &lt;td class="tg-4td6"&gt;Type&lt;/td&gt;
+    &lt;td class="tg-lca9"&gt;(1, 1)&lt;/td&gt;
+    &lt;td class="tg-lca9"&gt;(0, 1)&lt;/td&gt;
+    &lt;td class="tg-lca9"&gt;(1, 0)&lt;/td&gt;
+    &lt;td class="tg-lca9"&gt;(0, 0)&lt;/td&gt;
+    &lt;td class="tg-56tm"&gt;Type&lt;/td&gt;
+    &lt;td class="tg-l5kv"&gt;(1, 1)&lt;/td&gt;
+    &lt;td class="tg-l5kv"&gt;(0, 1)&lt;/td&gt;
+    &lt;td class="tg-l5kv"&gt;(1, 0)&lt;/td&gt;
+    &lt;td class="tg-l5kv"&gt;(0, 0)&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td class="tg-idhl"&gt;1&lt;/td&gt;
+    &lt;td class="tg-h8ki"&gt;1&lt;/td&gt;
+    &lt;td class="tg-h8ki"&gt;1&lt;/td&gt;
+    &lt;td class="tg-h8ki"&gt;1&lt;/td&gt;
+    &lt;td class="tg-h8ki"&gt;1&lt;/td&gt;
+    &lt;td class="tg-dvpl"&gt;9&lt;/td&gt;
+    &lt;td class="tg-76qt"&gt;0&lt;/td&gt;
+    &lt;td class="tg-76qt"&gt;1&lt;/td&gt;
+    &lt;td class="tg-76qt"&gt;1&lt;/td&gt;
+    &lt;td class="tg-76qt"&gt;1&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td class="tg-znh0"&gt;2&lt;/td&gt;
+    &lt;td class="tg-76qt"&gt;1&lt;/td&gt;
+    &lt;td class="tg-76qt"&gt;1&lt;/td&gt;
+    &lt;td class="tg-76qt"&gt;1&lt;/td&gt;
+    &lt;td class="tg-76qt"&gt;0&lt;/td&gt;
+    &lt;td class="tg-dvpl"&gt;10&lt;/td&gt;
+    &lt;td class="tg-76qt"&gt;0&lt;/td&gt;
+    &lt;td class="tg-76qt"&gt;1&lt;/td&gt;
+    &lt;td class="tg-76qt"&gt;1&lt;/td&gt;
+    &lt;td class="tg-76qt"&gt;0&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td class="tg-znh0"&gt;3&lt;/td&gt;
+    &lt;td class="tg-76qt"&gt;1&lt;/td&gt;
+    &lt;td class="tg-76qt"&gt;1&lt;/td&gt;
+    &lt;td class="tg-76qt"&gt;0&lt;/td&gt;
+    &lt;td class="tg-76qt"&gt;1&lt;/td&gt;
+    &lt;td class="tg-dvpl"&gt;11&lt;/td&gt;
+    &lt;td class="tg-76qt"&gt;0&lt;/td&gt;
+    &lt;td class="tg-76qt"&gt;1&lt;/td&gt;
+    &lt;td class="tg-76qt"&gt;0&lt;/td&gt;
+    &lt;td class="tg-76qt"&gt;1&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td class="tg-znh0"&gt;4&lt;/td&gt;
+    &lt;td class="tg-76qt"&gt;1&lt;/td&gt;
+    &lt;td class="tg-76qt"&gt;1&lt;/td&gt;
+    &lt;td class="tg-76qt"&gt;0&lt;/td&gt;
+    &lt;td class="tg-76qt"&gt;0&lt;/td&gt;
+    &lt;td class="tg-dvpl"&gt;12&lt;/td&gt;
+    &lt;td class="tg-76qt"&gt;0&lt;/td&gt;
+    &lt;td class="tg-76qt"&gt;1&lt;/td&gt;
+    &lt;td class="tg-76qt"&gt;0&lt;/td&gt;
+    &lt;td class="tg-76qt"&gt;0&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td class="tg-znh0"&gt;5&lt;/td&gt;
+    &lt;td class="tg-76qt"&gt;1&lt;/td&gt;
+    &lt;td class="tg-76qt"&gt;0&lt;/td&gt;
+    &lt;td class="tg-76qt"&gt;1&lt;/td&gt;
+    &lt;td class="tg-76qt"&gt;1&lt;/td&gt;
+    &lt;td class="tg-dvpl"&gt;13&lt;/td&gt;
+    &lt;td class="tg-76qt"&gt;0&lt;/td&gt;
+    &lt;td class="tg-76qt"&gt;0&lt;/td&gt;
+    &lt;td class="tg-76qt"&gt;1&lt;/td&gt;
+    &lt;td class="tg-76qt"&gt;1&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td class="tg-znh0"&gt;6&lt;/td&gt;
+    &lt;td class="tg-76qt"&gt;1&lt;/td&gt;
+    &lt;td class="tg-76qt"&gt;0&lt;/td&gt;
+    &lt;td class="tg-76qt"&gt;1&lt;/td&gt;
+    &lt;td class="tg-76qt"&gt;0&lt;/td&gt;
+    &lt;td class="tg-dvpl"&gt;14&lt;/td&gt;
+    &lt;td class="tg-76qt"&gt;0&lt;/td&gt;
+    &lt;td class="tg-76qt"&gt;0&lt;/td&gt;
+    &lt;td class="tg-76qt"&gt;1&lt;/td&gt;
+    &lt;td class="tg-76qt"&gt;0&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td class="tg-znh0"&gt;7&lt;/td&gt;
+    &lt;td class="tg-76qt"&gt;1&lt;/td&gt;
+    &lt;td class="tg-76qt"&gt;0&lt;/td&gt;
+    &lt;td class="tg-76qt"&gt;0&lt;/td&gt;
+    &lt;td class="tg-76qt"&gt;1&lt;/td&gt;
+    &lt;td class="tg-dvpl"&gt;15&lt;/td&gt;
+    &lt;td class="tg-76qt"&gt;0&lt;/td&gt;
+    &lt;td class="tg-76qt"&gt;0&lt;/td&gt;
+    &lt;td class="tg-76qt"&gt;0&lt;/td&gt;
+    &lt;td class="tg-76qt"&gt;1&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td class="tg-znh0"&gt;8&lt;/td&gt;
+    &lt;td class="tg-76qt"&gt;1&lt;/td&gt;
+    &lt;td class="tg-76qt"&gt;0&lt;/td&gt;
+    &lt;td class="tg-76qt"&gt;0&lt;/td&gt;
+    &lt;td class="tg-76qt"&gt;0&lt;/td&gt;
+    &lt;td class="tg-r74k"&gt;16&lt;/td&gt;
+    &lt;td class="tg-h8ki"&gt;0&lt;/td&gt;
+    &lt;td class="tg-h8ki"&gt;0&lt;/td&gt;
+    &lt;td class="tg-h8ki"&gt;0&lt;/td&gt;
+    &lt;td class="tg-h8ki"&gt;0&lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+]
+
+
+]
+
+
+---
+class: middle
+
+### Counterfactual response types 
+
+
+.pull-Halfleft[
+.small[
+- When there are two dichotomous treatments, there are 16 possible response types:
+
+    - Type 4 would only die if treated with `\(E\)` (vitamins), regardless of `\(A\)`
+    
+    - Type 13 would only die if un-treated with `\(E\)` (vitamins), regardless of `\(A\)`
+    
+    - Type 6 would only die if treated with `\(A\)` (heart transplant), regardless of `\(E\)`
+    
+    - Type 11 would only die if untreated with `\(A\)` (heart transplant), regardless of `\(E\)`
+]
+
+
+]
+
+.pull-halfhalfright[
+.tiny[
+&lt;style type="text/css"&gt;
+.tg  {border:none;border-collapse:collapse;border-color:#bbb;border-spacing:0;}
+.tg td{background-color:#E0FFEB;border-color:#bbb;border-style:solid;border-width:0px;color:#594F4F;
+  font-family:Arial, sans-serif;font-size:14px;overflow:hidden;padding:10px 5px;word-break:normal;}
+.tg th{background-color:#9DE0AD;border-color:#bbb;border-style:solid;border-width:0px;color:#493F3F;
+  font-family:Arial, sans-serif;font-size:14px;font-weight:normal;overflow:hidden;padding:10px 5px;word-break:normal;}
+.tg .tg-b7v7{border-color:inherit;color:#000000;text-align:right;vertical-align:top}
+.tg .tg-2e88{border-color:inherit;color:#000000;font-size:13px;text-align:right;vertical-align:top}
+.tg .tg-qbv6{background-color:#f8ff00;border-color:inherit;text-align:right;vertical-align:top}
+.tg .tg-l5kv{background-color:#9de0ad;border-color:inherit;font-size:13px;text-align:left;vertical-align:top}
+.tg .tg-3d4a{background-color:#f8ff00;border-color:inherit;font-size:13px;text-align:center;vertical-align:top}
+.tg .tg-56tm{background-color:#9de0ad;border-color:inherit;text-align:left;vertical-align:top}
+.tg .tg-67fy{background-color:#ffccc9;border-color:inherit;font-size:13px;text-align:center;vertical-align:top}
+.tg .tg-lca9{background-color:#9de0ad;border-color:inherit;font-size:13px;text-align:center;vertical-align:top}
+.tg .tg-znh0{border-color:inherit;font-size:13px;text-align:right;vertical-align:top}
+.tg .tg-76qt{border-color:inherit;font-size:13px;text-align:center;vertical-align:top}
+.tg .tg-4td6{background-color:#9de0ad;border-color:inherit;font-size:13px;text-align:right;vertical-align:top}
+.tg .tg-0hoh{border-color:inherit;color:#000000;font-size:13px;text-align:center;vertical-align:top}
+.tg .tg-dvpl{border-color:inherit;text-align:right;vertical-align:top}
+.tg .tg-ywvm{background-color:#ffccc9;border-color:inherit;text-align:right;vertical-align:top}
+.tg .tg-eooz{background-color:#f8ff00;border-color:inherit;font-size:13px;text-align:right;vertical-align:top}
+.tg .tg-zvgn{background-color:#ffccc9;border-color:inherit;font-size:13px;text-align:right;vertical-align:top}
+&lt;/style&gt;
+&lt;table class="tg"&gt;
+&lt;thead&gt;
+  &lt;tr&gt;
+    &lt;th class="tg-znh0"&gt;&lt;/th&gt;
+    &lt;th class="tg-76qt" colspan="9"&gt;\[Y^{a,e} \text{ for each } a, e \text{ value}\]&lt;/th&gt;
+  &lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+    &lt;td class="tg-4td6"&gt;Type&lt;/td&gt;
+    &lt;td class="tg-lca9"&gt;(1, 1)&lt;/td&gt;
+    &lt;td class="tg-lca9"&gt;(0, 1)&lt;/td&gt;
+    &lt;td class="tg-lca9"&gt;(1, 0)&lt;/td&gt;
+    &lt;td class="tg-lca9"&gt;(0, 0)&lt;/td&gt;
+    &lt;td class="tg-56tm"&gt;Type&lt;/td&gt;
+    &lt;td class="tg-l5kv"&gt;(1, 1)&lt;/td&gt;
+    &lt;td class="tg-l5kv"&gt;(0, 1)&lt;/td&gt;
+    &lt;td class="tg-l5kv"&gt;(1, 0)&lt;/td&gt;
+    &lt;td class="tg-l5kv"&gt;(0, 0)&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td class="tg-2e88"&gt;1&lt;/td&gt;
+    &lt;td class="tg-0hoh"&gt;1&lt;/td&gt;
+    &lt;td class="tg-0hoh"&gt;1&lt;/td&gt;
+    &lt;td class="tg-0hoh"&gt;1&lt;/td&gt;
+    &lt;td class="tg-0hoh"&gt;1&lt;/td&gt;
+    &lt;td class="tg-b7v7"&gt;9&lt;/td&gt;
+    &lt;td class="tg-0hoh"&gt;0&lt;/td&gt;
+    &lt;td class="tg-0hoh"&gt;1&lt;/td&gt;
+    &lt;td class="tg-0hoh"&gt;1&lt;/td&gt;
+    &lt;td class="tg-0hoh"&gt;1&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td class="tg-znh0"&gt;2&lt;/td&gt;
+    &lt;td class="tg-76qt"&gt;1&lt;/td&gt;
+    &lt;td class="tg-76qt"&gt;1&lt;/td&gt;
+    &lt;td class="tg-76qt"&gt;1&lt;/td&gt;
+    &lt;td class="tg-76qt"&gt;0&lt;/td&gt;
+    &lt;td class="tg-dvpl"&gt;10&lt;/td&gt;
+    &lt;td class="tg-76qt"&gt;0&lt;/td&gt;
+    &lt;td class="tg-76qt"&gt;1&lt;/td&gt;
+    &lt;td class="tg-76qt"&gt;1&lt;/td&gt;
+    &lt;td class="tg-76qt"&gt;0&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td class="tg-znh0"&gt;3&lt;/td&gt;
+    &lt;td class="tg-76qt"&gt;1&lt;/td&gt;
+    &lt;td class="tg-76qt"&gt;1&lt;/td&gt;
+    &lt;td class="tg-76qt"&gt;0&lt;/td&gt;
+    &lt;td class="tg-76qt"&gt;1&lt;/td&gt;
+    &lt;td class="tg-ywvm"&gt;11&lt;/td&gt;
+    &lt;td class="tg-67fy"&gt;0&lt;/td&gt;
+    &lt;td class="tg-67fy"&gt;1&lt;/td&gt;
+    &lt;td class="tg-67fy"&gt;0&lt;/td&gt;
+    &lt;td class="tg-67fy"&gt;1&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td class="tg-eooz"&gt;4&lt;/td&gt;
+    &lt;td class="tg-3d4a"&gt;1&lt;/td&gt;
+    &lt;td class="tg-3d4a"&gt;1&lt;/td&gt;
+    &lt;td class="tg-3d4a"&gt;0&lt;/td&gt;
+    &lt;td class="tg-3d4a"&gt;0&lt;/td&gt;
+    &lt;td class="tg-dvpl"&gt;12&lt;/td&gt;
+    &lt;td class="tg-76qt"&gt;0&lt;/td&gt;
+    &lt;td class="tg-76qt"&gt;1&lt;/td&gt;
+    &lt;td class="tg-76qt"&gt;0&lt;/td&gt;
+    &lt;td class="tg-76qt"&gt;0&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td class="tg-znh0"&gt;5&lt;/td&gt;
+    &lt;td class="tg-76qt"&gt;1&lt;/td&gt;
+    &lt;td class="tg-76qt"&gt;0&lt;/td&gt;
+    &lt;td class="tg-76qt"&gt;1&lt;/td&gt;
+    &lt;td class="tg-76qt"&gt;1&lt;/td&gt;
+    &lt;td class="tg-qbv6"&gt;13&lt;/td&gt;
+    &lt;td class="tg-3d4a"&gt;0&lt;/td&gt;
+    &lt;td class="tg-3d4a"&gt;0&lt;/td&gt;
+    &lt;td class="tg-3d4a"&gt;1&lt;/td&gt;
+    &lt;td class="tg-3d4a"&gt;1&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td class="tg-zvgn"&gt;6&lt;/td&gt;
+    &lt;td class="tg-67fy"&gt;1&lt;/td&gt;
+    &lt;td class="tg-67fy"&gt;0&lt;/td&gt;
+    &lt;td class="tg-67fy"&gt;1&lt;/td&gt;
+    &lt;td class="tg-67fy"&gt;0&lt;/td&gt;
+    &lt;td class="tg-dvpl"&gt;14&lt;/td&gt;
+    &lt;td class="tg-76qt"&gt;0&lt;/td&gt;
+    &lt;td class="tg-76qt"&gt;0&lt;/td&gt;
+    &lt;td class="tg-76qt"&gt;1&lt;/td&gt;
+    &lt;td class="tg-76qt"&gt;0&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td class="tg-znh0"&gt;7&lt;/td&gt;
+    &lt;td class="tg-76qt"&gt;1&lt;/td&gt;
+    &lt;td class="tg-76qt"&gt;0&lt;/td&gt;
+    &lt;td class="tg-76qt"&gt;0&lt;/td&gt;
+    &lt;td class="tg-76qt"&gt;1&lt;/td&gt;
+    &lt;td class="tg-dvpl"&gt;15&lt;/td&gt;
+    &lt;td class="tg-76qt"&gt;0&lt;/td&gt;
+    &lt;td class="tg-76qt"&gt;0&lt;/td&gt;
+    &lt;td class="tg-76qt"&gt;0&lt;/td&gt;
+    &lt;td class="tg-76qt"&gt;1&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td class="tg-znh0"&gt;8&lt;/td&gt;
+    &lt;td class="tg-76qt"&gt;1&lt;/td&gt;
+    &lt;td class="tg-76qt"&gt;0&lt;/td&gt;
+    &lt;td class="tg-76qt"&gt;0&lt;/td&gt;
+    &lt;td class="tg-76qt"&gt;0&lt;/td&gt;
+    &lt;td class="tg-b7v7"&gt;16&lt;/td&gt;
+    &lt;td class="tg-0hoh"&gt;0&lt;/td&gt;
+    &lt;td class="tg-0hoh"&gt;0&lt;/td&gt;
+    &lt;td class="tg-0hoh"&gt;0&lt;/td&gt;
+    &lt;td class="tg-0hoh"&gt;0&lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+]
+
+
+]
+
+
+---
+class: middle
+
+### Counterfactual response type and interaction
+
+.med[
+- Type 1, 4, 6, 11, 13, 16 are considered as **no additive interaction** between `\(A\)` and `\(E\)` because they are either:
+
+    - causal effect of `\(A\)` on `\(Y\)` is the same regardless of `\(E\)`, or 
+    - causal effect of `\(E\)` on `\(Y\)` is the same regardless of `\(A\)`
+
+]
+
+
+
+---
+class: middle
+
+### Counterfactual response type and interaction
+
+
+
+.pull-Halfleft[
+.small[
+- There are three kinds of conditions that implies additive interactions between `\(A\)` and `\(E\)`: 
+  
+    - `\(Y = 1\)` under only 1 of the 4 combinations &lt;br&gt; Type 8, 12, 14, 15
+    - `\(Y = 1\)` under 2 of the 4 combinations, with effect of `\(A\)` and `\(E\)` completely opposite &lt;br&gt; Type 7 and 10
+    - `\(Y = 1\)` under 3 of the 4 combinations &lt;br&gt; Type 2, 3, 5, 9
+    
+
+
+]
+
+
+]
+
+.pull-halfhalfright[
+.tiny[
+&lt;style type="text/css"&gt;
+.tg  {border:none;border-collapse:collapse;border-color:#bbb;border-spacing:0;}
+.tg td{background-color:#E0FFEB;border-color:#bbb;border-style:solid;border-width:0px;color:#594F4F;
+  font-family:Arial, sans-serif;font-size:14px;overflow:hidden;padding:10px 5px;word-break:normal;}
+.tg th{background-color:#9DE0AD;border-color:#bbb;border-style:solid;border-width:0px;color:#493F3F;
+  font-family:Arial, sans-serif;font-size:14px;font-weight:normal;overflow:hidden;padding:10px 5px;word-break:normal;}
+.tg .tg-b7v7{border-color:inherit;color:#000000;text-align:right;vertical-align:top}
+.tg .tg-00du{background-color:#cbcefb;border-color:inherit;font-size:13px;text-align:right;vertical-align:top}
+.tg .tg-3x7e{background-color:#34cdf9;border-color:inherit;font-size:13px;text-align:right;vertical-align:top}
+.tg .tg-4yx3{background-color:#e0ffeb;border-color:inherit;font-size:13px;text-align:right;vertical-align:top}
+.tg .tg-2e88{border-color:inherit;color:#000000;font-size:13px;text-align:right;vertical-align:top}
+.tg .tg-n1r3{background-color:#67fd9a;border-color:inherit;font-size:13px;text-align:center;vertical-align:top}
+.tg .tg-l5kv{background-color:#9de0ad;border-color:inherit;font-size:13px;text-align:left;vertical-align:top}
+.tg .tg-56tm{background-color:#9de0ad;border-color:inherit;text-align:left;vertical-align:top}
+.tg .tg-lca9{background-color:#9de0ad;border-color:inherit;font-size:13px;text-align:center;vertical-align:top}
+.tg .tg-znh0{border-color:inherit;font-size:13px;text-align:right;vertical-align:top}
+.tg .tg-76qt{border-color:inherit;font-size:13px;text-align:center;vertical-align:top}
+.tg .tg-4td6{background-color:#9de0ad;border-color:inherit;font-size:13px;text-align:right;vertical-align:top}
+.tg .tg-0hoh{border-color:inherit;color:#000000;font-size:13px;text-align:center;vertical-align:top}
+.tg .tg-u2ef{background-color:#67fd9a;border-color:inherit;color:#000000;text-align:right;vertical-align:top}
+.tg .tg-hssd{background-color:#67fd9a;border-color:inherit;color:#000000;font-size:13px;text-align:center;vertical-align:top}
+.tg .tg-2ahk{background-color:#67fd9a;border-color:inherit;font-size:13px;text-align:right;vertical-align:top}
+.tg .tg-z115{background-color:#cbcefb;border-color:inherit;text-align:right;vertical-align:top}
+.tg .tg-a10r{background-color:#cbcefb;border-color:inherit;font-size:13px;text-align:center;vertical-align:top}
+.tg .tg-u2hw{background-color:#e0ffeb;border-color:inherit;text-align:right;vertical-align:top}
+.tg .tg-4cf4{background-color:#e0ffeb;border-color:inherit;font-size:13px;text-align:center;vertical-align:top}
+.tg .tg-v47l{background-color:#34cdf9;border-color:inherit;text-align:right;vertical-align:top}
+.tg .tg-wrkj{background-color:#34cdf9;border-color:inherit;font-size:13px;text-align:center;vertical-align:top}
+&lt;/style&gt;
+&lt;table class="tg"&gt;
+&lt;thead&gt;
+  &lt;tr&gt;
+    &lt;th class="tg-znh0"&gt;&lt;/th&gt;
+    &lt;th class="tg-76qt" colspan="9"&gt;\[Y^{a,e} \text{ for each } a, e \text{ value}\]&lt;/th&gt;
+  &lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+    &lt;td class="tg-4td6"&gt;Type&lt;/td&gt;
+    &lt;td class="tg-lca9"&gt;(1, 1)&lt;/td&gt;
+    &lt;td class="tg-lca9"&gt;(0, 1)&lt;/td&gt;
+    &lt;td class="tg-lca9"&gt;(1, 0)&lt;/td&gt;
+    &lt;td class="tg-lca9"&gt;(0, 0)&lt;/td&gt;
+    &lt;td class="tg-56tm"&gt;Type&lt;/td&gt;
+    &lt;td class="tg-l5kv"&gt;(1, 1)&lt;/td&gt;
+    &lt;td class="tg-l5kv"&gt;(0, 1)&lt;/td&gt;
+    &lt;td class="tg-l5kv"&gt;(1, 0)&lt;/td&gt;
+    &lt;td class="tg-l5kv"&gt;(0, 0)&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td class="tg-2e88"&gt;1&lt;/td&gt;
+    &lt;td class="tg-0hoh"&gt;1&lt;/td&gt;
+    &lt;td class="tg-0hoh"&gt;1&lt;/td&gt;
+    &lt;td class="tg-0hoh"&gt;1&lt;/td&gt;
+    &lt;td class="tg-0hoh"&gt;1&lt;/td&gt;
+    &lt;td class="tg-u2ef"&gt;9&lt;/td&gt;
+    &lt;td class="tg-hssd"&gt;0&lt;/td&gt;
+    &lt;td class="tg-hssd"&gt;1&lt;/td&gt;
+    &lt;td class="tg-hssd"&gt;1&lt;/td&gt;
+    &lt;td class="tg-hssd"&gt;1&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td class="tg-2ahk"&gt;2&lt;/td&gt;
+    &lt;td class="tg-n1r3"&gt;1&lt;/td&gt;
+    &lt;td class="tg-n1r3"&gt;1&lt;/td&gt;
+    &lt;td class="tg-n1r3"&gt;1&lt;/td&gt;
+    &lt;td class="tg-n1r3"&gt;0&lt;/td&gt;
+    &lt;td class="tg-z115"&gt;10&lt;/td&gt;
+    &lt;td class="tg-a10r"&gt;0&lt;/td&gt;
+    &lt;td class="tg-a10r"&gt;1&lt;/td&gt;
+    &lt;td class="tg-a10r"&gt;1&lt;/td&gt;
+    &lt;td class="tg-a10r"&gt;0&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td class="tg-2ahk"&gt;3&lt;/td&gt;
+    &lt;td class="tg-n1r3"&gt;1&lt;/td&gt;
+    &lt;td class="tg-n1r3"&gt;1&lt;/td&gt;
+    &lt;td class="tg-n1r3"&gt;0&lt;/td&gt;
+    &lt;td class="tg-n1r3"&gt;1&lt;/td&gt;
+    &lt;td class="tg-u2hw"&gt;11&lt;/td&gt;
+    &lt;td class="tg-4cf4"&gt;0&lt;/td&gt;
+    &lt;td class="tg-4cf4"&gt;1&lt;/td&gt;
+    &lt;td class="tg-4cf4"&gt;0&lt;/td&gt;
+    &lt;td class="tg-4cf4"&gt;1&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td class="tg-4yx3"&gt;4&lt;/td&gt;
+    &lt;td class="tg-4cf4"&gt;1&lt;/td&gt;
+    &lt;td class="tg-4cf4"&gt;1&lt;/td&gt;
+    &lt;td class="tg-4cf4"&gt;0&lt;/td&gt;
+    &lt;td class="tg-4cf4"&gt;0&lt;/td&gt;
+    &lt;td class="tg-v47l"&gt;12&lt;/td&gt;
+    &lt;td class="tg-wrkj"&gt;0&lt;/td&gt;
+    &lt;td class="tg-wrkj"&gt;1&lt;/td&gt;
+    &lt;td class="tg-wrkj"&gt;0&lt;/td&gt;
+    &lt;td class="tg-wrkj"&gt;0&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td class="tg-2ahk"&gt;5&lt;/td&gt;
+    &lt;td class="tg-n1r3"&gt;1&lt;/td&gt;
+    &lt;td class="tg-n1r3"&gt;0&lt;/td&gt;
+    &lt;td class="tg-n1r3"&gt;1&lt;/td&gt;
+    &lt;td class="tg-n1r3"&gt;1&lt;/td&gt;
+    &lt;td class="tg-u2hw"&gt;13&lt;/td&gt;
+    &lt;td class="tg-4cf4"&gt;0&lt;/td&gt;
+    &lt;td class="tg-4cf4"&gt;0&lt;/td&gt;
+    &lt;td class="tg-4cf4"&gt;1&lt;/td&gt;
+    &lt;td class="tg-4cf4"&gt;1&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td class="tg-4yx3"&gt;6&lt;/td&gt;
+    &lt;td class="tg-4cf4"&gt;1&lt;/td&gt;
+    &lt;td class="tg-4cf4"&gt;0&lt;/td&gt;
+    &lt;td class="tg-4cf4"&gt;1&lt;/td&gt;
+    &lt;td class="tg-4cf4"&gt;0&lt;/td&gt;
+    &lt;td class="tg-v47l"&gt;14&lt;/td&gt;
+    &lt;td class="tg-wrkj"&gt;0&lt;/td&gt;
+    &lt;td class="tg-wrkj"&gt;0&lt;/td&gt;
+    &lt;td class="tg-wrkj"&gt;1&lt;/td&gt;
+    &lt;td class="tg-wrkj"&gt;0&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td class="tg-00du"&gt;7&lt;/td&gt;
+    &lt;td class="tg-a10r"&gt;1&lt;/td&gt;
+    &lt;td class="tg-a10r"&gt;0&lt;/td&gt;
+    &lt;td class="tg-a10r"&gt;0&lt;/td&gt;
+    &lt;td class="tg-a10r"&gt;1&lt;/td&gt;
+    &lt;td class="tg-v47l"&gt;15&lt;/td&gt;
+    &lt;td class="tg-wrkj"&gt;0&lt;/td&gt;
+    &lt;td class="tg-wrkj"&gt;0&lt;/td&gt;
+    &lt;td class="tg-wrkj"&gt;0&lt;/td&gt;
+    &lt;td class="tg-wrkj"&gt;1&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td class="tg-3x7e"&gt;8&lt;/td&gt;
+    &lt;td class="tg-wrkj"&gt;1&lt;/td&gt;
+    &lt;td class="tg-wrkj"&gt;0&lt;/td&gt;
+    &lt;td class="tg-wrkj"&gt;0&lt;/td&gt;
+    &lt;td class="tg-wrkj"&gt;0&lt;/td&gt;
+    &lt;td class="tg-b7v7"&gt;16&lt;/td&gt;
+    &lt;td class="tg-0hoh"&gt;0&lt;/td&gt;
+    &lt;td class="tg-0hoh"&gt;0&lt;/td&gt;
+    &lt;td class="tg-0hoh"&gt;0&lt;/td&gt;
+    &lt;td class="tg-0hoh"&gt;0&lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+]
+
+
+]
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="libs/remark-latest.min.js"></script>
