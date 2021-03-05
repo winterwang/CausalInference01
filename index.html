@@ -3794,11 +3794,17 @@ class: middle
 
 ## Outline
 
-1. Interaction requires a **joint intervention**
+1. Interaction requires a joint intervention
 
 2. Identifying interaction
 
 3. Counterfactual response types and interactions
+
+4. Sufficient causes
+
+5. Sufficient causes interaction
+
+6. Counterfactuals or sufficient-component causes?
 
 ---
 class: middle
@@ -4509,6 +4515,158 @@ class: middle
 
 
 ]
+
+
+---
+class:
+
+### Sufficient causes 
+
+- Treatment `\(A\)` is not the only variable that determines whether or not the outcome `\(Y\)` occurs.
+
+&lt;style type="text/css"&gt;
+.tg  {border:none;border-collapse:collapse;border-color:#bbb;border-spacing:0;}
+.tg td{background-color:#E0FFEB;border-color:#bbb;border-style:solid;border-width:0px;color:#594F4F;
+  font-family:Arial, sans-serif;font-size:14px;overflow:hidden;padding:10px 5px;word-break:normal;}
+.tg th{background-color:#9DE0AD;border-color:#bbb;border-style:solid;border-width:0px;color:#493F3F;
+  font-family:Arial, sans-serif;font-size:14px;font-weight:normal;overflow:hidden;padding:10px 5px;word-break:normal;}
+.tg .tg-baqh{text-align:center;vertical-align:top}
+.tg .tg-c3ow{border-color:inherit;text-align:center;vertical-align:top}
+.tg .tg-0pky{border-color:inherit;text-align:left;vertical-align:top}
+.tg .tg-0lax{text-align:left;vertical-align:top}
+&lt;/style&gt;
+&lt;table class="tg"&gt;
+&lt;thead&gt;
+  &lt;tr&gt;
+    &lt;th class="tg-0pky"&gt;&lt;/th&gt;
+    &lt;th class="tg-c3ow"&gt;\[Y^{a = 0}\]&lt;/th&gt;
+    &lt;th class="tg-c3ow"&gt;\[Y^{a = 1}\]&lt;/th&gt;
+  &lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+    &lt;td class="tg-0pky"&gt;Doomed&lt;/td&gt;
+    &lt;td class="tg-c3ow"&gt;1&lt;/td&gt;
+    &lt;td class="tg-c3ow"&gt;1&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td class="tg-0pky"&gt;Helped&lt;/td&gt;
+    &lt;td class="tg-c3ow"&gt;1&lt;/td&gt;
+    &lt;td class="tg-c3ow"&gt;0&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td class="tg-0pky"&gt;Hurt&lt;/td&gt;
+    &lt;td class="tg-c3ow"&gt;0&lt;/td&gt;
+    &lt;td class="tg-c3ow"&gt;1&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td class="tg-0lax"&gt;Immune&lt;/td&gt;
+    &lt;td class="tg-baqh"&gt;0&lt;/td&gt;
+    &lt;td class="tg-baqh"&gt;0&lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+
+???
+
+- some individuals die when they are treated, others when they are not treated, others die no matter what, and others do not die no matter what. 
+
+---
+class: 
+
+### Sufficient causes
+
+.med[
+- `\(U_1\)`: the smallest set of background factors that, **together with `\(A = 1\)`**, are sufficient to inevitably cause `\(Y = 1\)`
+.small[
+`\(\star\)` example: &lt;br&gt; `\(A = 1\)` (heart transplant) + `\(U_1 = 1\)` (allergy to anesthesia)
+]
+]
+
+
+--
+.med[
+- `\(U_2\)`: the smallest set background factors that, **together with `\(A = 0\)`**, are sufficient to inevitably cause `\(Y = 1\)`
+.small[
+`\(\star\)` example: &lt;br&gt; `\(A = 0\)` (no heart transplant) + `\(U_2 = 1\)` (ejection fraction `\(&lt; 20\%\)`)
+]]
+
+--
+.med[
+- `\(U_0\)`: the smallest set background factors that will cause `\(Y = 1\)`, **regardless of treatment `\(A\)`**
+.small[
+`\(\star\)` example: `\(U_0 = 1\)` (pancreatic cancer)
+]
+]
+
+---
+
+### Sufficient causes
+
+.med[
+- Graphically, 3 sufficient causes to `\(Y =1\)` are:
+]
+
+&lt;img src="fig/SufficientCauses.jpeg" width="420" style="display: block; margin: auto;" /&gt;
+
+--
+.med[
+- When there are 2 dichotomous treatments `\(A, E\)`
+]
+
+&lt;img src="fig/SufficentCausesAE.jpeg" width="463" style="display: block; margin: auto;" /&gt;
+
+???
+
+1. by treatment A (treatment E is irrelevant)
+2. by the absence of treatment A (treatment E is irrelevant)
+3. by treatment E (treatment A is irrelevant)
+4. by the absence of treatment E (treatment A is irrelevant)
+5. by both treatments A and E
+6. by treatment A and the absence of E
+7. by treatment E and the absence of A
+8. by the absence of both A and E
+9. by other mechanisms (both treatments A and E are irrelevant)
+
+---
+
+### Sufficient cause interaction
+
+.med[
+- Interaction within the sufficient-component-cause framework
+]
+
+--
+.med[
+- A sufficient cause interaction presents if `\(A\)` and `\(E\)` **occur together** in a sufficient cause. 
+.small[
+`\(\star\)` example: individuals with background `\(U_5 = 1\)` will have `\(Y = 1\)` when receiving both treatments `\(A,E\)`; but will have `\(Y=0\)` when receiving only one of the two treatments.
+]
+]
+
+--
+.med[
+- Sufficient cause interaction can be either synergistic or antagonisic
+    - **Synergistic**: `\(A = 1, E = 1\)` presents in the same sufficient cause 
+    - **Antagonistic**: `\(A = 1, E = 0\)` or `\(A = 0, E = 1\)` in the same sufficient cause
+]
+
+---
+
+### Counterfactuals or sufficient-component causes?
+
+- **Counterfactual framework** and **sufficient-component causes framework** address different questions. 
+
+- Counterfactual framework: &lt;br&gt; what happens?
+
+- Sufficient-component causes framework: &lt;br&gt; how does it happen?
+
+
+---
+class: center, inverse, middle
+
+# Chapter 6
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="libs/remark-latest.min.js"></script>
