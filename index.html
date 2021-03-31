@@ -4666,7 +4666,45 @@ class:
 ---
 class: center, inverse, middle
 
-# Chapter 6
+# Chapter 6 &lt;br&gt; Graphical representation of causal effects
+
+---
+class: top
+
+## Outline
+
+- Causal diagrams
+
+- 
+
+
+---
+class: top
+
+## Causal diagrams
+
+&lt;img src="fig/Fig6_1.png" width="222" style="display: block; margin: auto;" /&gt;
+
+.small[
+- 3 nodes (random variables): `\(L, A, Y\)`
+- 3 edges (arrows): from left to right, `\(L\)` (disease severity), `\(A\)` (heart transplant), `\(Y\)` (death).
+- Arrow means that there is a direct causal effect between the two nodes.
+- No arrow between nodes means that we believe there is no direct causal effect.
+- Arrow from `\(L\)` to `\(A\)`: disease severity affects the prob of receiving a heart transplant
+- It is known as "directed acyclic (= no cycles) graphs, DAGs"
+]
+
+???
+
+- A standard causal diagram does not distinguish whether an arrow represents a harmful effect or a protective effect.
+
+
+
+
+---
+class: top
+
+## Causal diagrams
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="libs/remark-latest.min.js"></script>
