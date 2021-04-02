@@ -5089,3 +5089,10 @@ knitr::include_graphics("fig/Fig6_11.jpeg")
 ]
 
 
+
+
+---
+class: top, center
+background-image: url("./fig/DAGIEApubmed.png")
+background-position: 50% 50%
+background-size: contain
