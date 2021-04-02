@@ -131,10 +131,10 @@ a, a > code {
   width: 70%;
 }
 .pull-halfright {
-  float: left;
-  width: 47%;
+  float: right;
+  width: 75%;
 }
-.pull-halfhalfright {
+.pull-halfhalfleft {
   float: left;
   width: 25%;
 }

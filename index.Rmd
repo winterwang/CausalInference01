@@ -1031,8 +1031,7 @@ $$\text{Pr}[Y^a = 1 | A = 1, L = 1] = \text{Pr}[Y^a = 1 | A = 0, L = 1]$$
 
 Or, 
 
-$$Y^a \perp \!\!\! \perp A |L = 1 \forall a$$
-
+A
 Read as: <br> " $Y^a$ (the potential outcomes) and $A$ (the actual treatment groups) are independent given $L = 1$." 
 
 
@@ -4689,7 +4688,7 @@ class: top
 
 - Causal diagrams
 
-- 
+- Causal diagrams and marginal independence
 
 
 ---
@@ -4698,7 +4697,7 @@ class: top
 ## Causal diagrams
 
 ```{r echo=FALSE,  dpi=200, fig.align='center'}
-knitr::include_graphics("fig/Fig6_1.png")
+knitr::include_graphics("fig/Fig6_1.jpeg")
 ```
 
 .small[
@@ -4714,11 +4713,144 @@ knitr::include_graphics("fig/Fig6_1.png")
 
 - A standard causal diagram does not distinguish whether an arrow represents a harmful effect or a protective effect.
 
+---
+class: top 
 
+### Conditionally or Marginally Randomized experiment? 
+
+
+.pull-halfhalfleft[
+```{r echo=FALSE,  dpi=250, fig.align='center'}
+knitr::include_graphics("fig/Fig6_1.jpeg")
+```
+<br>
+<br>
+```{r echo=FALSE,  dpi=380, fig.align='center'}
+knitr::include_graphics("fig/Fig6_2.jpeg")
+```
+]
+
+.pull-halfright[.small[
+- Conditionally randomized experiment: 
+    - Randomly assign $A$ by different prob depends on $L$ (severity) 
+    - $L$ is a common cause of $A$ and $Y$
+    - common cause needs to be included in DAG
+
+- Marginally randomized experiment:
+    - Randomly assign $A$ regardless of $L$
+    - $L$ is not a common cause 
+    - $L$ can be excluded from DAG
+]]
 
 
 ---
 class: top
 
-## Causal diagrams 
+#### Assumptions for observation study setting
+```{r echo=FALSE,  dpi=250, fig.align='center'}
+knitr::include_graphics("fig/Fig6_1.jpeg")
+```
+
+.med[
+- This figure may also represent an observational study, assumptions in this figure include: 
+  - $A \rightarrow Y$ causal relation
+  - $L \rightarrow A$ causal relation
+  - $L \rightarrow Y$ also causal relation
+  - $L$ is the only common cause for both $A,Y$
+  
+$$Y^a \perp \!\!\! \perp A |L = 1 \forall a$$
+]
+
+???
+
+- can be translated into conditional exchangeability assumption
+
+
+---
+class: top 
+
+## Causal diagrams and marginal independence - follow your intuition
+```{r echo=FALSE,  dpi=300, fig.align='center'}
+knitr::include_graphics("fig/Fig6_2.jpeg")
+```
+
+.small[
+- We know that use of aspirin $A$ can prevent heart disease $Y$
+- This figure means we can design an RCT in which aspirin $A$ is randomly, unconditionally assigned
+
+$$\text{Pr}[Y^{a = 1} = 1] \neq \text{Pr}[Y^{a = 0} = 1]$$
+- Our intuition tell us that $A$ and $Y$ are "associated"
+]
+
+---
+class: top
+
+## Causal diagrams and marginal independence - follow your intuition
+
+```{r echo=FALSE,  dpi=250, fig.align='center'}
+knitr::include_graphics("fig/Fig6_3.jpeg")
+```
+
+.small[
+- We know that carrying a lighter $A$ has no causal effect to lung cancer $Y$ 
+    - There is no arrow between $A$ and $Y$
+- But smoking $L$ has causal effect on both $A$ and $Y$
+
+$$\text{Pr}[Y^{a = 1} = 1] = \text{Pr}[Y^{a = 0} = 1]$$
+
+- However, our intuition also tell us that $A$ and $Y$ are "associated"
+]
+
+
+---
+class: top
+
+#### Why do we feel that $A$ and $Y$ are associated?
+
+```{r echo=FALSE,  dpi=250, fig.align='center'}
+knitr::include_graphics("fig/Fig6_3.jpeg")
+```
+
+.small[
+- If we conduct a study to see the effect of "carrying a lighter" $A$ on the risk of "lung cancer" $Y$
+- We could ask whether they carry lighters, and follow a large cohort to see the difference of lung cancer risks among the two groups. 
+- Because carrying lighters $A = 1$ might indicates that someone is probably a smoker $L = 1$, and they could higher risk of lung cancer.
+
+$$\text{Pr}[Y = 1 | A = 1] \neq \text{Pr}[Y = 1 | A = 0]$$
+
+
+- Our intuition is probably correct.
+]
+
+---
+class: top 
+
+### Prediction $\approx$ Association 
+```{r echo=FALSE,  dpi=250, fig.align='center'}
+knitr::include_graphics("fig/Fig6_3.jpeg")
+```
+
+.small[
+- Having information about $A$ (carrying a lighter) improves our ability to **predict**  the outcome $Y$ - lung cancer.
+
+- But we will make a mistake if we conclude that carrying lighters $(A)$ will cause lung cancer $(Y)$ just because they are associated.
+
+- So this figure actually confirms our intuition. 
+    - $A$ and $Y$ are associated because there is a flow of association from $A$ (through $L$) to $Y$
+]
+
+---
+class: top
+
+### Collider 
+
+```{r echo=FALSE,  dpi=200, fig.align='center'}
+knitr::include_graphics("fig/Fig6_4.jpeg")
+```
+.small[
+- We know that some genetic haplotype $A$ has no causal effect to whether people will become a smoker $Y$.
+    - There is no arrow from $A$ to $Y$
+- But both genetic haplotype $A$ and smoking $Y$ have causal effect on the risk of heart disease $L$.
+    - $L$ is the **common effect (result)** of $A$ and $Y$ - a **collider** between $A$ and $Y$
+]
 
