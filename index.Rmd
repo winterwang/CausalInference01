@@ -4690,6 +4690,11 @@ class: top
 
 - Causal diagrams and marginal independence
 
+- Causal diagrams and conditional independence 
+
+- Structural classification of bias
+
+- Structure of effect modification
 
 ---
 class: top
@@ -4851,6 +4856,236 @@ knitr::include_graphics("fig/Fig6_4.jpeg")
 - We know that some genetic haplotype $A$ has no causal effect to whether people will become a smoker $Y$.
     - There is no arrow from $A$ to $Y$
 - But both genetic haplotype $A$ and smoking $Y$ have causal effect on the risk of heart disease $L$.
-    - $L$ is the **common effect (result)** of $A$ and $Y$ - a **collider** between $A$ and $Y$
+    - $L$ is the **common effect** of $A$ and $Y$ - a **collider** between $A$ and $Y$ 
+    
+    $$A\rightarrow L \leftarrow Y$$
 ]
+
+
+---
+class: top
+
+### So are $A$ and $Y$ associated?
+
+
+```{r echo=FALSE,  dpi=200, fig.align='center'}
+knitr::include_graphics("fig/Fig6_4.jpeg")
+```
+
+.small[
+- If we conduct a study to look for effect of haplotype $A$ on the risk of becoming a smoker $Y$. 
+- We could recruit a lot of children and check if they have haplotype $A$ or not, and follow them to see if their risk of becoming a smoker $Y$ is different.
+- But knowing that someone has (not) the haplottype $A$ does not help improving our ability to precdict the outcome $Y$. 
+
+$$\text{Pr}[ Y = 1 | A = 0] = \text{Pr}[Y = 1 | A = 1]$$
+- Our intuition tell us that they are not associated (blocked by the collider): $A \perp \!\!\! \perp Y$
+
+]
+
+
+???
+
+- The knowledge that both A and Y cause heart disease L is irrelevant when considering the association between A and Y. (because the collider blocks the association)
+
+
+---
+class: top
+
+## Mediator
+
+
+
+.pull-halfhalfleft[
+```{r echo=FALSE,  dpi=380, fig.align='center'}
+knitr::include_graphics("fig/Fig6_2.jpeg")
+```
+<br>
+<br>
+
+```{r echo=FALSE,  dpi=200, fig.align='center'}
+knitr::include_graphics("fig/Fig6_5.jpeg")
+```
+
+
+]
+
+.pull-halfright[.small[
+- We expect that use of aspirin $A$ and heart disease $Y$ are associated
+    - because we know that aspirin $A$ has a causal effect on heart disease $Y$
+    
+- Now suppose that we have more information.
+    - Aspirin $A$ reduced platelet aggregation $B$ and therefore can reduce the risk of heart disease $Y$
+    - This $B$ is a **mediator** between $A$ and $Y$
+    
+    
+  - When we have more information about $B$, can it improve our ability to predict $Y$?
+]]
+
+
+---
+class: top
+
+### Mediator - conditional independence 
+
+
+```{r echo=FALSE,  dpi=200, fig.align='center'}
+knitr::include_graphics("fig/Fig6_5.jpeg")
+```
+
+.small[
+- We can conduct a study to collect these three variables from a large number of individuals.
+- And restrict the analysis to subset of $B$, for example:
+    - individuals with low platelet aggregation $B = 0$;
+    - individuals with high platelet aggregation $B = 1$
+]
+
+--
+.small[
+- In fact, individuals with low platelet aggregation $B = 0$, have lower than average risk of heart disease $Y$
+    - For people with $B = 0$, regardless of his/her treatment $A$, we already know that his/her risk of heart disease is low.
+    - $A$ and $Y$ are conditionally independent (unassociated) given $B$
+]
+
+
+---
+class: top
+
+### What if we condition on the common cause?
+
+
+
+.pull-halfhalfleft[
+
+```{r echo=FALSE,  dpi=300, fig.align='center'}
+knitr::include_graphics("fig/Fig6_3.jpeg")
+```
+<br>
+<br>
+
+```{r echo=FALSE,  dpi=200, fig.align='center'}
+knitr::include_graphics("fig/Fig6_6.jpeg")
+```
+
+
+]
+
+.pull-halfright[.small[
+- whether carrying a lighter $A$ is associated with lung cancer $Y$, condition on the common cause - smoking status $L$?
+    - When we know that someone is a smoker $L = 1$, does the information about carrying a lighter $A$ predict the risk of lung cancer $Y$?
+    
+- If we restrict study to smokers $L = 1$.
+    - Regardless of carrying a lighter or not, risk of lung cancer is high.
+    - When we know smoking information, carrying lighter or not is not important anymore. 
+    
+]]
+
+
+---
+class: top
+
+### What if we condition on the collider (common effect)?
+
+
+
+
+.pull-halfhalfleft[
+
+```{r echo=FALSE,  dpi=200, fig.align='center'}
+knitr::include_graphics("fig/Fig6_4.jpeg")
+```
+<br>
+<br>
+
+```{r echo=FALSE,  dpi=200, fig.align='center'}
+knitr::include_graphics("fig/Fig6_7.jpeg")
+```
+
+
+]
+
+.pull-halfright[.small[
+- $A\rightarrow L \leftarrow Y$, heart disease $L$ is the common effect (collider) of haplotype $A$ and smoking $Y$
+    - we concluded that collider blocks the association, $A \perp \!\!\! \perp Y$
+
+- We can restrict study to individuals who have heart disease $L=1$
+    - Knowing that someone had a heart disease $L= 1$, we then know that he/she might be a smoker $Y = 1$, and he/she might not have the haplotype $A=0$
+    - $A, Y$ are now **inversely associated**.
+]]
+
+???
+- conditioning on a collider, opens the association that was blocked. 
+- out intuition might be, two causes of an outcome (event) might not associated, but when we know the outcome, the two causes will become as if they are associated.
+
+---
+class: top
+
+### What if we condition on the consequence of a collider?
+
+```{r echo=FALSE,  dpi=200, fig.align='center'}
+knitr::include_graphics("fig/Fig6_8.jpeg")
+```
+
+.small[
+- When patient is diagnosed with heart disease $L = 1$, he/she will be prescribe with a drug $C$
+
+- So knowing that someone is taking the drug $C$, indicates that he/she might already be diagnosed with heart disease, $C$ is also a common effect (collider) between $A$ and $Y$
+
+- Conditioning on the consequence of the collider also opens the path $A\rightarrow L \leftarrow Y$, and show a possibly "fake" association.
+]
+
+
+
+---
+class: top, center
+background-image: url("./fig/Fig6_2_8.png")
+background-position: 50% 50%
+background-size: contain
+
+???
+
+- So the asociation between A and Y can be organized in a table like this one.
+
+
+
+---
+class: top
+
+## Structural classification of bias
+
+
+```{r echo=FALSE,  dpi=300, fig.align='center'}
+knitr::include_graphics("fig/Fig6_3.jpeg")
+```
+
+.small[
+- Common causes: When treatment and outcome share a common cause, the association effect generally differs from the effect measure. This is called **confounding bias**.
+]
+
+
+```{r echo=FALSE,  dpi=200, fig.align='center'}
+knitr::include_graphics("fig/Fig6_7.jpeg")
+```
+
+.small[
+- Conditioning on common effects: this is often called **selection bias**.
+]
+
+
+---
+class: top
+
+## Structure of effect modification
+
+```{r echo=FALSE,  dpi=200, fig.align='center'}
+knitr::include_graphics("fig/Fig6_11.jpeg")
+```
+
+.small[
+- We want to see whether the causal effect of heart transplant $A$ on mortality $Y$ varies by the quality of medical care $V$.
+- However, this figure cannot help us to distinguish different situations about effect modification:
+    - causal effect of $A$ on $Y$ in the same direction for stratums $V = 0/ V = 1$
+    - causal effect of $A$ on $Y$ in the opposite direction for stratums $V = 0/ V = 1$
+    - causal effect exist in only one stratum of $V$.
+]
+
 
